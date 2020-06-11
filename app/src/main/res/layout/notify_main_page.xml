@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/notify_main_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@color/notifyBackgroundColor"
+    android:orientation="vertical"
+    android:paddingHorizontal="165px"
+    android:paddingTop="50px">
+
+    <TextView
+        android:id="@+id/recommended_songs_title"
+        style="@style/NotifyMainPageTitle"
+        android:text="測試 testing" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="115px">
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_songs_imageView00"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_songs_textView00"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_songs_imageView01"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_songs_textView01"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_songs_imageView02"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_songs_textView02"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_songs_imageView03"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_songs_textView03"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/recommended_albums_title"
+        style="@style/NotifyMainPageTitle"
+        android:text="測試 testing" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="472px"
+        android:orientation="horizontal">
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_albums_imageView00"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_albums_textView00"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_albums_imageView01"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_albums_textView01"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_albums_imageView02"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_albums_textView02"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/NotifyMainPageLayout">
+
+            <ImageView
+                android:id="@+id/main_page_albums_imageView03"
+                style="@style/NotifyMainPageAlbumImage" />
+
+            <TextView
+                android:id="@+id/main_page_albums_textView03"
+                style="@style/NotifyMainPageAlbumName"
+                android:text="專輯歌曲文字專輯歌曲文字" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/recommended_genres_layout"
+        android:layout_width="match_parent"
+        android:layout_height="62px"
+        android:layout_marginBottom="50px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/recommended_genres_title"
+            style="@style/NotifyMainPageTitle.genres"
+            android:text="測試 testing" />
+
+        <Button
+            android:id="@+id/main_page_more_genres_button"
+            android:layout_width="62px"
+            android:layout_height="62px"
+            android:layout_alignParentRight="true"
+            android:background="@color/notifyUndefinedAlbumsDefaultColor" />
+    </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="2">
+
+        <Button
+            android:id="@+id/main_page_genres_button00"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button01"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button02"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button03"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button04"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button05"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button06"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:text="曲風名稱" />
+
+        <Button
+            android:id="@+id/main_page_genres_button07"
+            style="@style/NotifyMainPageGenresButton"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:text="曲風名稱" />
+    </GridLayout>
+</LinearLayout>

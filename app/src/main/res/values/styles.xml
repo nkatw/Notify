@@ -49,7 +49,7 @@
         <item name="android:layout_height">@dimen/Button</item>
         <item name="android:contentDescription">@null</item>
     </style>
-	
+
 	<style name="PlaybackControl.Small" parent="@style/PlaybackControl">
         <item name="android:layout_width">@dimen/Button.Small</item>
         <item name="android:layout_height">@dimen/Button.Small</item>
@@ -91,5 +91,50 @@
 		<item name="android:paddingBottom">8dip</item>
 		<item name="android:paddingRight">16dip</item>
 		<item name="android:paddingLeft">16dip</item>
+	</style>
+
+	<style name="NotifyMainPageTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">56px</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">38px</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_marginBottom">50px</item>
+	</style>
+
+	<style name="NotifyMainPageTitle.genres" parent="NotifyMainPageTitle">
+		<item name="android:layout_marginBottom">0px</item>
+		<item name="android:layout_alignParentLeft">true</item>
+		<item name="android:layout_centerVertical">true</item>
+	</style>
+
+	<style name="NotifyMainPageAlbumImage">
+		<item name="android:layout_width">290px</item>
+		<item name="android:layout_height">290px</item>
+		<item name="android:layout_alignParentTop">true</item>
+		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
+	</style>
+
+	<style name="NotifyMainPageLayout">
+		<item name="android:layout_width">290px</item>
+		<item name="android:layout_height">356px</item>
+		<item name="android:layout_marginRight">36.7px</item>
+	</style>
+
+    <style name="NotifyMainPageAlbumName">
+        <item name="android:layout_width">290px</item>
+        <item name="android:layout_height">41px</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/notifyFontColorWhite</item>
+        <item name="android:textSize">28px</item>
+    </style>
+
+	<style name="NotifyMainPageGenresButton">
+		<item name="android:layout_width">300px</item>
+		<item name="android:layout_height">300px</item>
+		<item name="android:layout_marginRight">26px</item>
+		<item name="android:layout_marginBottom">25px</item>
+		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
 	</style>
 </resources>
