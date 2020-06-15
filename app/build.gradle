@@ -11,6 +11,11 @@ android {
 		versionName '5.4.4'
 		setProperty("archivesBaseName", "DSub $versionName")
 		resConfigs "de", "es", "fr", "hu", "nl", "pt-rPT", "ru", "sv"
+
+		compileOptions {
+			sourceCompatibility JavaVersion.VERSION_1_8
+			targetCompatibility JavaVersion.VERSION_1_8
+		}
 	}
 	buildTypes {
 		release {
