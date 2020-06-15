@@ -70,6 +70,7 @@ import java.util.List;
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.domain.ServerInfo;
 import github.daneren2005.dsub.fragments.AdminFragment;
+import github.daneren2005.dsub.fragments.MainPageFragment;
 import github.daneren2005.dsub.fragments.SubsonicFragment;
 import github.daneren2005.dsub.fragments.UserFragment;
 import github.daneren2005.dsub.service.DownloadService;
@@ -87,7 +88,7 @@ import github.daneren2005.dsub.util.UserUtil;
 
 import static android.Manifest.*;
 
-public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener {
+public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener, MainPageFragment.DrawerHider {
 	private static final String TAG = SubsonicActivity.class.getSimpleName();
 	private static ImageLoader IMAGE_LOADER;
 	protected static String theme;
@@ -1266,6 +1267,27 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 				}
 
 			}
+		}
+	}
+
+	@Override
+	public void setDrawerEnable(Boolean enable) {
+		drawerToggle.setDrawerIndicatorEnabled(enable);
+		if (enable) {
+			drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+		} else {
+			drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+		}
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setDisplayShowTitleEnabled(enable);
+			getSupportActionBar().setDisplayHomeAsUpEnabled(enable);
+		}
+	}
+
+	@Override
+	public void setDrawerTitle(String title) {
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setTitle(title == null ? "" : title);
 		}
 	}
 }
