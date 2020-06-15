@@ -57,6 +57,7 @@ import github.daneren2005.dsub.fragments.AdminFragment;
 import github.daneren2005.dsub.fragments.ChatFragment;
 import github.daneren2005.dsub.fragments.DownloadFragment;
 import github.daneren2005.dsub.fragments.MainFragment;
+import github.daneren2005.dsub.fragments.MainPageFragment;
 import github.daneren2005.dsub.fragments.NowPlayingFragment;
 import github.daneren2005.dsub.fragments.SearchFragment;
 import github.daneren2005.dsub.fragments.SelectArtistFragment;
@@ -657,6 +658,7 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	}
 
 	private SubsonicFragment getNewFragment(String fragmentType) {
+		Log.d(TAG, "getNewFragment: fragmentType = " + fragmentType);
 		if("Artist".equals(fragmentType)) {
 			return new SelectArtistFragment();
 		} else if("Playlist".equals(fragmentType)) {
@@ -676,7 +678,9 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 		} else if("Download".equals(fragmentType)) {
 			return new DownloadFragment();
 		} else {
-			return new MainFragment();
+			Log.d(TAG, "getNewFragment: show main fragment");
+//			return new MainFragment();
+			return new MainPageFragment();
 		}
 	}
 

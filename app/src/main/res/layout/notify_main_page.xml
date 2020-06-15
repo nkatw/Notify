@@ -3,7 +3,6 @@
     android:id="@+id/notify_main_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="?attr/actionBarSize"
     android:background="@color/notifyBackgroundColor"
     android:orientation="vertical"
     android:paddingHorizontal="165px"
