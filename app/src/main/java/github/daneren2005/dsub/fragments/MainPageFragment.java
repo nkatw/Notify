@@ -31,12 +31,6 @@ public class MainPageFragment extends SubsonicFragment {
     private List<Button> genreButtons = new ArrayList<>();
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.notify_main_page_menu, menu);
-//        onFinishSetupOptionsMenu(menu);
-    }
-
-    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
         createSongView();
