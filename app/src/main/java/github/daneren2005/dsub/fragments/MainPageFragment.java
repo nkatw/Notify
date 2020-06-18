@@ -5,11 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +19,10 @@ import github.daneren2005.dsub.R;
 
 public class MainPageFragment extends SubsonicFragment {
     private static final String TAG = MainPageFragment.class.getSimpleName();
+
+    private ImageButton adminSettingsBtn;
+    private ImageButton searchBtn;
+    private ImageButton radioBtn;
 
     private List<ImageView> songsImageViews = new ArrayList<>();
     private List<TextView> songsTextViews = new ArrayList<>();
@@ -33,15 +36,35 @@ public class MainPageFragment extends SubsonicFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
+        createNotifyCustomToolbar();
         createSongView();
         createAlbumView();
         createGenreView();
 
-        // TODO: Remove shadow on actionbar
-
-        // TODO: Add loading process when loading music data.
+        // TODO: Add loading process bar when loading music data.
         Log.d(TAG, "onCreateView: called");
         return rootView;
+    }
+
+    private void createNotifyCustomToolbar() {
+        adminSettingsBtn = rootView.findViewById(R.id.notify_main_page_admin_settings);
+        adminSettingsBtn.setOnLongClickListener( v -> {
+            // TODO: Show notifySettingsDialog
+            Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
+            return true;
+        });
+
+        searchBtn = rootView.findViewById(R.id.notify_main_page_search_button);
+        searchBtn.setOnClickListener(v -> {
+            // TODO: Show notifySearchFragment
+            Log.d(TAG, "createNotifyCustomToolbar: searchBtn");
+        });
+
+        radioBtn = rootView.findViewById(R.id.notify_main_page_radio_button);
+        radioBtn.setOnClickListener(v -> {
+            // TODO: Show notifyRadioFragment
+            Log.d(TAG, "createNotifyCustomToolbar: radioBtn");
+        });
     }
 
     private void createSongView() {
@@ -95,7 +118,7 @@ public class MainPageFragment extends SubsonicFragment {
         moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
 
         for (Button genreButton : genreButtons) {
-            genreButton.setOnClickListener( v -> {
+            genreButton.setOnClickListener(v -> {
                 // TODO: Show genres page
                 String genreName = genreButton.getText().toString();
                 Log.d(TAG, "createGenreView: Genre Button clicked! " + genreName);
@@ -108,8 +131,8 @@ public class MainPageFragment extends SubsonicFragment {
     public void onResume() {
         super.onResume();
 
-        ((DrawerHider)this.getActivity()).setDrawerEnable(false);
-        ((DrawerHider)this.getActivity()).setDrawerTitle("");
+        ((DrawerHider) this.getActivity()).setDrawerEnable(false);
+        ((DrawerHider) this.getActivity()).setDrawerTitle("");
     }
 
     @Override
@@ -119,9 +142,10 @@ public class MainPageFragment extends SubsonicFragment {
 
     public interface DrawerHider {
         // Due to SubsonicActivity had called Drawer methods on onPostCreate()
-        // To following lifecycle on activity and fragment,
-        //                      invoke those methods on onResume() if necessary.
+        // To following lifecycle on activity and fragment, invoke those
+        // methods on onResume() if necessary.
         void setDrawerEnable(Boolean enable);
+
         void setDrawerTitle(String title);
     }
 }

@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:background="@color/notifyBackgroundColor"
     android:orientation="vertical"
-    android:paddingHorizontal="165px"
-    android:paddingTop="50px">
+    android:paddingHorizontal="@dimen/NotifyMainPage.HorizontalMargin">
+
+    <include layout="@layout/notify_main_page_custom_toolbar_layout"/>
 
     <TextView
         android:id="@+id/recommended_songs_title"
@@ -14,10 +15,7 @@
         android:text="測試 testing" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="115px">
+        style="@style/NotifyMainPageBlock">
 
         <RelativeLayout style="@style/NotifyMainPageLayout">
 
@@ -74,9 +72,7 @@
         android:text="測試 testing" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="472px"
-        android:orientation="horizontal">
+        style="@style/NotifyMainPageBlock">
 
         <RelativeLayout style="@style/NotifyMainPageLayout">
 

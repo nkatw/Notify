@@ -108,6 +108,13 @@
 		<item name="android:layout_centerVertical">true</item>
 	</style>
 
+	<style name="NotifyMainPageBlock">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingBottom">@dimen/NotifyMainPage.Block.BottomMargin</item>
+	</style>
+
 	<style name="NotifyMainPageAlbumImage">
 		<item name="android:layout_width">290px</item>
 		<item name="android:layout_height">290px</item>
@@ -136,5 +143,11 @@
 		<item name="android:layout_marginRight">26px</item>
 		<item name="android:layout_marginBottom">25px</item>
 		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
+	</style>
+
+	<style name="NotifyToolbarButton">
+		<item name="android:background">@color/notifyBackgroundColor</item>\
+		<item name="android:layout_marginLeft">73px</item>
+		<item name="android:scaleType">fitCenter</item>
 	</style>
 </resources>

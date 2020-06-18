@@ -13,4 +13,11 @@
 	<dimen name="FastScroller.LeftAlignedMargin">6dp</dimen>
 	<dimen name="FastScroller.NormalBarMargin">4dp</dimen>
 	<dimen name="FastScroller.RightMargin">4dp</dimen>
+	
+	<!-- Notify Dimen -->
+	<dimen name="NotifyMainPage.Block.BottomMargin">115px</dimen>
+	<dimen name="NotifyMainPage.HorizontalMargin">165px</dimen>
+	<dimen name="NotifyToolbar.TopMargin">129px</dimen>
+	<dimen name="NotifyToolbar.BottomMargin">59px</dimen>
+	<dimen name="NotifyToolbar.Height">110px</dimen>
 </resources>
