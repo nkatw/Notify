@@ -11,14 +11,27 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
+import github.daneren2005.dsub.domain.Genre;
+import github.daneren2005.dsub.domain.MusicDirectory;
+import github.daneren2005.dsub.service.MusicService;
+import github.daneren2005.dsub.service.MusicServiceFactory;
+import github.daneren2005.dsub.util.GetDataListener;
+import github.daneren2005.dsub.util.TabBackgroundTask;
 
 public class MainPageFragment extends SubsonicFragment {
     private static final String TAG = MainPageFragment.class.getSimpleName();
+
+    public static int SONGS_SIZE = 4;
+    public static int ALBUMS_SIZE = 4;
+    public static int GENRES_SIZE = 8;
+    public static String ALBUM_TYPE = "alphabeticalByName";
 
     private ImageButton adminSettingsBtn;
     private ImageButton searchBtn;
@@ -33,6 +46,10 @@ public class MainPageFragment extends SubsonicFragment {
     private Button moreGenresButton;
     private List<Button> genreButtons = new ArrayList<>();
 
+    private MusicDirectory songs;
+    private MusicDirectory albums;
+    private List<Genre> genres = new ArrayList<>();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
@@ -41,28 +58,31 @@ public class MainPageFragment extends SubsonicFragment {
         createAlbumView();
         createGenreView();
 
-        // TODO: Add loading process bar when loading music data.
-        Log.d(TAG, "onCreateView: called");
+        loadData();
+
         return rootView;
     }
 
     private void createNotifyCustomToolbar() {
         adminSettingsBtn = rootView.findViewById(R.id.notify_main_page_admin_settings);
-        adminSettingsBtn.setOnLongClickListener( v -> {
+        adminSettingsBtn.setOnLongClickListener(v -> {
             // TODO: Show notifySettingsDialog
             Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
+            Toast.makeText(context, "Show admin login", Toast.LENGTH_SHORT).show();
             return true;
         });
 
         searchBtn = rootView.findViewById(R.id.notify_main_page_search_button);
         searchBtn.setOnClickListener(v -> {
             // TODO: Show notifySearchFragment
+            Toast.makeText(context, "Show search fragment", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "createNotifyCustomToolbar: searchBtn");
         });
 
         radioBtn = rootView.findViewById(R.id.notify_main_page_radio_button);
         radioBtn.setOnClickListener(v -> {
             // TODO: Show notifyRadioFragment
+            Toast.makeText(context, "Show radio fragment", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "createNotifyCustomToolbar: radioBtn");
         });
     }
@@ -73,10 +93,10 @@ public class MainPageFragment extends SubsonicFragment {
         songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView02));
         songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView03));
 
-        songsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView00));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView01));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView02));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView03));
+        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView00));
+        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView01));
+        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView02));
+        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView03));
 
         for (ImageView songImageView : songsImageViews) {
             songImageView.setOnClickListener(v -> {
@@ -126,6 +146,106 @@ public class MainPageFragment extends SubsonicFragment {
         }
     }
 
+    private void loadData() {
+        loadSongs();
+        loadAlbums();
+        loadGenres();
+    }
+
+    private void loadSongs() {
+        LoadMainPageDataTask<MusicDirectory> loadSongsTask = new LoadMainPageDataTask<>(
+                this,
+                MainPageDataType.SONGS,
+                (musicService, listener) -> {
+                    try {
+                        return musicService.getRandomSongs(SONGS_SIZE, null, null,
+                                null, null, context, listener);
+                    } catch (Exception e) {
+                        Log.e(TAG, "loadSongs: exception = " + e);
+                        return null;
+                    }
+                });
+        loadSongsTask.execute();
+    }
+
+    private void updateSongs(MusicDirectory loadedSongs) {
+        if (loadedSongs == null) {
+            Log.e(TAG, "updateSongs: Loading failed");
+            return;
+        }
+
+        songs = loadedSongs;
+
+        int songIdx = 0;
+        for (TextView songsTextView : songsTextViews) {
+            songsTextView.setText(songs.getSongs().get(songIdx++).getTitle());
+        }
+    }
+
+    private void loadAlbums() {
+        LoadMainPageDataTask<MusicDirectory> loadAlbumsTask = new LoadMainPageDataTask<>(
+                this,
+                MainPageDataType.ALBUMS,
+                ((musicService, listener) -> {
+                    try {
+                        return musicService.getAlbumList(ALBUM_TYPE, ALBUMS_SIZE,
+                                0, false, context, listener);
+                    } catch (Exception e) {
+                        Log.e(TAG, "loadAlbums: exception = " + e);
+                        return null;
+                    }
+                }));
+        loadAlbumsTask.execute();
+    }
+
+    private void updateAlbums(MusicDirectory loadedAlbums) {
+        if (loadedAlbums == null) {
+            Log.e(TAG, "updateAlbums: Loading failed");
+            return;
+        }
+
+        albums = loadedAlbums;
+
+        int albumIdx = 0;
+        for (TextView albumsTextView : albumsTextViews) {
+            albumsTextView.setText(albums.getChildren().get(albumIdx++).getTitle());
+        }
+    }
+
+    private void loadGenres() {
+        LoadMainPageDataTask<List<Genre>> loadGenreTask = new LoadMainPageDataTask<>(
+                this, MainPageDataType.GENRES,
+                (musicService, listener) -> {
+                    try {
+                        return musicService.getGenres(false, context, listener);
+                    } catch (Exception e) {
+                        Log.e(TAG, "loadGenres: exception = ", e);
+                        return null;
+                    }
+                });
+        loadGenreTask.execute();
+    }
+
+    private void updateGenres(List<Genre> loadedGenres) {
+        genres.addAll(loadedGenres);
+
+        if (genres.isEmpty()) {
+            Log.e(TAG, "updateGenres: Loading failed");
+            return;
+        }
+
+        List<Genre> shuffledGenres = new ArrayList<>(genres);
+        Collections.shuffle(shuffledGenres);
+
+        int genreIdx = 0;
+        for (Button genreButton : genreButtons) {
+            if (genreIdx < shuffledGenres.size()) {
+                genreButton.setText(shuffledGenres.get(genreIdx++).getName());
+            } else {
+                genreButton.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
 
     @Override
     public void onResume() {
@@ -135,12 +255,48 @@ public class MainPageFragment extends SubsonicFragment {
         ((DrawerHider) this.getActivity()).setDrawerTitle("");
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private class LoadMainPageDataTask<T> extends TabBackgroundTask<T> {
+        GetDataListener<T> getDataListener;
+        MainPageDataType dataType;
+
+        LoadMainPageDataTask(SubsonicFragment fragment, MainPageDataType mainPageDataType,
+                             GetDataListener<T> getDataListener) {
+            super(fragment);
+            LoadMainPageDataTask.this.getDataListener = getDataListener;
+            LoadMainPageDataTask.this.dataType = mainPageDataType;
+        }
+
+        @Override
+        protected T doInBackground() throws Throwable {
+            MusicService musicService = MusicServiceFactory.getMusicService(context);
+            return getDataListener.getObjects(musicService, this);
+        }
+
+        @Override
+        protected void done(T result) {
+            switch (dataType) {
+                case SONGS:
+                    updateSongs((MusicDirectory) result);
+                    break;
+                case ALBUMS:
+                    updateAlbums((MusicDirectory) result);
+                    break;
+                case GENRES:
+                    updateGenres((List<Genre>) result);
+                    break;
+                default:
+                    Log.e(TAG, "done: Error on get data result.");
+                    break;
+            }
+        }
+    }
+
+    public enum MainPageDataType {
+        SONGS, ALBUMS, GENRES
     }
 
     public interface DrawerHider {
+        // TODO: Move to util
         // Due to SubsonicActivity had called Drawer methods on onPostCreate()
         // To following lifecycle on activity and fragment, invoke those
         // methods on onResume() if necessary.
