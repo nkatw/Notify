@@ -79,6 +79,7 @@ import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
 import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.DrawableTint;
+import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.ImageLoader;
 import github.daneren2005.dsub.util.SilentBackgroundTask;
 import github.daneren2005.dsub.util.ThemeUtil;
@@ -88,7 +89,7 @@ import github.daneren2005.dsub.util.UserUtil;
 
 import static android.Manifest.*;
 
-public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener, MainPageFragment.DrawerHider {
+public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener, DrawerHider {
 	private static final String TAG = SubsonicActivity.class.getSimpleName();
 	private static ImageLoader IMAGE_LOADER;
 	protected static String theme;

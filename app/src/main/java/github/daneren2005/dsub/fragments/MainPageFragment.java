@@ -22,6 +22,7 @@ import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
+import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 
@@ -293,15 +294,5 @@ public class MainPageFragment extends SubsonicFragment {
 
     public enum MainPageDataType {
         SONGS, ALBUMS, GENRES
-    }
-
-    public interface DrawerHider {
-        // TODO: Move to util
-        // Due to SubsonicActivity had called Drawer methods on onPostCreate()
-        // To following lifecycle on activity and fragment, invoke those
-        // methods on onResume() if necessary.
-        void setDrawerEnable(Boolean enable);
-
-        void setDrawerTitle(String title);
     }
 }
