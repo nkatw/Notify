@@ -15,4 +15,9 @@
 	<color name="holoPrimary">#009688</color>
 	<color name="holoPrimaryDark">#00897b</color>
 	<color name="holoAccent">#64ffda</color>
+
+	<color name="notifyBackgroundColor">#323232</color>
+	<color name="notifyUndefinedAlbumsDefaultColor">#6E6E6E</color>
+
+	<color name="notifyFontColorWhite">#FFFFFF</color>
 </resources>

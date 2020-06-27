@@ -49,7 +49,7 @@
         <item name="android:layout_height">@dimen/Button</item>
         <item name="android:contentDescription">@null</item>
     </style>
-	
+
 	<style name="PlaybackControl.Small" parent="@style/PlaybackControl">
         <item name="android:layout_width">@dimen/Button.Small</item>
         <item name="android:layout_height">@dimen/Button.Small</item>
@@ -91,5 +91,84 @@
 		<item name="android:paddingBottom">8dip</item>
 		<item name="android:paddingRight">16dip</item>
 		<item name="android:paddingLeft">16dip</item>
+	</style>
+
+	<style name="NotifyMainPageTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">56px</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">38px</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_marginBottom">50px</item>
+		<item name="android:text">Title String</item>
+	</style>
+
+	<style name="NotifyMainPageTitle.genres" parent="NotifyMainPageTitle">
+		<item name="android:layout_marginBottom">0px</item>
+		<item name="android:layout_alignParentLeft">true</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:text">Title String</item>
+	</style>
+
+	<style name="NotifyMainPageBlock">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingBottom">@dimen/NotifyMainPage.Block.BottomMargin</item>
+	</style>
+
+	<style name="NotifyMainPageCoverArt">
+		<item name="android:layout_width">290px</item>
+		<item name="android:layout_height">290px</item>
+		<item name="android:layout_alignParentTop">true</item>
+		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
+	</style>
+
+	<style name="NotifyMainPageButtonStyle">
+		<item name="android:layout_width">290px</item>
+		<item name="android:layout_height">356px</item>
+		<item name="android:layout_marginRight">36.7px</item>
+	</style>
+
+    <style name="NotifyMainPageSongButtonTitle">
+        <item name="android:layout_width">290px</item>
+        <item name="android:layout_height">41px</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/notifyFontColorWhite</item>
+        <item name="android:textSize">28px</item>
+		<item name="android:gravity">center</item>
+		<item name="android:text">Song Name Text Song Name Text</item>
+    </style>
+
+	<style name="NotifyMainPageAlbumButtonTitle" parent="NotifyMainPageSongButtonTitle">
+		<item name="android:text">Album Name Text Album Name Text</item>
+	</style>
+
+	<style name="NotifyMainPageGenresButton">
+		<item name="android:layout_width">300px</item>
+		<item name="android:layout_height">300px</item>
+		<item name="android:layout_marginRight">23px</item>
+		<item name="android:layout_marginBottom">35px</item>
+	</style>
+
+	<style name="NotifyMainPageGenresButtonImage">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+	</style>
+
+	<style name="NotifyMainPageGenresButtonTitle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textColor">@color/notifyFontColorWhite</item>
+        <item name="android:textSize">35px</item>
+		<item name="android:text">Genre Name</item>
+	</style>
+
+	<style name="NotifyToolbarButton">
+		<item name="android:background">@color/notifyBackgroundColor</item>\
+		<item name="android:layout_marginLeft">73px</item>
+		<item name="android:scaleType">fitCenter</item>
 	</style>
 </resources>

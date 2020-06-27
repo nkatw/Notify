@@ -45,6 +45,10 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
+/*
+	Replace by MainPageFragment class
+ */
+@Deprecated
 public class MainFragment extends SelectRecyclerFragment<Integer> {
 	private static final String TAG = MainFragment.class.getSimpleName();
 	public static final String SONGS_LIST_PREFIX = "songs-";
