@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,17 +37,12 @@ public class MainPageFragment extends SubsonicFragment {
     private ImageButton searchBtn;
     private ImageButton radioBtn;
 
-    private List<ImageView> songsImageViews = new ArrayList<>();
-    private List<TextView> songsTextViews = new ArrayList<>();
 
-    private List<ImageView> albumsImageViews = new ArrayList<>();
-    private List<TextView> albumsTextViews = new ArrayList<>();
+    private List<MainPageItem> songItems = new ArrayList<>();
+    private List<MainPageItem> albumItems = new ArrayList<>();
+    private List<MainPageItem> genresItems = new ArrayList<>();
 
-    private Button moreGenresButton;
-    private List<Button> genreButtons = new ArrayList<>();
-
-    private MusicDirectory songs;
-    private MusicDirectory albums;
+    private ImageButton moreGenresButton;
     private List<Genre> genres = new ArrayList<>();
 
     @Override
@@ -89,62 +83,104 @@ public class MainPageFragment extends SubsonicFragment {
     }
 
     private void createSongView() {
-        songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView00));
-        songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView01));
-        songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView02));
-        songsImageViews.add(rootView.findViewById(R.id.main_page_songs_imageView03));
+        songItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_songs_imageView00),
+                rootView.findViewById(R.id.main_page_songs_textView00)
+        ));
+        songItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_songs_imageView01),
+                rootView.findViewById(R.id.main_page_songs_textView01)
+        ));
+        songItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_songs_imageView02),
+                rootView.findViewById(R.id.main_page_songs_textView02)
+        ));
+        songItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_songs_imageView03),
+                rootView.findViewById(R.id.main_page_songs_textView03)
+        ));
 
-        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView00));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView01));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView02));
-        songsTextViews.add(rootView.findViewById(R.id.main_page_songs_textView03));
-
-        for (ImageView songImageView : songsImageViews) {
-            songImageView.setOnClickListener(v -> {
+        for (MainPageItem item : songItems) {
+            item.coverArt.setOnClickListener(v -> {
                 // TODO: Show song on music player
-                Log.d(TAG, "createSongView: Song image clicked!");
+                Toast.makeText(context, "Song image clicked!", Toast.LENGTH_SHORT).show();
             });
         }
     }
 
     private void createAlbumView() {
-        albumsImageViews.add(rootView.findViewById(R.id.main_page_albums_imageView00));
-        albumsImageViews.add(rootView.findViewById(R.id.main_page_albums_imageView01));
-        albumsImageViews.add(rootView.findViewById(R.id.main_page_albums_imageView02));
-        albumsImageViews.add(rootView.findViewById(R.id.main_page_albums_imageView03));
+        albumItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_albums_imageView00),
+                rootView.findViewById(R.id.main_page_albums_textView00)
+        ));
+        albumItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_albums_imageView01),
+                rootView.findViewById(R.id.main_page_albums_textView01)
+        ));
+        albumItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_albums_imageView02),
+                rootView.findViewById(R.id.main_page_albums_textView02)
+        ));
+        albumItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_albums_imageView03),
+                rootView.findViewById(R.id.main_page_albums_textView03)
+        ));
 
-        albumsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView00));
-        albumsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView01));
-        albumsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView02));
-        albumsTextViews.add(rootView.findViewById(R.id.main_page_albums_textView03));
-
-        for (ImageView albumImageView : albumsImageViews) {
-            albumImageView.setOnClickListener(v -> {
+        for (MainPageItem item : albumItems) {
+            item.coverArt.setOnClickListener(v -> {
                 // TODO: Show album page
-                Log.d(TAG, "createAlbumView: Album image clicked!");
+                Toast.makeText(context, "Album image clicked!", Toast.LENGTH_SHORT).show();
             });
         }
     }
 
     private void createGenreView() {
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button00));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button01));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button02));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button03));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button04));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button05));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button06));
-        genreButtons.add(rootView.findViewById(R.id.main_page_genres_button07));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView00),
+                rootView.findViewById(R.id.main_page_genres_textView00)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView01),
+                rootView.findViewById(R.id.main_page_genres_textView01)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView02),
+                rootView.findViewById(R.id.main_page_genres_textView02)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView03),
+                rootView.findViewById(R.id.main_page_genres_textView03)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView04),
+                rootView.findViewById(R.id.main_page_genres_textView04)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView05),
+                rootView.findViewById(R.id.main_page_genres_textView05)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView06),
+                rootView.findViewById(R.id.main_page_genres_textView06)
+        ));
+        genresItems.add(new MainPageItem(
+                rootView.findViewById(R.id.main_page_genres_imageView07),
+                rootView.findViewById(R.id.main_page_genres_textView07)
+        ));
 
-        moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
-
-        for (Button genreButton : genreButtons) {
-            genreButton.setOnClickListener(v -> {
+        for (MainPageItem item : genresItems) {
+            item.coverArt.setOnClickListener(v -> {
                 // TODO: Show genres page
-                String genreName = genreButton.getText().toString();
+                String genreName = item.title.getText().toString();
                 Log.d(TAG, "createGenreView: Genre Button clicked! " + genreName);
+                Toast.makeText(context, genreName + " clicked!", Toast.LENGTH_SHORT).show();
             });
         }
+
+        moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
+        moreGenresButton.setOnClickListener(v -> {
+            Toast.makeText(context, "More genres button clicked!", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void loadData() {
@@ -175,11 +211,12 @@ public class MainPageFragment extends SubsonicFragment {
             return;
         }
 
-        songs = loadedSongs;
-
         int songIdx = 0;
-        for (TextView songsTextView : songsTextViews) {
-            songsTextView.setText(songs.getSongs().get(songIdx++).getTitle());
+        for (MainPageItem item : songItems) {
+            item.title.setText(loadedSongs.getSongs().get(songIdx).getTitle());
+            item.musicData = loadedSongs.getChildren().get(songIdx);
+            context.getImageLoader().loadImage(item.coverArt,
+                    loadedSongs.getSongs().get(songIdx++), false, false);
         }
     }
 
@@ -205,11 +242,12 @@ public class MainPageFragment extends SubsonicFragment {
             return;
         }
 
-        albums = loadedAlbums;
-
         int albumIdx = 0;
-        for (TextView albumsTextView : albumsTextViews) {
-            albumsTextView.setText(albums.getChildren().get(albumIdx++).getTitle());
+        for (MainPageItem item : albumItems) {
+            item.title.setText(loadedAlbums.getChildren().get(albumIdx).getTitle());
+            item.musicData = loadedAlbums.getChildren().get(albumIdx);
+            context.getImageLoader().loadImage(item.coverArt,
+                    loadedAlbums.getChildren().get(albumIdx++), false, false);
         }
     }
 
@@ -239,11 +277,11 @@ public class MainPageFragment extends SubsonicFragment {
         Collections.shuffle(shuffledGenres);
 
         int genreIdx = 0;
-        for (Button genreButton : genreButtons) {
+        for (MainPageItem item : genresItems) {
             if (genreIdx < shuffledGenres.size()) {
-                genreButton.setText(shuffledGenres.get(genreIdx++).getName());
+                item.title.setText(shuffledGenres.get(genreIdx++).getName());
             } else {
-                genreButton.setVisibility(View.INVISIBLE);
+                item.title.setVisibility(View.INVISIBLE);
             }
         }
     }
@@ -289,6 +327,17 @@ public class MainPageFragment extends SubsonicFragment {
                     Log.e(TAG, "done: Error on get data result.");
                     break;
             }
+        }
+    }
+
+    private class MainPageItem {
+        ImageView coverArt;
+        TextView title;
+        Object musicData;
+
+        MainPageItem(ImageView coverArt, TextView title) {
+            this.coverArt = coverArt;
+            this.title = title;
         }
     }
 

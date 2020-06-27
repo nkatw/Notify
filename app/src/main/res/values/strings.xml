@@ -663,6 +663,9 @@
 	<string name="details.played_count">Played Count</string>
 	<string name="details.stream_url">Stream URL</string>
 	<string name="details.home_page">Home Page</string>
+	<string name="notify.mainPage.recommendedSongs.title">Recommended Songs</string>
+	<string name="notify.mainPage.recommendedAlbums.title">Recommended Albums</string>
+	<string name="notify.mainPage.recommendedGenres.title">Recommended Genres</string>
 
 	<string name="permission.external_storage.failed">DSub cannot function without the ability to write to storage</string>
 
