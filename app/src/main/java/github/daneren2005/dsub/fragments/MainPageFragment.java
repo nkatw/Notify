@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
+import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
@@ -61,9 +62,9 @@ public class MainPageFragment extends SubsonicFragment {
     private void createNotifyCustomToolbar() {
         adminSettingsBtn = rootView.findViewById(R.id.notify_main_page_admin_settings);
         adminSettingsBtn.setOnLongClickListener(v -> {
-            // TODO: Show notifySettingsDialog
+            AdminLoginDialogFragment adminLoginDialogFragment = new AdminLoginDialogFragment();
+            adminLoginDialogFragment.show(context.getSupportFragmentManager(), "NotifyAdminLogin");
             Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
-            Toast.makeText(context, "Show admin login", Toast.LENGTH_SHORT).show();
             return true;
         });
 
