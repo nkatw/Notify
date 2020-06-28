@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/notify_main_page"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/notifyBackgroundColor"
-    android:orientation="vertical"
-    android:paddingHorizontal="@dimen/NotifyMainPage.HorizontalMargin">
+    style="@style/NotifyRootLayoutStyle">
 
     <include layout="@layout/notify_main_page_custom_toolbar_layout" />
 

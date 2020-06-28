@@ -93,6 +93,15 @@
 		<item name="android:paddingLeft">16dip</item>
 	</style>
 
+	<style name="NotifyRootLayoutStyle">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">match_parent</item>
+		<item name="android:background">@color/notifyBackgroundColor</item>
+		<item name="android:orientation">vertical</item>
+		<item name="android:paddingStart">165px</item>
+		<item name="android:paddingEnd">165px</item>
+	</style>
+
 	<style name="NotifyMainPageTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">56px</item>
