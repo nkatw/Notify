@@ -18,6 +18,7 @@
 
 	<color name="notifyBackgroundColor">#323232</color>
 	<color name="notifyUndefinedAlbumsDefaultColor">#6E6E6E</color>
-
 	<color name="notifyFontColorWhite">#FFFFFF</color>
+	<color name="notifyFontColorHintGary">#939393</color>
+	<color name="notifyDialogBackgroundColor">#525252</color>
 </resources>
