@@ -26,17 +26,13 @@ import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 
-public class MainPageFragment extends SubsonicFragment {
+public class MainPageFragment extends NotifyFragment {
     private static final String TAG = MainPageFragment.class.getSimpleName();
 
     public static int SONGS_SIZE = 4;
     public static int ALBUMS_SIZE = 4;
     public static int GENRES_SIZE = 8;
     public static String ALBUM_TYPE = "alphabeticalByName";
-
-    private ImageButton adminSettingsBtn;
-    private ImageButton searchBtn;
-    private ImageButton radioBtn;
 
 
     private List<MainPageItem> songItems = new ArrayList<>();
@@ -49,7 +45,8 @@ public class MainPageFragment extends SubsonicFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
-        createNotifyCustomToolbar();
+
+        super.createNotifyCustomToolbar();
         createSongView();
         createAlbumView();
         createGenreView();
@@ -57,30 +54,6 @@ public class MainPageFragment extends SubsonicFragment {
         loadData();
 
         return rootView;
-    }
-
-    private void createNotifyCustomToolbar() {
-        adminSettingsBtn = rootView.findViewById(R.id.notify_main_page_admin_settings);
-        adminSettingsBtn.setOnLongClickListener(v -> {
-            AdminLoginDialogFragment adminLoginDialogFragment = new AdminLoginDialogFragment();
-            adminLoginDialogFragment.show(context.getSupportFragmentManager(), "NotifyAdminLogin");
-            Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
-            return true;
-        });
-
-        searchBtn = rootView.findViewById(R.id.notify_main_page_search_button);
-        searchBtn.setOnClickListener(v -> {
-            // TODO: Show notifySearchFragment
-            Toast.makeText(context, "Show search fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: searchBtn");
-        });
-
-        radioBtn = rootView.findViewById(R.id.notify_main_page_radio_button);
-        radioBtn.setOnClickListener(v -> {
-            // TODO: Show notifyRadioFragment
-            Toast.makeText(context, "Show radio fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: radioBtn");
-        });
     }
 
     private void createSongView() {
@@ -181,6 +154,7 @@ public class MainPageFragment extends SubsonicFragment {
         moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
         moreGenresButton.setOnClickListener(v -> {
             Toast.makeText(context, "More genres button clicked!", Toast.LENGTH_SHORT).show();
+            replaceFragment(new GenrePageFragment());
         });
     }
 
