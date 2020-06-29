@@ -4,8 +4,18 @@
 
     <include layout="@layout/notify_main_page_custom_toolbar_layout" />
 
-    <ListView
-        android:id="@+id/genre_page_list_view"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150px"
+        android:text="@string/notify_genres_page_title"
+        android:textColor="@color/notifyFontColorWhite"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="60px"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/genre_page_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

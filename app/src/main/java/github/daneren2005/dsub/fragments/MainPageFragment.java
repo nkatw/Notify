@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
-import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
@@ -154,7 +153,7 @@ public class MainPageFragment extends NotifyFragment {
         moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
         moreGenresButton.setOnClickListener(v -> {
             Toast.makeText(context, "More genres button clicked!", Toast.LENGTH_SHORT).show();
-            replaceFragment(new GenrePageFragment());
+            replaceFragment(new GenreListFragment());
         });
     }
 

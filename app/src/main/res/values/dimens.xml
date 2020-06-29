@@ -23,4 +23,5 @@
 	<dimen name="NotifyDialog.Height">600px</dimen>
 	<dimen name="NotifyDialog.Width">800px</dimen>
 	<dimen name="NotifyDialogRadius">45px</dimen>
+	<dimen name="NotifyGenrePage.title.fontSize">34px</dimen>
 </resources>
