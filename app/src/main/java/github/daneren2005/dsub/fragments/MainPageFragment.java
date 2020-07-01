@@ -45,7 +45,8 @@ public class MainPageFragment extends NotifyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
 
-        super.createNotifyCustomToolbar();
+        super.createNotifyCustomToolbar(false, false,
+                true, true, true);
         createSongView();
         createAlbumView();
         createGenreView();

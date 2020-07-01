@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
@@ -30,7 +28,8 @@ public class GenreListFragment extends NotifyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_genre_page, container, false);
-        super.createNotifyCustomToolbar();
+        super.createNotifyCustomToolbar(true, false,
+                false, true, true);
         recyclerView = rootView.findViewById(R.id.genre_page_recycler_view);
 
         loadGenres();
@@ -57,7 +56,19 @@ public class GenreListFragment extends NotifyFragment {
             return;
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new GenreListAdapter(loadedGenres));
+        recyclerView.setAdapter(new GenreListAdapter() {
+            @Override
+            public void onBindViewHolder(@NonNull GenreListViewHolder holder, int position) {
+                Genre genre = loadedGenres.get(position);
+                holder.genreNameTextView.setText(genre.getName());
+                holder.layout.setOnClickListener(v -> showGenreDetailPage(genre));
+            }
+
+            @Override
+            public int getItemCount() {
+                return loadedGenres.size();
+            }
+        });
     }
 
     private class LoadDataTask<T> extends TabBackgroundTask<T> {
