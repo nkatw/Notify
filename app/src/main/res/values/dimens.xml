@@ -23,5 +23,11 @@
 	<dimen name="NotifyDialog.Height">600px</dimen>
 	<dimen name="NotifyDialog.Width">800px</dimen>
 	<dimen name="NotifyDialogRadius">45px</dimen>
-	<dimen name="NotifyGenrePage.title.fontSize">34px</dimen>
+	<dimen name="Notify.songItem.title.fontSize">34px</dimen>
+	<dimen name="Notify.songItem.subtitle.fontSize">28px</dimen>
+	<dimen name="Notify.songItem.songLength.fontSize">28px</dimen>
+	<dimen name="Notify.songItem.indexText.fontSize">34px</dimen>
+	<dimen name="Notify.songItem.indexText.widthSize">50px</dimen>
+	<dimen name="Notify.songItem.indexText.marginEndSize">47px</dimen>
+	<dimen name="Notify.songItem.paddingBottomSize">60px</dimen>
 </resources>

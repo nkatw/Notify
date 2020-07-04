@@ -38,7 +38,7 @@ public class GenreListFragment extends NotifyFragment {
     }
 
     private void loadGenres() {
-        LoadDataTask<List<Genre>> loadGenreTask = new LoadDataTask<>(
+        LoadGenreDataTask<List<Genre>> loadGenreTask = new LoadGenreDataTask<>(
                 this, (musicService, listener) -> {
             try {
                 return musicService.getGenres(false, context, listener);
@@ -71,12 +71,12 @@ public class GenreListFragment extends NotifyFragment {
         });
     }
 
-    private class LoadDataTask<T> extends TabBackgroundTask<T> {
+    private class LoadGenreDataTask<T> extends TabBackgroundTask<T> {
         GetDataListener<T> getDataListener;
 
-        LoadDataTask(SubsonicFragment fragment, GetDataListener<T> getDataListener) {
+        LoadGenreDataTask(SubsonicFragment fragment, GetDataListener<T> getDataListener) {
             super(fragment);
-            LoadDataTask.this.getDataListener = getDataListener;
+            LoadGenreDataTask.this.getDataListener = getDataListener;
         }
 
         @Override

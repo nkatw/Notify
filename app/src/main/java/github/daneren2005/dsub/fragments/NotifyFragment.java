@@ -1,5 +1,7 @@
 package github.daneren2005.dsub.fragments;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +11,8 @@ import android.widget.Toast;
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
+import github.daneren2005.dsub.util.Constants;
+import github.daneren2005.dsub.util.Util;
 
 public class NotifyFragment extends SubsonicFragment {
     private static final String TAG = NotifyFragment.class.getSimpleName();
@@ -63,7 +67,10 @@ public class NotifyFragment extends SubsonicFragment {
     }
 
     protected void showGenreDetailPage(Genre genre) {
-        // TODO: replace fragment with GenreDetailPage
-        Toast.makeText(context, "Clicked genre = " + genre.getName(), Toast.LENGTH_SHORT).show();
+        SubsonicFragment fragment = new GenreDetailFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.PREFERENCES_KEY_SHOW_SONG_BY_GENRE, genre.getName());
+        fragment.setArguments(args);
+        replaceFragment(fragment);
     }
 }

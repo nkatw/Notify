@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@color/notifyBackgroundColor"
     android:orientation="vertical"
-    android:paddingBottom="60px">
+    android:paddingBottom="@dimen/Notify.songItem.paddingBottomSize">
 
     <TextView
         android:id="@+id/genre_name"
@@ -14,6 +14,6 @@
         android:text="Genres Default Title"
         android:textAllCaps="false"
         android:textColor="@color/notifyFontColorWhite"
-        android:textSize="@dimen/NotifyGenrePage.title.fontSize"
+        android:textSize="@dimen/Notify.songItem.title.fontSize"
         android:textStyle="bold" />
 </LinearLayout>
