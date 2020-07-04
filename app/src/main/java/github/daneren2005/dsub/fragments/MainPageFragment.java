@@ -144,16 +144,12 @@ public class MainPageFragment extends NotifyFragment {
 
         for (MainPageItem item : genresItems) {
             item.coverArt.setOnClickListener(v -> {
-                // TODO: Show genres page
-                String genreName = item.title.getText().toString();
-                Log.d(TAG, "createGenreView: Genre Button clicked! " + genreName);
-                Toast.makeText(context, genreName + " clicked!", Toast.LENGTH_SHORT).show();
+                showGenreDetailPage((Genre) item.detail);
             });
         }
 
         moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
         moreGenresButton.setOnClickListener(v -> {
-            Toast.makeText(context, "More genres button clicked!", Toast.LENGTH_SHORT).show();
             replaceFragment(new GenreListFragment());
         });
     }
@@ -189,7 +185,7 @@ public class MainPageFragment extends NotifyFragment {
         int songIdx = 0;
         for (MainPageItem item : songItems) {
             item.title.setText(loadedSongs.getSongs().get(songIdx).getTitle());
-            item.musicData = loadedSongs.getChildren().get(songIdx);
+            item.detail = loadedSongs.getChildren().get(songIdx);
             context.getImageLoader().loadImage(item.coverArt,
                     loadedSongs.getSongs().get(songIdx++), false, false);
         }
@@ -220,7 +216,7 @@ public class MainPageFragment extends NotifyFragment {
         int albumIdx = 0;
         for (MainPageItem item : albumItems) {
             item.title.setText(loadedAlbums.getChildren().get(albumIdx).getTitle());
-            item.musicData = loadedAlbums.getChildren().get(albumIdx);
+            item.detail = loadedAlbums.getChildren().get(albumIdx);
             context.getImageLoader().loadImage(item.coverArt,
                     loadedAlbums.getChildren().get(albumIdx++), false, false);
         }
@@ -254,9 +250,10 @@ public class MainPageFragment extends NotifyFragment {
         int genreIdx = 0;
         for (MainPageItem item : genresItems) {
             if (genreIdx < shuffledGenres.size()) {
+                item.detail = shuffledGenres.get(genreIdx);
                 item.title.setText(shuffledGenres.get(genreIdx++).getName());
             } else {
-                item.title.setVisibility(View.INVISIBLE);
+                item.setItemVisibility(View.INVISIBLE);
             }
         }
     }
@@ -308,11 +305,16 @@ public class MainPageFragment extends NotifyFragment {
     private class MainPageItem {
         ImageView coverArt;
         TextView title;
-        Object musicData;
+        Object detail;
 
         MainPageItem(ImageView coverArt, TextView title) {
             this.coverArt = coverArt;
             this.title = title;
+        }
+
+        void setItemVisibility(int visibility) {
+            coverArt.setVisibility(visibility);
+            title.setVisibility(visibility);
         }
     }
 
