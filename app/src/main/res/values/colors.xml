@@ -21,4 +21,6 @@
 	<color name="notifyFontColorWhite">#FFFFFF</color>
 	<color name="notifyFontColorHintGary">#939393</color>
 	<color name="notifyDialogBackgroundColor">#525252</color>
+	<color name="notifyGradientStartColor">#FC6076</color>
+	<color name="notifyGradientEndColor">#FF9944</color>
 </resources>
