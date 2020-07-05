@@ -234,6 +234,9 @@ public final class Constants {
 
     public static final String ALBUM_ART_FILE = "albumart.jpg";
 
+    /* Parameter for Notify app */
+	public static final String PREFERENCES_KEY_SHOW_SONG_BY_GENRE = "Art Punk";
+
     private Constants() {
     }
 }

@@ -671,8 +671,9 @@
 	<string name="notify.dialog.button_enter" translatable="false">enter</string>
 
 	<string name="permission.external_storage.failed">DSub cannot function without the ability to write to storage</string>
+	<string name="notify_genres_page_title">Genres</string>
 
-    <plurals name="select_album_n_songs">
+	<plurals name="select_album_n_songs">
         <item quantity="zero">No songs</item>
         <item quantity="one">One song</item>
         <item quantity="other">%d songs</item>

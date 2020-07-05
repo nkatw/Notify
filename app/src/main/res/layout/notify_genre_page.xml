@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/NotifyRootLayoutStyle"
+    android:orientation="vertical">
+
+    <include layout="@layout/notify_main_page_custom_toolbar_layout" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/genre_page_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="150px"
+            android:text="@string/notify_genres_page_title"
+            android:textColor="@color/notifyFontColorWhite"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="60px"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/genre_page_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <include layout="@layout/tab_progress" />
+</LinearLayout>

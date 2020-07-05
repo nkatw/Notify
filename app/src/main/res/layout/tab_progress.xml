@@ -27,6 +27,6 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:textAppearance="?android:attr/textAppearanceMedium"
-			android:textColor="?android:textColorPrimary"/>
+			android:textColor="@color/notifyFontColorWhite"/>
 	</LinearLayout>
 </FrameLayout>

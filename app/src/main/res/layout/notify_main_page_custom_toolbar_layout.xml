@@ -4,28 +4,36 @@
     android:layout_height="@dimen/NotifyToolbar.Height"
     android:layout_marginTop="@dimen/NotifyToolbar.TopMargin"
     android:layout_marginBottom="@dimen/NotifyToolbar.BottomMargin"
-    android:background="@color/notifyBackgroundColor"
-    android:gravity="right"
-    android:orientation="horizontal">
+    android:background="@color/notifyBackgroundColor">
 
     <ImageButton
-        android:id="@+id/notify_main_page_admin_settings"
+        android:id="@+id/notify_toolbar_back"
+        style="@style/NotifyToolbarButton.back"
+        android:layout_width="wrap_content"
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/notify_toolbar_search_bar"
+        android:layout_width="0px"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:visibility="invisible"/>
+
+    <ImageButton
+        android:id="@+id/notify_toolbar_admin_settings"
         style="@style/NotifyToolbarButton"
-        android:layout_width="100px"
-        android:layout_height="match_parent" />
-
+        android:layout_width="100px" />
 
     <ImageButton
-        android:id="@+id/notify_main_page_search_button"
+        android:id="@+id/notify_toolbar_search_button"
         style="@style/NotifyToolbarButton"
         android:layout_width="43px"
-        android:layout_height="match_parent"
         android:src="@mipmap/icon_search" />
 
     <ImageButton
-        android:id="@+id/notify_main_page_radio_button"
+        android:id="@+id/notify_toolbar_radio_button"
         style="@style/NotifyToolbarButton"
         android:layout_width="49px"
-        android:layout_height="match_parent"
         android:src="@mipmap/icon_radio" />
 </LinearLayout>

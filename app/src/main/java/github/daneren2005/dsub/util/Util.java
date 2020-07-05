@@ -851,11 +851,11 @@ public final class Util {
         int secs = seconds % 60;
 
         StringBuilder builder = new StringBuilder(7);
-		if(hours > 0) {
+		if (hours > 0) {
 			builder.append(hours).append(":");
-			if(minutes < 10) {
-				builder.append("0");
-			}
+		}
+		if (minutes < 10) {
+			builder.append("0");
 		}
         builder.append(minutes).append(":");
         if (secs < 10) {

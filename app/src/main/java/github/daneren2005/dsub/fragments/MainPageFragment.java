@@ -17,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
-import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
@@ -26,17 +25,13 @@ import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 
-public class MainPageFragment extends SubsonicFragment {
+public class MainPageFragment extends NotifyFragment {
     private static final String TAG = MainPageFragment.class.getSimpleName();
 
     public static int SONGS_SIZE = 4;
     public static int ALBUMS_SIZE = 4;
     public static int GENRES_SIZE = 8;
     public static String ALBUM_TYPE = "alphabeticalByName";
-
-    private ImageButton adminSettingsBtn;
-    private ImageButton searchBtn;
-    private ImageButton radioBtn;
 
 
     private List<MainPageItem> songItems = new ArrayList<>();
@@ -49,7 +44,9 @@ public class MainPageFragment extends SubsonicFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_main_page, container, false);
-        createNotifyCustomToolbar();
+
+        super.createNotifyCustomToolbar(false, false,
+                true, true, true);
         createSongView();
         createAlbumView();
         createGenreView();
@@ -57,30 +54,6 @@ public class MainPageFragment extends SubsonicFragment {
         loadData();
 
         return rootView;
-    }
-
-    private void createNotifyCustomToolbar() {
-        adminSettingsBtn = rootView.findViewById(R.id.notify_main_page_admin_settings);
-        adminSettingsBtn.setOnLongClickListener(v -> {
-            AdminLoginDialogFragment adminLoginDialogFragment = new AdminLoginDialogFragment();
-            adminLoginDialogFragment.show(context.getSupportFragmentManager(), "NotifyAdminLogin");
-            Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
-            return true;
-        });
-
-        searchBtn = rootView.findViewById(R.id.notify_main_page_search_button);
-        searchBtn.setOnClickListener(v -> {
-            // TODO: Show notifySearchFragment
-            Toast.makeText(context, "Show search fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: searchBtn");
-        });
-
-        radioBtn = rootView.findViewById(R.id.notify_main_page_radio_button);
-        radioBtn.setOnClickListener(v -> {
-            // TODO: Show notifyRadioFragment
-            Toast.makeText(context, "Show radio fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: radioBtn");
-        });
     }
 
     private void createSongView() {
@@ -171,16 +144,13 @@ public class MainPageFragment extends SubsonicFragment {
 
         for (MainPageItem item : genresItems) {
             item.coverArt.setOnClickListener(v -> {
-                // TODO: Show genres page
-                String genreName = item.title.getText().toString();
-                Log.d(TAG, "createGenreView: Genre Button clicked! " + genreName);
-                Toast.makeText(context, genreName + " clicked!", Toast.LENGTH_SHORT).show();
+                showGenreDetailPage((Genre) item.detail);
             });
         }
 
         moreGenresButton = rootView.findViewById(R.id.main_page_more_genres_button);
         moreGenresButton.setOnClickListener(v -> {
-            Toast.makeText(context, "More genres button clicked!", Toast.LENGTH_SHORT).show();
+            replaceFragment(new GenreListFragment());
         });
     }
 
@@ -215,7 +185,7 @@ public class MainPageFragment extends SubsonicFragment {
         int songIdx = 0;
         for (MainPageItem item : songItems) {
             item.title.setText(loadedSongs.getSongs().get(songIdx).getTitle());
-            item.musicData = loadedSongs.getChildren().get(songIdx);
+            item.detail = loadedSongs.getChildren().get(songIdx);
             context.getImageLoader().loadImage(item.coverArt,
                     loadedSongs.getSongs().get(songIdx++), false, false);
         }
@@ -246,7 +216,7 @@ public class MainPageFragment extends SubsonicFragment {
         int albumIdx = 0;
         for (MainPageItem item : albumItems) {
             item.title.setText(loadedAlbums.getChildren().get(albumIdx).getTitle());
-            item.musicData = loadedAlbums.getChildren().get(albumIdx);
+            item.detail = loadedAlbums.getChildren().get(albumIdx);
             context.getImageLoader().loadImage(item.coverArt,
                     loadedAlbums.getChildren().get(albumIdx++), false, false);
         }
@@ -280,9 +250,10 @@ public class MainPageFragment extends SubsonicFragment {
         int genreIdx = 0;
         for (MainPageItem item : genresItems) {
             if (genreIdx < shuffledGenres.size()) {
+                item.detail = shuffledGenres.get(genreIdx);
                 item.title.setText(shuffledGenres.get(genreIdx++).getName());
             } else {
-                item.title.setVisibility(View.INVISIBLE);
+                item.setItemVisibility(View.INVISIBLE);
             }
         }
     }
@@ -334,11 +305,16 @@ public class MainPageFragment extends SubsonicFragment {
     private class MainPageItem {
         ImageView coverArt;
         TextView title;
-        Object musicData;
+        Object detail;
 
         MainPageItem(ImageView coverArt, TextView title) {
             this.coverArt = coverArt;
             this.title = title;
+        }
+
+        void setItemVisibility(int visibility) {
+            coverArt.setVisibility(visibility);
+            title.setVisibility(visibility);
         }
     }
 
