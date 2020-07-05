@@ -27,12 +27,12 @@
                 android:textColor="@color/notifyFontColorWhite"
                 android:textSize="60px"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/artist_page_artist_detail"
+                app:layout_constraintBottom_toTopOf="@+id/artist_page_artist_biography"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/artist_page_artist_detail"
+                android:id="@+id/artist_page_artist_biography"
                 android:layout_width="785px"
                 android:layout_height="0dp"
                 android:letterSpacing="0.1"
@@ -53,7 +53,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </android.support.constraint.ConstraintLayout>
 
@@ -90,7 +89,7 @@
                 android:layout_column="0">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image00"
+                    android:id="@+id/artist_page_album_item_coverArt00"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -109,7 +108,7 @@
                 android:layout_column="1">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image01"
+                    android:id="@+id/artist_page_album_item_coverArt01"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -128,7 +127,7 @@
                 android:layout_column="2">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image02"
+                    android:id="@+id/artist_page_album_item_coverArt02"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -147,7 +146,7 @@
                 android:layout_column="3">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image03"
+                    android:id="@+id/artist_page_album_item_coverArt03"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -166,7 +165,7 @@
                 android:layout_column="0">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image04"
+                    android:id="@+id/artist_page_album_item_coverArt04"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -185,7 +184,7 @@
                 android:layout_column="1">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image05"
+                    android:id="@+id/artist_page_album_item_coverArt05"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -204,7 +203,7 @@
                 android:layout_column="2">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image06"
+                    android:id="@+id/artist_page_album_item_coverArt06"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
@@ -223,7 +222,7 @@
                 android:layout_column="3">
 
                 <ImageView
-                    android:id="@+id/artist_page_album_item_image07"
+                    android:id="@+id/artist_page_album_item_coverArt07"
                     style="@style/NotifyArtistPageAlbumItemImage" />
 
                 <TextView
