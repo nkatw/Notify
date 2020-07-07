@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import github.daneren2005.dsub.R;
@@ -39,4 +40,30 @@ public class NotifyDialogFragmentTemplate extends AppCompatDialogFragment {
         );
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // To hide status bar and navigation bar
+        if (getDialog() != null) {
+            Window window = getDialog().getWindow();
+            if (window != null) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                getDialog().setOnShowListener((dialog) -> {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);
+                    window.getDecorView().setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    );
+                });
+            }
+        }
+
+    }
+
 }

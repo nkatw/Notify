@@ -132,6 +132,21 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 	}
 
 	@Override
+	public void onWindowFocusChanged(boolean hasFocus) {
+		super.onWindowFocusChanged(hasFocus);
+		View decorView = getWindow().getDecorView();
+		if (hasFocus) {
+			decorView.setSystemUiVisibility(
+					View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+					| View.SYSTEM_UI_FLAG_FULLSCREEN
+					| View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+					| View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+					| View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+					| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+		}
+	}
+
+	@Override
 	protected void onCreate(Bundle bundle) {
 		UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
 		if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
@@ -144,7 +159,6 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 
 		setUncaughtExceptionHandler();
 		applyTheme();
-		applyFullscreen();
 		super.onCreate(bundle);
 		DownloadService.startService(this);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -958,22 +972,6 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 
 		ThemeUtil.applyTheme(this, theme);
 		actionbarColored = Util.getPreferences(this).getBoolean(Constants.PREFERENCES_KEY_COLOR_ACTION_BAR, true);
-	}
-	private void applyFullscreen() {
-		fullScreen = Util.getPreferences(this).getBoolean(Constants.PREFERENCES_KEY_FULL_SCREEN, false);
-		if(fullScreen || isTv()) {
-			// Hide additional elements on higher Android versions
-			if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-				int flags = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-						View.SYSTEM_UI_FLAG_FULLSCREEN |
-						View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-
-				getWindow().getDecorView().setSystemUiVisibility(flags);
-			} else if(Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-				getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-			}
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
 	}
 
 	public boolean isDestroyedCompat() {
