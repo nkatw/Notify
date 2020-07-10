@@ -20,6 +20,7 @@ import github.daneren2005.dsub.domain.ArtistInfo;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
+import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 
@@ -38,8 +39,8 @@ public class ArtistPageFragment extends NotifyFragment {
         rootView = inflater.inflate(R.layout.notify_artist_page, container, false);
 
         // TODO: Get artist id and artist name from bundle
-        artistId = "36";
-        artistName = "";
+        artistId = getArguments().getString(Constants.INTENT_EXTRA_NAME_ID);
+        artistName = getArguments().getString(Constants.INTENT_EXTRA_NAME_NAME);
 
         createNotifyCustomToolbar(true, false,
                 false, true, true);
@@ -106,7 +107,7 @@ public class ArtistPageFragment extends NotifyFragment {
                 rootView.findViewById(R.id.artist_page_album_item_layout06),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt06),
                 rootView.findViewById(R.id.artist_page_album_item_name06),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type07)
+                rootView.findViewById(R.id.artist_page_album_item_year_and_type06)
         ));
 
         albums.add(new ArtistPageItem(

@@ -1,6 +1,5 @@
 package github.daneren2005.dsub.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,7 +11,6 @@ import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.util.Constants;
-import github.daneren2005.dsub.util.Util;
 
 public class NotifyFragment extends SubsonicFragment {
     private static final String TAG = NotifyFragment.class.getSimpleName();
@@ -70,6 +68,15 @@ public class NotifyFragment extends SubsonicFragment {
         SubsonicFragment fragment = new GenreDetailFragment();
         Bundle args = new Bundle();
         args.putString(Constants.PREFERENCES_KEY_SHOW_SONG_BY_GENRE, genre.getName());
+        fragment.setArguments(args);
+        replaceFragment(fragment);
+    }
+
+    protected void showArtistPageFragment(String artistId, String artistName) {
+        SubsonicFragment fragment = new ArtistPageFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.INTENT_EXTRA_NAME_ID, artistId);
+        args.putString(Constants.INTENT_EXTRA_NAME_NAME, artistName);
         fragment.setArguments(args);
         replaceFragment(fragment);
     }
