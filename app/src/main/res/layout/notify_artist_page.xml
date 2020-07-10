@@ -97,8 +97,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type00"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year00"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -116,8 +116,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type01"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year01"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -135,8 +135,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type02"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year02"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -154,8 +154,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type03"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year03"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,8 +173,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type04"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year04"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -192,8 +192,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type05"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year05"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -211,8 +211,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type06"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year06"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
             <LinearLayout
@@ -230,8 +230,8 @@
                     style="@style/NotifyArtistPageAlbumItemName" />
 
                 <TextView
-                    android:id="@+id/artist_page_album_item_year_and_type07"
-                    style="@style/NotifyArtistPageAlbumItemYearAndType" />
+                    android:id="@+id/artist_page_album_item_year07"
+                    style="@style/NotifyArtistPageAlbumItemYear" />
             </LinearLayout>
 
         </GridLayout>

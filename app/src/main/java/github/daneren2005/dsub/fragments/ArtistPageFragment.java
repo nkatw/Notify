@@ -65,56 +65,56 @@ public class ArtistPageFragment extends NotifyFragment {
                 rootView.findViewById(R.id.artist_page_album_item_layout00),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt00),
                 rootView.findViewById(R.id.artist_page_album_item_name00),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type00)
+                rootView.findViewById(R.id.artist_page_album_item_year00)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout01),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt01),
                 rootView.findViewById(R.id.artist_page_album_item_name01),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type01)
+                rootView.findViewById(R.id.artist_page_album_item_year01)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout02),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt02),
                 rootView.findViewById(R.id.artist_page_album_item_name02),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type02)
+                rootView.findViewById(R.id.artist_page_album_item_year02)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout03),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt03),
                 rootView.findViewById(R.id.artist_page_album_item_name03),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type03)
+                rootView.findViewById(R.id.artist_page_album_item_year03)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout04),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt04),
                 rootView.findViewById(R.id.artist_page_album_item_name04),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type04)
+                rootView.findViewById(R.id.artist_page_album_item_year04)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout05),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt05),
                 rootView.findViewById(R.id.artist_page_album_item_name05),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type05)
+                rootView.findViewById(R.id.artist_page_album_item_year05)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout06),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt06),
                 rootView.findViewById(R.id.artist_page_album_item_name06),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type06)
+                rootView.findViewById(R.id.artist_page_album_item_year06)
         ));
 
         albums.add(new ArtistPageItem(
                 rootView.findViewById(R.id.artist_page_album_item_layout07),
                 rootView.findViewById(R.id.artist_page_album_item_coverArt07),
                 rootView.findViewById(R.id.artist_page_album_item_name07),
-                rootView.findViewById(R.id.artist_page_album_item_year_and_type07)
+                rootView.findViewById(R.id.artist_page_album_item_year07)
         ));
 
         for (ArtistPageItem item : albums) {
@@ -147,6 +147,8 @@ public class ArtistPageFragment extends NotifyFragment {
         artistNameTxtView.setText(artistName);
         artistBiographyTxtView.setText(loadedArtistInfo.getBiography());
         getImageLoader().loadImage(artistImage, loadedArtistInfo.getImageUrl(), false);
+
+        // TODO: Update data on album item
     }
 
     private void loadAlbums() {
