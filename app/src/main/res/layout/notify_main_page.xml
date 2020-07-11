@@ -3,7 +3,7 @@
     android:id="@+id/notify_main_page"
     style="@style/NotifyRootLayoutStyle">
 
-    <include layout="@layout/notify_main_page_custom_toolbar_layout" />
+    <include layout="@layout/notify_custom_toolbar_layout" />
 
     <TextView
         android:id="@+id/recommended_songs_title"

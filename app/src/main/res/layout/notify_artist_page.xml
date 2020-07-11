@@ -4,7 +4,7 @@
     style="@style/NotifyRootLayoutStyle"
     android:orientation="vertical">
 
-    <include layout="@layout/notify_main_page_custom_toolbar_layout" />
+    <include layout="@layout/notify_custom_toolbar_layout" />
 
     <LinearLayout
         android:layout_width="match_parent"

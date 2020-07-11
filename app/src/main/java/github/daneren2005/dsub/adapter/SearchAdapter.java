@@ -44,6 +44,7 @@ import static github.daneren2005.dsub.adapter.EntryGridAdapter.VIEW_TYPE_ALBUM_C
 import static github.daneren2005.dsub.adapter.EntryGridAdapter.VIEW_TYPE_ALBUM_LINE;
 import static github.daneren2005.dsub.adapter.EntryGridAdapter.VIEW_TYPE_SONG;
 
+@Deprecated
 public class SearchAdapter extends ExpandableSectionAdapter<Serializable> {
 	private ImageLoader imageLoader;
 	private boolean largeAlbums;

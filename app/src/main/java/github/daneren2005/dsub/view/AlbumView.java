@@ -34,6 +34,7 @@ import github.daneren2005.dsub.util.Util;
 
 import java.io.File;
 
+@Deprecated
 public class AlbumView extends UpdateView2<MusicDirectory.Entry, ImageLoader> {
 	private static final String TAG = AlbumView.class.getSimpleName();
 

@@ -41,6 +41,7 @@ import github.daneren2005.dsub.util.TabBackgroundTask;
 import github.daneren2005.dsub.util.Util;
 import github.daneren2005.dsub.view.UpdateView;
 
+@Deprecated
 public class SearchFragment extends SubsonicFragment implements SectionAdapter.OnItemClickedListener<Serializable> {
 	private static final String TAG = SearchFragment.class.getSimpleName();
 

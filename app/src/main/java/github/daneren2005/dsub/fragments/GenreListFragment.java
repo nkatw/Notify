@@ -28,7 +28,7 @@ public class GenreListFragment extends NotifyFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_genre_page, container, false);
-        super.createNotifyCustomToolbar(true, false,
+        createNotifyCustomToolbar(true, false,
                 false, true, true);
         recyclerView = rootView.findViewById(R.id.genre_page_recycler_view);
 
