@@ -11,15 +11,21 @@
         style="@style/NotifyToolbarButton.back"
         android:layout_width="wrap_content"
         android:src="@drawable/ic_arrow_back_black_24dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/notify_toolbar_search_bar"
         android:layout_width="0px"
         android:layout_height="match_parent"
+        android:layout_marginStart="44.7px"
         android:layout_weight="1"
+        android:hint="@string/search.search"
         android:imeOptions="actionSearch"
-        android:visibility="invisible"/>
+        android:textAllCaps="false"
+        android:textColor="@color/notifyFontColorWhite"
+        android:textColorHint="@color/notifyFontColorWhite"
+        android:textSize="@dimen/NotifyToolbar.SearchBar.fontSize"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/notify_toolbar_admin_settings"

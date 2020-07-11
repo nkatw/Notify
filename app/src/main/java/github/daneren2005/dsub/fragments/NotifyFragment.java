@@ -3,8 +3,10 @@ package github.daneren2005.dsub.fragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import github.daneren2005.dsub.R;
@@ -14,6 +16,9 @@ import github.daneren2005.dsub.util.Constants;
 
 public class NotifyFragment extends SubsonicFragment {
     private static final String TAG = NotifyFragment.class.getSimpleName();
+
+    public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_DEFAULT = 73;
+    public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_HAS_SEARCH_BAR = 42;
 
     protected ImageButton backBtn, adminSettingsBtn, searchBtn, radioBtn;
     protected EditText searchBar;
@@ -42,7 +47,8 @@ public class NotifyFragment extends SubsonicFragment {
         searchBtn.setOnClickListener(v -> {
             // TODO: Show notifySearchFragment
             Toast.makeText(context, "Show search fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: searchBtn");
+            SubsonicFragment fragment = new NotifySearchFragment();
+            replaceFragment(fragment);
         });
 
         radioBtn = rootView.findViewById(R.id.notify_toolbar_radio_button);
@@ -58,7 +64,12 @@ public class NotifyFragment extends SubsonicFragment {
     protected void toolbarItemVisibility(boolean hasBack, boolean hasSearchBar,
                                          boolean hasAdmin, boolean hasSearch, boolean hasRadio) {
         backBtn.setVisibility(hasBack ? View.VISIBLE : View.GONE);
+
         searchBar.setVisibility(hasSearchBar ? View.VISIBLE : View.INVISIBLE);
+        ViewGroup.MarginLayoutParams radioBtnMlp = (ViewGroup.MarginLayoutParams)radioBtn.getLayoutParams();
+        radioBtnMlp.setMarginStart(hasSearchBar ? RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_HAS_SEARCH_BAR :
+                RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_DEFAULT);
+
         adminSettingsBtn.setVisibility(hasAdmin ? View.VISIBLE : View.GONE);
         searchBtn.setVisibility(hasSearch ? View.VISIBLE : View.GONE);
         radioBtn.setVisibility(hasRadio ? View.VISIBLE : View.GONE);
