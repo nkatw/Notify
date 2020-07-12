@@ -23,10 +23,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Build;
@@ -457,11 +459,8 @@ public class ImageLoader {
 					if (mIsNowPlaying) {
 						nowPlaying = bitmap;
 					}
-				} else {
-					bitmap = getUnknownImage(mEntry, mSize);
+					mDrawable = Util.createDrawableFromBitmap(mContext, bitmap);
 				}
-
-				mDrawable = Util.createDrawableFromBitmap(mContext, bitmap);
 			} catch (Throwable x) {
 				Log.e(TAG, "Failed to download album art.", x);
 				cancelled.set(true);
@@ -611,13 +610,21 @@ public class ImageLoader {
 					cache.get(key);
 
 					mDrawable = Util.createDrawableFromBitmap(mContext, bitmap);
+				} else {
+					loadDefaultDrawable();
 				}
 			} catch (Throwable x) {
 				Log.e(TAG, "Failed to download from url " + mUrl, x);
 				cancelled.set(true);
+				loadDefaultDrawable();
 			}
 
 			return null;
+		}
+
+		private void loadDefaultDrawable() {
+			int defaultColor = mContext.getColor(R.color.notifyUndefinedAlbumsDefaultColor);
+			mView.setImageDrawable(new ColorDrawable(defaultColor));
 		}
 
 		@Override
