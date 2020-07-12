@@ -28,9 +28,9 @@ import github.daneren2005.dsub.util.TabBackgroundTask;
 public class MainPageFragment extends NotifyFragment {
     private static final String TAG = MainPageFragment.class.getSimpleName();
 
-    public static int SONGS_SIZE = 4;
-    public static int ALBUMS_SIZE = 4;
-    public static int GENRES_SIZE = 8;
+    public static int SONGS_QUANTITY = 4;
+    public static int ALBUMS_QUANTITY = 4;
+    public static int GENRES_QUANTITY = 8;
     public static String ALBUM_TYPE = "alphabeticalByName";
 
 
@@ -77,7 +77,7 @@ public class MainPageFragment extends NotifyFragment {
         for (MainPageItem item : songItems) {
             item.coverArt.setOnClickListener(v -> {
                 // TODO: Show song on music player
-                Toast.makeText(context, "Song image clicked!", Toast.LENGTH_SHORT).show();
+                showPlayerPage();
             });
         }
     }
@@ -166,7 +166,7 @@ public class MainPageFragment extends NotifyFragment {
                 MainPageDataType.SONGS,
                 (musicService, listener) -> {
                     try {
-                        return musicService.getRandomSongs(SONGS_SIZE, null, null,
+                        return musicService.getRandomSongs(SONGS_QUANTITY, null, null,
                                 null, null, context, listener);
                     } catch (Exception e) {
                         Log.e(TAG, "loadSongs: exception = " + e);
@@ -197,7 +197,7 @@ public class MainPageFragment extends NotifyFragment {
                 MainPageDataType.ALBUMS,
                 ((musicService, listener) -> {
                     try {
-                        return musicService.getAlbumList(ALBUM_TYPE, ALBUMS_SIZE,
+                        return musicService.getAlbumList(ALBUM_TYPE, ALBUMS_QUANTITY,
                                 0, false, context, listener);
                     } catch (Exception e) {
                         Log.e(TAG, "loadAlbums: exception = " + e);

@@ -91,4 +91,9 @@ public class NotifyFragment extends SubsonicFragment {
         fragment.setArguments(args);
         replaceFragment(fragment);
     }
+
+    protected void showPlayerPage() {
+        // TODO: show player page
+        Toast.makeText(context, "Song item Click!", Toast.LENGTH_SHORT).show();
+    }
 }
