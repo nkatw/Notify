@@ -20,6 +20,7 @@
 	<dimen name="NotifyToolbar.TopMargin">129px</dimen>
 	<dimen name="NotifyToolbar.BottomMargin">59px</dimen>
 	<dimen name="NotifyToolbar.Height">110px</dimen>
+	<dimen name="NotifyToolbar.SearchBar.fontSize">30px</dimen>
 	<dimen name="NotifyDialog.Height">600px</dimen>
 	<dimen name="NotifyDialog.Width">800px</dimen>
 	<dimen name="NotifyDialogRadius">45px</dimen>

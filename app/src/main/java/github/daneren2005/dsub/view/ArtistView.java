@@ -35,6 +35,8 @@ import java.io.File;
  *
  * @author Sindre Mehus
  */
+
+@Deprecated
 public class ArtistView extends UpdateView<Artist> {
 	private static final String TAG = ArtistView.class.getSimpleName();
 

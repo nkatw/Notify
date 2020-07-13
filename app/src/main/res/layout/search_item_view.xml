@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/notifyBackgroundColor"
+    android:orientation="vertical"
+    android:paddingBottom="60px">
+
+    <TextView
+        android:id="@+id/search_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="15px"
+        android:textAllCaps="false"
+        android:textColor="@color/notifyFontColorWhite"
+        android:textSize="34px" />
+
+    <TextView
+        android:id="@+id/search_item_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:textColor="@color/notifySubtitleWrite"
+        android:textSize="28px" />
+</LinearLayout>

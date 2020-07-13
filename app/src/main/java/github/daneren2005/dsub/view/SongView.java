@@ -40,6 +40,8 @@ import java.io.File;
  *
  * @author Sindre Mehus
  */
+
+@Deprecated
 public class SongView extends UpdateView2<MusicDirectory.Entry, Boolean> {
 	private static final String TAG = SongView.class.getSimpleName();
 
