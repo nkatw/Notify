@@ -49,7 +49,7 @@ public class ArtistPageFragment extends NotifyFragment {
         createAlbums();
 
         loadArtistInfo();
-        loadAlbums();
+        loadArtist();
 
         return rootView;
     }
@@ -151,20 +151,20 @@ public class ArtistPageFragment extends NotifyFragment {
         // TODO: Update data on album item
     }
 
-    private void loadAlbums() {
+    private void loadArtist() {
         LoadArtistPageDataTask<MusicDirectory> loadAlbumsTask = new LoadArtistPageDataTask<>(
                 this, (musicService, listener) -> {
             try {
                 return musicService.getArtist(artistId, artistName, false, context, listener);
             } catch (Exception e) {
-                Log.e(TAG, "loadAlbums: exception = " + e);
+                Log.e(TAG, "loadArtist: exception = " + e);
                 return null;
             }
         });
         loadAlbumsTask.execute();
     }
 
-    private void updateAlbums(MusicDirectory loadedMusicDirectory) {
+    private void updateArtist(MusicDirectory loadedMusicDirectory) {
         List<MusicDirectory.Entry> shuffledAlbums = new ArrayList<>(loadedMusicDirectory.getChildren());
         Collections.shuffle(shuffledAlbums);
 
@@ -172,6 +172,8 @@ public class ArtistPageFragment extends NotifyFragment {
         for (ArtistPageItem item : this.albums) {
             if (albumIdx < shuffledAlbums.size()) {
                 item.name.setText(shuffledAlbums.get(albumIdx).getTitle());
+                Integer year = shuffledAlbums.get(albumIdx).getYear();
+                item.year.setText(year != null ? year.toString() : "");
                 getImageLoader().loadImage(item.coverArt, shuffledAlbums.get(albumIdx++),
                         false, false);
             } else {
@@ -200,7 +202,7 @@ public class ArtistPageFragment extends NotifyFragment {
             if (result instanceof ArtistInfo) {
                 updateArtistInfo((ArtistInfo) result);
             } else if (result instanceof MusicDirectory) {
-                updateAlbums((MusicDirectory) result);
+                updateArtist((MusicDirectory) result);
             }
         }
     }
@@ -208,13 +210,13 @@ public class ArtistPageFragment extends NotifyFragment {
     private class ArtistPageItem {
         View layout;
         ImageView coverArt;
-        TextView name, yearAndType;
+        TextView name, year;
 
-        ArtistPageItem(View layout, ImageView coverArt, TextView name, TextView yearAndType) {
+        ArtistPageItem(View layout, ImageView coverArt, TextView name, TextView year) {
             this.layout = layout;
             this.coverArt = coverArt;
             this.name = name;
-            this.yearAndType = yearAndType;
+            this.year = year;
         }
     }
 }
