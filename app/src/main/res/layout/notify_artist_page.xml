@@ -6,235 +6,202 @@
 
     <include layout="@layout/notify_custom_toolbar_layout" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="150px">
+    <android.support.constraint.ConstraintLayout style="@style/NotifyArtistAndAlbumPageTitleLayout">
 
-            <TextView
-                android:id="@+id/artist_page_artist_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="80px"
-                android:textAllCaps="false"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="60px"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/artist_page_artist_biography"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/artist_page_artist_name"
+            style="@style/NotifyArtistAndAlbumPageTitle.artist"
+            app:layout_constraintBottom_toTopOf="@+id/artist_page_artist_biography"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/artist_page_artist_biography"
-                android:layout_width="785px"
-                android:layout_height="0dp"
-                android:letterSpacing="0.1"
-                android:lineSpacingExtra="4.5px"
-                android:textAllCaps="false"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="30px"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/artist_page_artist_name" />
+        <TextView
+            android:id="@+id/artist_page_artist_biography"
+            style="@style/NotifyArtistAndAlbumPageSubtitle.artist"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/artist_page_artist_name" />
 
-            <ImageView
-                android:id="@+id/artist_page_artist_image"
-                android:layout_width="380px"
-                android:layout_height="380px"
-                android:src="@color/notifyUndefinedAlbumsDefaultColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/artist_page_artist_image"
+            style="@style/NotifyArtistAndAlbumPageTitleImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="70px"
-            android:orientation="vertical">
+    <LinearLayout style="@style/NotifyCategoryLayout">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Albums"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="@dimen/Notify.artist.title.fontSize" />
+        <TextView
+            style="@style/NotifyCategoryTitle"
+            android:text="@string/details.album" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="3px"
-                android:src="@drawable/notify_gradient_color" />
-
-        </LinearLayout>
-
-        <GridLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:columnCount="4"
-            android:rowCount="2">
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout00"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="0"
-                android:layout_column="0">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt00"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name00"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year00"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout01"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="0"
-                android:layout_column="1">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt01"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name01"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year01"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout02"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="0"
-                android:layout_column="2">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt02"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name02"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year02"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout03"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="0"
-                android:layout_column="3">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt03"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name03"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year03"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout04"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="1"
-                android:layout_column="0">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt04"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name04"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year04"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout05"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="1"
-                android:layout_column="1">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt05"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name05"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year05"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout06"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="1"
-                android:layout_column="2">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt06"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name06"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year06"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/artist_page_album_item_layout07"
-                style="@style/NotifyArtistPageAlbumItemLayout"
-                android:layout_row="1"
-                android:layout_column="3">
-
-                <ImageView
-                    android:id="@+id/artist_page_album_item_coverArt07"
-                    style="@style/NotifyArtistPageAlbumItemImage" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_name07"
-                    style="@style/NotifyArtistPageAlbumItemName" />
-
-                <TextView
-                    android:id="@+id/artist_page_album_item_year07"
-                    style="@style/NotifyArtistPageAlbumItemYear" />
-            </LinearLayout>
-
-        </GridLayout>
+        <ImageView style="@style/NotifyCategoryLine" />
 
     </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="2">
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout00"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="0"
+            android:layout_column="0">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt00"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name00"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year00"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout01"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="0"
+            android:layout_column="1">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt01"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name01"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year01"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout02"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="0"
+            android:layout_column="2">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt02"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name02"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year02"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout03"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="0"
+            android:layout_column="3">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt03"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name03"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year03"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout04"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="1"
+            android:layout_column="0">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt04"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name04"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year04"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout05"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="1"
+            android:layout_column="1">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt05"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name05"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year05"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout06"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="1"
+            android:layout_column="2">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt06"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name06"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year06"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/artist_page_album_item_layout07"
+            style="@style/NotifyArtistPageAlbumItemLayout"
+            android:layout_row="1"
+            android:layout_column="3">
+
+            <ImageView
+                android:id="@+id/artist_page_album_item_coverArt07"
+                style="@style/NotifyArtistPageAlbumItemImage" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_name07"
+                style="@style/NotifyArtistPageAlbumItemName" />
+
+            <TextView
+                android:id="@+id/artist_page_album_item_year07"
+                style="@style/NotifyArtistPageAlbumItemYear" />
+        </LinearLayout>
+
+    </GridLayout>
+
 
     <include layout="@layout/tab_progress" />
 
