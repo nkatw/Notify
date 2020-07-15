@@ -15,12 +15,14 @@ import android.widget.TextView;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
+import github.daneren2005.dsub.adapter.NotifySongsAdapter;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
 import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
+import github.daneren2005.dsub.util.Util;
 
 public class AlbumPageFragment extends NotifyFragment {
     private static final String TAG = AlbumPageFragment.class.getSimpleName();
@@ -28,6 +30,9 @@ public class AlbumPageFragment extends NotifyFragment {
     private String albumId, albumName;
     private TextView albumTitle, albumSubtitle;
     private ImageView albumImage;
+
+    public static final int SONGS_INDEX_OFFSET = 1;
+    private static final String SONG_INDEX_FORMAT = "%03d";
 
     @Nullable
     @Override
@@ -76,6 +81,29 @@ public class AlbumPageFragment extends NotifyFragment {
         getImageLoader().loadImage(albumImage, songs.get(0), false, false);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(new NotifySongsAdapter() {
+            @Override
+            public void onBindViewHolder(@NonNull NotifySongsHolder holder, int position) {
+                MusicDirectory.Entry song = songs.get(position);
+                holder.indexText.setText(String.format(SONG_INDEX_FORMAT, (position + SONGS_INDEX_OFFSET)));
+
+                holder.songName.setText(song.getTitle());
+                holder.artist.setText(song.getArtist());
+                holder.duration.setText(Util.formatDuration(song.getDuration()));
+                holder.layout.setOnClickListener( view -> {
+                    // TODO: Play music from song id
+                });
+
+                // TODO: Show now playing icon if song was playing
+//                holder.indexText.setVisibility(XXX ? View.GONE : View.VISIBLE);
+//                holder.nowPlaying.setVisibility(XXX ? View.VISIBLE : View.GONE);
+            }
+
+            @Override
+            public int getItemCount() {
+                return songs.size();
+            }
+        });
         // TODO: add adapter
     }
 

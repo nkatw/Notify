@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import github.daneren2005.dsub.R;
-import github.daneren2005.dsub.adapter.GenreDetailAdapter;
+import github.daneren2005.dsub.adapter.NotifySongsAdapter;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
@@ -70,9 +70,9 @@ public class GenreDetailFragment extends NotifyFragment {
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new GenreDetailAdapter() {
+        recyclerView.setAdapter(new NotifySongsAdapter() {
             @Override
-            public void onBindViewHolder(@NonNull GenreDetailHolder holder, int position) {
+            public void onBindViewHolder(@NonNull NotifySongsHolder holder, int position) {
                 MusicDirectory.Entry song = loadedSongs.get(position);
                 holder.indexText.setText(String.format(SONG_INDEX_FORMAT, (position + SONGS_INDEX_OFFSET)));
 
@@ -83,7 +83,7 @@ public class GenreDetailFragment extends NotifyFragment {
                     // TODO: Play music from song id
                 });
 
-                // TODO: Show now playing icon if song were playing
+                // TODO: Show now playing icon if song was playing
 //                holder.indexText.setVisibility(XXX ? View.GONE : View.VISIBLE);
 //                holder.nowPlaying.setVisibility(XXX ? View.VISIBLE : View.GONE);
             }

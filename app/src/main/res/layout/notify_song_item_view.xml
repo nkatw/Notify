@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/genre_detail_page_item_layout"
+    android:id="@+id/notify_song_item_layout"
     android:layout_width="match_parent"
     android:layout_height="166px"
     android:background="@color/notifyBackgroundColor"
@@ -8,7 +8,7 @@
     android:paddingBottom="@dimen/Notify.songItem.paddingBottomSize">
 
     <TextView
-        android:id="@+id/genre_detail_page_item_index_text"
+        android:id="@+id/notify_song_item_index"
         android:layout_width="@dimen/Notify.songItem.indexText.widthSize"
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/Notify.songItem.indexText.marginEndSize"
@@ -18,7 +18,7 @@
         android:textSize="28px" />
 
     <ImageView
-        android:id="@+id/genre_detail_page_item_nowPlaying"
+        android:id="@+id/notify_song_item_nowPlaying_img"
         android:layout_width="@dimen/Notify.songItem.indexText.widthSize"
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/Notify.songItem.indexText.marginEndSize"
@@ -33,7 +33,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/genre_detail_page_item_song_name"
+            android:id="@+id/notify_song_item_song_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15px"
@@ -42,7 +42,7 @@
             android:textSize="@dimen/Notify.songItem.title.fontSize" />
 
         <TextView
-            android:id="@+id/genre_detail_page_item_artist"
+            android:id="@+id/notify_song_item_artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Artist Name"
@@ -51,7 +51,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/genre_detail_page_item_song_duration"
+        android:id="@+id/notify_song_item_duration"
         android:layout_width="80px"
         android:layout_height="match_parent"
         android:gravity="center"
