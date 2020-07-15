@@ -20,7 +20,6 @@ import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
-import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 
@@ -251,14 +250,6 @@ public class MainPageFragment extends NotifyFragment {
                 item.setItemVisibility(View.INVISIBLE);
             }
         }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        ((DrawerHider) this.getActivity()).setDrawerEnable(false);
-        ((DrawerHider) this.getActivity()).setDrawerTitle("");
     }
 
     private class LoadMainPageDataTask<T> extends TabBackgroundTask<T> {
