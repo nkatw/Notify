@@ -81,6 +81,7 @@ public class GenreDetailFragment extends NotifyFragment {
                 holder.duration.setText(Util.formatDuration(song.getDuration()));
                 holder.layout.setOnClickListener( view -> {
                     // TODO: Play music from song id
+                    showPlayerPage();
                 });
 
                 // TODO: Show now playing icon if song was playing

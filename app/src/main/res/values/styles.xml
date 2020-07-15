@@ -257,11 +257,14 @@
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageSubtitle.album">
-		<item name="android:letterSpacing">0.11</item>
+		<item name="android:letterSpacing">0.091</item>
 		<item name="android:layout_width">825px</item>
 		<item name="android:layout_height">235px</item>
 		<item name="android:textSize">55px</item>
 		<item name="android:textStyle">bold</item>
+		<item name="android:lineSpacingExtra">17px</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageTitleImage">
@@ -280,6 +283,7 @@
 	<style name="NotifyCategoryTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textStyle">bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.categoryTitle.fontSize</item>
 	</style>

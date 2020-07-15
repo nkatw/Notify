@@ -92,6 +92,7 @@ public class AlbumPageFragment extends NotifyFragment {
                 holder.duration.setText(Util.formatDuration(song.getDuration()));
                 holder.layout.setOnClickListener( view -> {
                     // TODO: Play music from song id
+                    showPlayerPage();
                 });
 
                 // TODO: Show now playing icon if song was playing
@@ -104,7 +105,6 @@ public class AlbumPageFragment extends NotifyFragment {
                 return songs.size();
             }
         });
-        // TODO: add adapter
     }
 
     private class LoadAlbumDataTask<T> extends TabBackgroundTask<T> {
