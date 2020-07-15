@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,7 +38,6 @@ public class MainPageFragment extends NotifyFragment {
     private List<MainPageItem> genresItems = new ArrayList<>();
 
     private ImageButton moreGenresButton;
-    private List<Genre> genres = new ArrayList<>();
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -102,8 +100,8 @@ public class MainPageFragment extends NotifyFragment {
 
         for (MainPageItem item : albumItems) {
             item.coverArt.setOnClickListener(v -> {
-                // TODO: Show album page
-                Toast.makeText(context, "Album image clicked!", Toast.LENGTH_SHORT).show();
+                MusicDirectory.Entry albumListData = (MusicDirectory.Entry) item.detail;
+                showAlbumPage(albumListData.getId(), albumListData.getAlbum());
             });
         }
     }
@@ -214,11 +212,12 @@ public class MainPageFragment extends NotifyFragment {
         }
 
         int albumIdx = 0;
+        List<MusicDirectory.Entry> albums = loadedAlbums.getChildren(true, false);
         for (MainPageItem item : albumItems) {
-            item.title.setText(loadedAlbums.getChildren().get(albumIdx).getTitle());
-            item.detail = loadedAlbums.getChildren().get(albumIdx);
+            item.title.setText(albums.get(albumIdx).getTitle());
+            item.detail = albums.get(albumIdx);
             context.getImageLoader().loadImage(item.coverArt,
-                    loadedAlbums.getChildren().get(albumIdx++), false, false);
+                    albums.get(albumIdx++), false, false);
         }
     }
 
@@ -237,14 +236,12 @@ public class MainPageFragment extends NotifyFragment {
     }
 
     private void updateGenres(List<Genre> loadedGenres) {
-        genres.addAll(loadedGenres);
-
-        if (genres.isEmpty()) {
+        if (loadedGenres.isEmpty()) {
             Log.e(TAG, "updateGenres: Loading failed");
             return;
         }
 
-        List<Genre> shuffledGenres = new ArrayList<>(genres);
+        List<Genre> shuffledGenres = new ArrayList<>(loadedGenres);
         Collections.shuffle(shuffledGenres);
 
         int genreIdx = 0;

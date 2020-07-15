@@ -219,4 +219,78 @@
 		<item name="android:textSize">25px</item>
 		<item name="android:textAllCaps">false</item>
 	</style>
+
+	<style name="NotifyArtistAndAlbumPageTitleLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">150px</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">80px</item>
+		<item name="android:textAllCaps">false</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageTitle.artist">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">60px</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageTitle.album">
+		<item name="android:textSize">35px</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageSubtitle">
+		<item name="android:lineSpacingExtra">4.5px</item>
+		<item name="android:textAllCaps">false</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageSubtitle.artist">
+		<item name="android:letterSpacing">0.1</item>
+		<item name="android:layout_width">785px</item>
+		<item name="android:layout_height">180px</item>
+		<item name="android:textSize">30px</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageSubtitle.album">
+		<item name="android:letterSpacing">0.091</item>
+		<item name="android:layout_width">825px</item>
+		<item name="android:layout_height">235px</item>
+		<item name="android:textSize">55px</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:lineSpacingExtra">17px</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">3</item>
+	</style>
+
+	<style name="NotifyArtistAndAlbumPageTitleImage">
+		<item name="android:layout_width">380px</item>
+		<item name="android:layout_height">380px</item>
+		<item name="android:src">@color/notifyUndefinedAlbumsDefaultColor</item>
+	</style>
+
+	<style name="NotifyCategoryLayout">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginBottom">70px</item>
+		<item name="android:orientation">vertical</item>
+	</style>
+
+	<style name="NotifyCategoryTitle">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">@dimen/Notify.categoryTitle.fontSize</item>
+	</style>
+
+	<style name="NotifyCategoryLine">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">3px</item>
+		<item name="android:src">@drawable/notify_gradient_color</item>
+	</style>
 </resources>

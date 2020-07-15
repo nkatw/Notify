@@ -31,5 +31,5 @@
 	<dimen name="Notify.songItem.indexText.widthSize">50px</dimen>
 	<dimen name="Notify.songItem.indexText.marginEndSize">47px</dimen>
 	<dimen name="Notify.songItem.paddingBottomSize">60px</dimen>
-	<dimen name="Notify.artist.title.fontSize">30px</dimen>
+	<dimen name="Notify.categoryTitle.fontSize">30px</dimen>
 </resources>

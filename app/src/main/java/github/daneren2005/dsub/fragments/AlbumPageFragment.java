@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -23,57 +24,67 @@ import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 import github.daneren2005.dsub.util.Util;
 
-public class GenreDetailFragment extends NotifyFragment {
-    private static final String TAG = GenreDetailFragment.class.getSimpleName();
+public class AlbumPageFragment extends NotifyFragment {
+    private static final String TAG = AlbumPageFragment.class.getSimpleName();
+    private RecyclerView recyclerView;
+    private String albumId, albumName;
+    private TextView albumTitle, albumSubtitle;
+    private ImageView albumImage;
 
-    public static final int SONGS_DEFAULT_COUNT = 100;
     public static final int SONGS_INDEX_OFFSET = 1;
     private static final String SONG_INDEX_FORMAT = "%03d";
-
-    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.notify_genre_page, container, false);
+        rootView = inflater.inflate(R.layout.notify_album_page, container, false);
+
+        albumId = getArguments().getString(Constants.INTENT_EXTRA_NAME_ID);
+        albumName = getArguments().getString(Constants.INTENT_EXTRA_NAME_NAME);
+
         createNotifyCustomToolbar(true, false,
                 false, true, true);
 
-        recyclerView = rootView.findViewById(R.id.genre_page_recycler_view);
-        TextView title = rootView.findViewById(R.id.genre_page_title);
+        albumTitle = rootView.findViewById(R.id.album_page_title);
+        albumSubtitle = rootView.findViewById(R.id.album_page_subtitle);
+        albumImage = rootView.findViewById(R.id.album_page_album_image);
+        recyclerView = rootView.findViewById(R.id.album_page_recycler_view);
 
-        String genreName = getArguments().getString(Constants.PREFERENCES_KEY_SHOW_SONG_BY_GENRE);
-        title.setText(genreName);
-        loadGenreDetail(genreName);
+        loadAlbum();
 
         return rootView;
     }
 
-    private void loadGenreDetail(String genreName) {
-        LoadSongsDataTask<MusicDirectory> loadSongsByGenreTask = new LoadSongsDataTask<>(
-                this, ((musicService, listener) -> {
+    private void loadAlbum() {
+        new LoadAlbumDataTask<>(this, ((musicService, listener) -> {
             try {
-                return musicService.getSongsByGenre(genreName, SONGS_DEFAULT_COUNT, 0, context, listener);
+                return musicService.getMusicDirectory(albumId, albumName, false, context, listener);
             } catch (Exception e) {
-                Log.e(TAG, "loadGenreDetail: exception = ", e);
+                Log.e(TAG, "loadAlbum: exception = " + e);
                 return null;
             }
-        }));
-
-        loadSongsByGenreTask.execute();
+        })).execute();
     }
 
-    private void updateSongs(List<MusicDirectory.Entry> loadedSongs) {
-        if (loadedSongs.isEmpty()) {
-            Log.e(TAG, "updateSongs: Loading failed");
+    private void updateSongsOnAlbum(MusicDirectory loadedAlbum) {
+        if (loadedAlbum == null) {
+            Log.e(TAG, "updateSongsOnAlbum: Loading failed");
             return;
         }
+
+        albumSubtitle.setText(loadedAlbum.getName());
+
+        // Get album year and image from song
+        List<MusicDirectory.Entry> songs = loadedAlbum.getSongs();
+        Integer year = songs.get(0).getYear();
+        albumTitle.setText(year != null ? String.valueOf(year) : "");
+        getImageLoader().loadImage(albumImage, songs.get(0), false, false);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(new NotifySongsAdapter() {
             @Override
             public void onBindViewHolder(@NonNull NotifySongsHolder holder, int position) {
-                MusicDirectory.Entry song = loadedSongs.get(position);
+                MusicDirectory.Entry song = songs.get(position);
                 holder.indexText.setText(String.format(SONG_INDEX_FORMAT, (position + SONGS_INDEX_OFFSET)));
 
                 holder.songName.setText(song.getTitle());
@@ -91,17 +102,17 @@ public class GenreDetailFragment extends NotifyFragment {
 
             @Override
             public int getItemCount() {
-                return loadedSongs.size();
+                return songs.size();
             }
         });
     }
 
-    private class LoadSongsDataTask<T> extends TabBackgroundTask<T> {
+    private class LoadAlbumDataTask<T> extends TabBackgroundTask<T> {
         GetDataListener<T> getDataListener;
 
-        LoadSongsDataTask(SubsonicFragment fragment, GetDataListener<T> getDataListener) {
+        LoadAlbumDataTask(SubsonicFragment fragment, GetDataListener<T> getDataListener) {
             super(fragment);
-            LoadSongsDataTask.this.getDataListener = getDataListener;
+            LoadAlbumDataTask.this.getDataListener = getDataListener;
         }
 
         @Override
@@ -112,9 +123,7 @@ public class GenreDetailFragment extends NotifyFragment {
 
         @Override
         protected void done(T result) {
-            MusicDirectory musicDirectory = (MusicDirectory) result;
-            updateSongs(musicDirectory.getSongs());
+            updateSongsOnAlbum((MusicDirectory) result);
         }
     }
-
 }

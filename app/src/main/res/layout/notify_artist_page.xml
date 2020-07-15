@@ -12,65 +12,38 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="150px">
+        <android.support.constraint.ConstraintLayout style="@style/NotifyArtistAndAlbumPageTitleLayout">
 
             <TextView
                 android:id="@+id/artist_page_artist_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="80px"
-                android:textAllCaps="false"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="60px"
-                android:textStyle="bold"
+                style="@style/NotifyArtistAndAlbumPageTitle.artist"
                 app:layout_constraintBottom_toTopOf="@+id/artist_page_artist_biography"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/artist_page_artist_biography"
-                android:layout_width="785px"
-                android:layout_height="0dp"
-                android:letterSpacing="0.1"
-                android:lineSpacingExtra="4.5px"
-                android:textAllCaps="false"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="30px"
+                style="@style/NotifyArtistAndAlbumPageSubtitle.artist"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/artist_page_artist_name" />
 
             <ImageView
                 android:id="@+id/artist_page_artist_image"
-                android:layout_width="380px"
-                android:layout_height="380px"
-                android:src="@color/notifyUndefinedAlbumsDefaultColor"
+                style="@style/NotifyArtistAndAlbumPageTitleImage"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="70px"
-            android:orientation="vertical">
+        <LinearLayout style="@style/NotifyCategoryLayout">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Albums"
-                android:textColor="@color/notifyFontColorWhite"
-                android:textSize="@dimen/Notify.artist.title.fontSize" />
+                style="@style/NotifyCategoryTitle"
+                android:text="@string/details.album" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="3px"
-                android:src="@drawable/notify_gradient_color" />
+            <ImageView style="@style/NotifyCategoryLine" />
 
         </LinearLayout>
 

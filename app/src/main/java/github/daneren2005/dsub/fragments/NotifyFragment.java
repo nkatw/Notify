@@ -12,6 +12,7 @@ import android.widget.Toast;
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
+import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.util.Constants;
 
 public class NotifyFragment extends SubsonicFragment {
@@ -75,6 +76,21 @@ public class NotifyFragment extends SubsonicFragment {
         radioBtn.setVisibility(hasRadio ? View.VISIBLE : View.GONE);
     }
 
+    protected void showPlayerPage() {
+        // TODO: show player page
+        Toast.makeText(context, "Song item Click!", Toast.LENGTH_SHORT).show();
+    }
+
+    protected void showAlbumPage(String albumId, String albumName) {
+        Log.d(TAG, "showAlbumPage: id = " + albumId + ", name = " + albumName);
+        SubsonicFragment fragment = new AlbumPageFragment();
+        Bundle args = new Bundle();
+        args.putString(Constants.INTENT_EXTRA_NAME_ID, albumId);
+        args.putString(Constants.INTENT_EXTRA_NAME_NAME, albumName);
+        fragment.setArguments(args);
+        replaceFragment(fragment);
+    }
+
     protected void showGenreDetailPage(Genre genre) {
         SubsonicFragment fragment = new GenreDetailFragment();
         Bundle args = new Bundle();
@@ -90,10 +106,5 @@ public class NotifyFragment extends SubsonicFragment {
         args.putString(Constants.INTENT_EXTRA_NAME_NAME, artistName);
         fragment.setArguments(args);
         replaceFragment(fragment);
-    }
-
-    protected void showPlayerPage() {
-        // TODO: show player page
-        Toast.makeText(context, "Song item Click!", Toast.LENGTH_SHORT).show();
     }
 }
