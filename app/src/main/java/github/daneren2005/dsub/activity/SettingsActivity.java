@@ -42,7 +42,7 @@ public class SettingsActivity extends SubsonicActivity {
 		if (savedInstanceState == null) {
 			fragment = new SettingsFragment();
 			Bundle args = new Bundle();
-			args.putInt(Constants.INTENT_EXTRA_FRAGMENT_TYPE, R.xml.settings);
+			args.putInt(Constants.INTENT_EXTRA_FRAGMENT_TYPE, R.xml.settings_servers);
 
 			fragment.setArguments(args);
 			fragment.setRetainInstance(true);

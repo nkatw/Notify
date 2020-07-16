@@ -1,7 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 			  xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
+	style="@style/NotifyRootLayoutStyle"
 	android:orientation="vertical">
 
 	<android.support.v7.widget.Toolbar
@@ -13,6 +12,8 @@
 		android:theme="?attr/actionbarThemeStyle"
 		app:popupTheme="?attr/actionbarPopupStyle"
 		android:visibility="gone"/>
+
+	<include layout="@layout/notify_custom_toolbar_layout" />
 
 	<FrameLayout
 		android:id="@+id/fragment_container"

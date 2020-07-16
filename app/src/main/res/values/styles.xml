@@ -327,4 +327,18 @@
     <style name="NotifyPlayerPageMediaButton.start">
         <item name="android:layout_width">105px</item>
     </style>
+
+	<style name="NotifySettingsTitle">
+		<item name="android:layout_marginBottom">15px</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">@dimen/Notify.settingsPreferenceTitle.fontSize</item>
+		<item name="android:letterSpacing">0.02632</item>
+	</style>
+
+	<style name="NotifySettingsSummary">
+		<item name="android:textColor">@color/notifySubtitleWrite</item>
+		<item name="android:textSize">@dimen/Notify.settingsPreferenceSummary.fontSize</item>
+		<item name="android:letterSpacing">0.03125</item>
+	</style>
 </resources>

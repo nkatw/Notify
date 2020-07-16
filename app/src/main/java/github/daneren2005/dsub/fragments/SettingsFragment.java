@@ -23,6 +23,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,13 +42,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import github.daneren2005.dsub.R;
@@ -83,7 +88,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	private ListPreference tempLoss;
 	private ListPreference pauseDisconnect;
 	private Preference addServerPreference;
-	private PreferenceCategory serversCategory;
+	private PreferenceScreen serversOnPreferenceScreen;
 	private ListPreference songPressAction;
 	private ListPreference videoPlayer;
 	private ListPreference syncInterval;
@@ -125,6 +130,16 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			serverSettings.put(Integer.toString(instance), new ServerSettings(instance));
 			onInitPreferences(preferenceScreen);
 		}
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		// Set height and color to transparent on divider
+		ListView listView = getListView();
+		listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
+		listView.setDividerHeight(60);
 	}
 
 	@Override
@@ -248,7 +263,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		keepPlayedCount = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_KEEP_PLAYED_CNT);
 		tempLoss = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_TEMP_LOSS);
 		pauseDisconnect = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_PAUSE_DISCONNECT);
-		serversCategory = (PreferenceCategory) this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY);
+		serversOnPreferenceScreen = (PreferenceScreen) this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY);
 		addServerPreference = this.findPreference(Constants.PREFERENCES_KEY_SERVER_ADD);
 		videoPlayer = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_VIDEO_PLAYER);
 		songPressAction = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_SONG_PRESS_ACTION);
@@ -329,13 +344,14 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			});
 		}
 
-		if(serversCategory != null) {
+		if(serversOnPreferenceScreen != null) {
+			addServerPreference.setLayoutResource(R.layout.custom_preference_on_settings);
 			addServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 				@Override
 				public boolean onPreferenceClick(Preference preference) {
 					serverCount++;
 					int instance = serverCount;
-					serversCategory.addPreference(addServer(serverCount));
+					serversOnPreferenceScreen.addPreference(addServer(serverCount));
 
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
@@ -353,9 +369,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 				}
 			});
 
-			serversCategory.setOrderingAsAdded(false);
+			serversOnPreferenceScreen.setOrderingAsAdded(false);
 			for (int i = 1; i <= serverCount; i++) {
-				serversCategory.addPreference(addServer(i));
+				serversOnPreferenceScreen.addPreference(addServer(i));
 				serverSettings.put(String.valueOf(i), new ServerSettings(i));
 			}
 		}
@@ -463,7 +479,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	public void checkForRemoved() {
 		for (ServerSettings ss : serverSettings.values()) {
 			if(!ss.update()) {
-				serversCategory.removePreference(ss.getScreen());
+				serversOnPreferenceScreen.removePreference(ss.getScreen());
 				serverCount--;
 			}
 		}
@@ -473,6 +489,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		final PreferenceScreen screen = this.getPreferenceManager().createPreferenceScreen(context);
 		screen.setKey(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 		screen.setOrder(instance);
+		screen.setLayoutResource(R.layout.custom_preference_on_settings);
 
 		screen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -640,6 +657,23 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 				return false;
 			}
 		});
+
+		List<Preference> preferenceList = new ArrayList<>();
+		preferenceList.add(serverNamePreference);
+		preferenceList.add(serverUrlPreference);
+		preferenceList.add(serverInternalUrlPreference);
+		preferenceList.add(serverLocalNetworkSSIDPreference);
+		preferenceList.add(serverUsernamePreference);
+		preferenceList.add(serverPasswordPreference);
+		preferenceList.add(serverTagPreference);
+		preferenceList.add(serverSyncPreference);
+		preferenceList.add(serverTestConnectionPreference);
+		preferenceList.add(serverOpenBrowser);
+		preferenceList.add(serverRemoveServerPreference);
+		for (Preference preference : preferenceList) {
+			preference.setLayoutResource(R.layout.custom_preference_on_settings);
+		}
+
 
 		screen.addPreference(serverNamePreference);
 		screen.addPreference(serverUrlPreference);
