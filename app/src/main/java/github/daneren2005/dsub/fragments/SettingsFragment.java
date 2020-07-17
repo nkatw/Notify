@@ -140,6 +140,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		ListView listView = getListView();
 		listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
 		listView.setDividerHeight(60);
+
+		// Set no padding
+		listView.setPadding(0, 0, 0, 0);
 	}
 
 	@Override
@@ -672,6 +675,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		preferenceList.add(serverRemoveServerPreference);
 		for (Preference preference : preferenceList) {
 			preference.setLayoutResource(R.layout.custom_preference_on_settings);
+			if (preference instanceof CheckBoxPreference) {
+				preference.setWidgetLayoutResource(R.layout.custom_check_box_preference_on_settings);
+			}
 		}
 
 
