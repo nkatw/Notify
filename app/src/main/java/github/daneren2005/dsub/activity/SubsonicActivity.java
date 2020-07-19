@@ -134,9 +134,11 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 	@Override
 	public void onWindowFocusChanged(boolean hasFocus) {
 		super.onWindowFocusChanged(hasFocus);
-		if (hasFocus) {
-			Util.toImmersiveMode(getWindow());
-		}
+		toImmersiveMode();
+	}
+
+	public void toImmersiveMode() {
+		Util.toImmersiveMode(getWindow());
 	}
 
 	@Override
@@ -193,6 +195,8 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 		if (ContextCompat.checkSelfPermission(this, permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 			ActivityCompat.requestPermissions(this, new String[]{ permission.WRITE_EXTERNAL_STORAGE }, PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
 		}
+
+		toImmersiveMode();
 	}
 
 	@Override

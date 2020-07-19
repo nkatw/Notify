@@ -1,9 +1,14 @@
 package github.daneren2005.dsub.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -31,6 +36,19 @@ public class NotifyFragment extends SubsonicFragment {
     protected ImageButton backBtn, adminSettingsBtn, searchBtn, radioBtn;
     protected EditText searchBar;
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        context.toImmersiveMode();
+        hideKeyboard();
+    }
+
+    private void hideKeyboard() {
+        View view = getView();
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     protected void createNotifyCustomToolbar(boolean hasBack, boolean hasSearchBar,
                                              boolean hasAdmin, boolean hasSearch, boolean hasRadio) {
         if (rootView == null) {
@@ -39,7 +57,10 @@ public class NotifyFragment extends SubsonicFragment {
         }
 
         backBtn = rootView.findViewById(R.id.notify_toolbar_back);
-        backBtn.setOnClickListener(view -> context.onBackPressed());
+        backBtn.setOnClickListener(view -> {
+            hideKeyboard();
+            context.onBackPressed();
+        });
 
         searchBar = rootView.findViewById(R.id.notify_toolbar_search_bar);
 
@@ -47,7 +68,6 @@ public class NotifyFragment extends SubsonicFragment {
         adminSettingsBtn.setOnLongClickListener(v -> {
             AdminLoginDialogFragment adminLoginDialogFragment = new AdminLoginDialogFragment();
             adminLoginDialogFragment.show(context.getSupportFragmentManager(), "NotifyAdminLogin");
-            Log.d(TAG, "createNotifyCustomToolbar: adminSettingsBtn");
             return true;
         });
 
@@ -59,6 +79,7 @@ public class NotifyFragment extends SubsonicFragment {
 
         radioBtn = rootView.findViewById(R.id.notify_toolbar_radio_button);
         radioBtn.setOnClickListener(v -> {
+            hideKeyboard();
             playNotifyRadioByLoadPlaylist();
         });
 
