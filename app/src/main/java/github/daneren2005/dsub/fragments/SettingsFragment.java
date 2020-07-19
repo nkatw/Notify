@@ -348,7 +348,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		}
 
 		if(serversOnPreferenceScreen != null) {
-			addServerPreference.setLayoutResource(R.layout.custom_preference_on_settings);
 			addServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 				@Override
 				public boolean onPreferenceClick(Preference preference) {
@@ -492,7 +491,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		final PreferenceScreen screen = this.getPreferenceManager().createPreferenceScreen(context);
 		screen.setKey(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 		screen.setOrder(instance);
-		screen.setLayoutResource(R.layout.custom_preference_on_settings);
+		screen.setLayoutResource(R.layout.notify_custom_preference_on_settings);
 
 		screen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -610,8 +609,8 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		Preference serverRemoveServerPreference = new Preference(context);
 		serverRemoveServerPreference.setKey(Constants.PREFERENCES_KEY_SERVER_REMOVE + instance);
 		serverRemoveServerPreference.setPersistent(false);
+		serverRemoveServerPreference.setLayoutResource(R.layout.notify_custom_button_style_preference_on_settings);
 		serverRemoveServerPreference.setTitle(R.string.settings_servers_remove);
-
 		serverRemoveServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
 			public boolean onPreferenceClick(Preference preference) {
@@ -672,11 +671,10 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		preferenceList.add(serverSyncPreference);
 		preferenceList.add(serverTestConnectionPreference);
 		preferenceList.add(serverOpenBrowser);
-		preferenceList.add(serverRemoveServerPreference);
 		for (Preference preference : preferenceList) {
-			preference.setLayoutResource(R.layout.custom_preference_on_settings);
+			preference.setLayoutResource(R.layout.notify_custom_preference_on_settings);
 			if (preference instanceof CheckBoxPreference) {
-				preference.setWidgetLayoutResource(R.layout.custom_check_box_preference_on_settings);
+				preference.setWidgetLayoutResource(R.layout.notify_custom_check_box_preference_on_settings);
 			}
 		}
 

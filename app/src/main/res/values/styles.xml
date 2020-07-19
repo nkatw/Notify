@@ -279,12 +279,22 @@
 		<item name="android:orientation">vertical</item>
 	</style>
 
+	<style name="NotifyCategoryLayout.settings">
+		<item name="android:paddingTop">70px</item>
+	</style>
+
 	<style name="NotifyCategoryTitle">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textStyle">bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.categoryTitle.fontSize</item>
+	</style>
+
+	<style name="NotifyCategoryTitle.settings">
+		<item name="android:paddingBottom">8px</item>
+		<item name="android:textSize">35px</item>
+		<item name="android:id">@+android:id/title</item>
 	</style>
 
 	<style name="NotifyCategoryLine">
@@ -335,6 +345,7 @@
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceTitle.fontSize</item>
 		<item name="android:letterSpacing">0.02632</item>
 	</style>
+
 
 	<style name="NotifySettingsSummary">
 		<item name="android:textColor">@color/notifySubtitleWrite</item>

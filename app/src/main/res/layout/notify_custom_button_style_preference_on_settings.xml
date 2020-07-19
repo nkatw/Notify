@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/NotifyCategoryLayout.settings">
+
+    <TextView style="@style/NotifyCategoryTitle.settings" />
+
+    <ImageView style="@style/NotifyCategoryLine" />
+
+</LinearLayout>
