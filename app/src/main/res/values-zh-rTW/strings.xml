@@ -43,7 +43,7 @@
     <string name="button_bar.offline">離線</string>
 
     <string name="main.welcome_title">歡迎!</string>
-    <string name="main.welcome_text">歡迎使用Notify! 軟體預設使用Subsonic的示範伺服器, 請在<b>subsonic.org</b>設定個人伺服器後,再到<b>設定</b>中更改連結</string>
+    <string name="main.welcome_text">Welcome! This build is realeased on %s</string>
     <string name="main.about_title">關於Notify</string>
     <string name="main.faq_title">FAQ</string>
     <string name="main.faq_text">
@@ -429,6 +429,13 @@
     <string name="details.played_count">播放數</string>
     <string name="details.stream_url">串流 URL</string>
     <string name="details.home_page">首頁</string>
+
+    <string name="notify.mainPage.recommendedSongs.title">推薦歌曲 Recommended Songs</string>
+    <string name="notify.mainPage.recommendedAlbums.title">推薦專輯 Recommended Albums</string>
+    <string name="notify.mainPage.recommendedGenres.title">推薦曲風 Recommended Genres</string>
+    <string name="notify.genresPage.title">曲風</string>
+    <string name="notify.albumPage.categoryTitle">專輯歌曲 Songs</string>
+    <string name="notify.artistPage.categoryTitle">精選專輯 Albums</string>
 
     <string name="permission.external_storage.failed">Notify無法運行，無法寫入存儲</string>
 

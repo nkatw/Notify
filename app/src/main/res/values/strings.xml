@@ -663,15 +663,20 @@
 	<string name="details.played_count">Played Count</string>
 	<string name="details.stream_url">Stream URL</string>
 	<string name="details.home_page">Home Page</string>
-	<string name="notify.mainPage.recommendedSongs.title">Recommended Songs</string>
-	<string name="notify.mainPage.recommendedAlbums.title">Recommended Albums</string>
-	<string name="notify.mainPage.recommendedGenres.title">Recommended Genres</string>
+
 	<string name="notify.admin_login_page.title" translatable="false">For Admin Only</string>
 	<string name="notify.dialog.password_hint" translatable="false">password</string>
 	<string name="notify.dialog.button_enter" translatable="false">enter</string>
 
+	<string name="notify.mainPage.recommendedSongs.title">Recommended Songs</string>
+	<string name="notify.mainPage.recommendedAlbums.title">Recommended Albums</string>
+	<string name="notify.mainPage.recommendedGenres.title">Recommended Genres</string>
+	<string name="notify.genresPage.title">Genres</string>
+	<string name="notify.albumPage.categoryTitle">Songs</string>
+	<string name="notify.artistPage.categoryTitle">Albums</string>
+
 	<string name="permission.external_storage.failed">DSub cannot function without the ability to write to storage</string>
-	<string name="notify_genres_page_title">Genres</string>
+
 
 	<plurals name="select_album_n_songs">
         <item quantity="zero">No songs</item>
