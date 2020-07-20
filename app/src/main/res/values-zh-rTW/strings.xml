@@ -213,7 +213,7 @@
     <string name="download.downloading_summary">Current: %1$s 現正下載:%1$s</string>
     <string name="download.downloading_summary_expanded">現正下載:%1$s \n預估大小: </string>
     <string name="download.failed_to_load">讀取失敗</string>
-    <string name="download.restore_play_queue">以下時間繼續播放先前中斷的位置: </string>
+    <string name="download.restore_play_queue">以下時間繼續播放: </string>
     <string name="download.thumbs_up">讚!</string>
     <string name="download.thumbs_down">反對</string>
     <string name="download.batch_mode">批次處理模式</string>

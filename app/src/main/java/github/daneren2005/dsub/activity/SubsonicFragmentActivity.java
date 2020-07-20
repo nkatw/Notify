@@ -48,6 +48,7 @@ import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import github.daneren2005.dsub.BuildConfig;
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.domain.MusicDirectory;
 import github.daneren2005.dsub.domain.PlayerQueue;
@@ -937,11 +938,11 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	}
 
 	private void showInfoDialog() {
+		// TODO: Replace infoDialogDisplayed to firstWelcome
 		if (!infoDialogDisplayed) {
 			infoDialogDisplayed = true;
-			if (Util.getRestUrl(this, null).contains("demo.subsonic.org")) {
-				Util.info(this, R.string.main_welcome_title, R.string.main_welcome_text);
-			}
+			Util.info(this, R.string.main_welcome_title, getResources()
+					.getString(R.string.main_welcome_text, BuildConfig.BUILD_TIME.toString()));
 		}
 	}
 
