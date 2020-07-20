@@ -749,8 +749,8 @@ public final class Util {
 	public static void confirmDialog(Context context, String action, String subject, DialogInterface.OnClickListener onClick, DialogInterface.OnClickListener onCancel) {
 		new AlertDialog.Builder(context)
 			.setIcon(android.R.drawable.ic_dialog_alert)
-			.setTitle(R.string.common_confirm)
-			.setMessage(context.getResources().getString(R.string.common_confirm_message, action, subject))
+			.setTitle(R.string.notify_settingPage_confirm)
+			.setMessage(context.getResources().getString(R.string.notify_settingPage_confirm_message, action, subject))
 			.setPositiveButton(R.string.common_ok, onClick)
 			.setNegativeButton(R.string.common_cancel, onCancel)
 			.show();
