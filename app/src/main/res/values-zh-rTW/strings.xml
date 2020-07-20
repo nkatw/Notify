@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common.appname">Notify</string>
+    <string name="common.ok">確認</string>
+    <string name="common.save">儲存</string>
+    <string name="common.cancel">取消</string>
+    <string name="common.play_now">播放</string>
+    <string name="common.play_shuffled">隨機播放</string>
+    <string name="common.play_next">下一首</string>
+    <string name="common.play_last">前一首</string>
+    <string name="common.download">快取</string>
+    <string name="common.pin">永久緩存</string>
+    <string name="common.delete">刪除</string>
+    <string name="common.star">加入「喜歡的歌曲」</string>
+    <string name="common.unstar">從「喜歡的歌曲」中移除</string>
+    <string name="common.info">詳細資料</string>
+    <string name="common.name">曲名</string>
+    <string name="common.comment">標題</string>
+    <string name="common.public">出版人</string>
+    <string name="common.play_external">播放影片</string>
+    <string name="common.stream_external">串流影片</string>
+    <string name="common.confirm">確認</string>
+    <string name="common.confirm_message">是否從%1$s %2$s？</string>
+    <string name="common.confirm_message_cache">快取</string>
+    <string name="common.empty">無暫存</string>
+    <string name="common.warning">警告</string>
+    <string name="common.close">關閉</string>
+    <string name="common.false">否</string>
+    <string name="common.true">是</string>
+    <string name="common.never">永不</string>
+
+    <string name="button_bar.home">首頁</string>
+    <string name="button_bar.browse">媒體庫</string>
+    <string name="button_bar.playlists">播放清單</string>
+    <string name="button_bar.now_playing">現正播放</string>
+    <string name="button_bar.podcasts">Podcasts</string>
+    <string name="button_bar.bookmarks">喜歡的歌曲</string>
+    <string name="button_bar.internet_radio">電台</string>
+    <string name="button_bar.shares">分享</string>
+    <string name="button_bar.chat">聊天</string>
+    <string name="button_bar.admin">管理</string>
+    <string name="button_bar.downloading">正在下載</string>
+    <string name="button_bar.offline">離線</string>
+
+    <string name="main.welcome_title">歡迎!</string>
+    <string name="main.welcome_text">Welcome! This build is realeased on %s</string>
+    <string name="main.about_title">關於Notify</string>
+    <string name="main.faq_title">FAQ</string>
+    <string name="main.faq_text">
+        <![CDATA[
+            <font color="red">快取 vs 永久緩存</font>:
+            <br/>當歌曲是在DSub下載,是可以刪除換去更多儲存空間的。另一方面,永久緩存則是無法自動刪除的。
+            <p/><font color="red">ChromeCast連接失敗</font>:
+            <br/>前往 "設定" -> "回放" -> "使用裝置代理" 做調整。此方法能解決Chromecast不接受自我簽名認證的問題。
+            <p/><font color="red">媒體庫的第一層顯示的是歌手的群組</font>:
+            <br/>在設定選單中，取消選擇「第一層的歌手」。這會將已處理過的第一層資料夾顯示，例如以演唱者的群組取代演唱者。
+        ]]>
+    </string>
+    <string name="main.shuffle">隨機播放</string>
+    <string name="main.offline">切換為離線模式</string>
+    <string name="main.online">切換為線上模式</string>
+    <string name="main.settings">設定</string>
+    <string name="main.albums_title">專輯列表</string>
+    <string name="main.albums_per_folder">資料夾</string>
+    <string name="main.albums_newest">最近新增</string>
+    <string name="main.albums_recent">最近播放</string>
+    <string name="main.albums_frequent">最常播放</string>
+    <string name="main.albums_highest">最高評分</string>
+    <string name="main.albums_starred">已加星號</string>
+    <string name="main.albums_random">隨機</string>
+    <string name="main.albums_genres">曲風</string>
+    <string name="main.albums_year">年代</string>
+    <string name="main.albums_alphabetical">按字母排序</string>
+    <string name="main.videos">影片</string>
+    <string name="main.songs_genres">@string/main.albums_genres</string>
+    <string name="main.songs_newest">@string/main.albums_newest</string>
+    <string name="main.songs_top_played">最多播放</string>
+    <string name="main.songs_recent">@string/main.albums_recent</string>
+    <string name="main.songs_frequent">@string/main.albums_frequent</string>
+    <string name="main.back_confirm">再按一次返回離開應用程式</string>
+    <string name="main.scan_complete">完成伺服器同步</string>
+    <string name="main.artist">演唱者</string>
+    <string name="main.title">標題</string>
+
+    <string name="menu.search">搜尋</string>
+    <string name="menu.shuffle">隨機</string>
+    <string name="menu.refresh">重新整理</string>
+    <string name="menu.play">播放</string>
+    <string name="menu.play_last">播放最後一首</string>
+    <string name="menu.exit">退出</string>
+    <string name="menu.settings">設定</string>
+    <string name="menu.help">幫助</string>
+    <string name="menu.about">關於</string>
+    <string name="menu.add_playlist">加至播放清單</string>
+    <string name="menu.remove_playlist">從播放清單中移除</string>
+    <string name="menu.deleted_playlist">刪除 %s 播放清單</string>
+    <string name="menu.deleted_playlist_error">刪除 %s 播放清單失敗</string>
+    <string name="menu.log">傳送記錄檔</string>
+    <string name="menu.set_timer">設定計時器</string>
+    <string name="menu.check_podcasts">搜尋新的章節</string>
+    <string name="menu.add_podcast">新增頻道</string>
+    <string name="menu.keep_synced">維持同步</string>
+    <string name="menu.stop_sync">停止同步</string>
+    <string name="menu.show_all">顯示所有歌曲</string>
+    <string name="menu.show_artist">顯示演唱者</string>
+    <string name="menu.share">分享</string>
+    <string name="menu.delete_cache">刪除快取</string>
+    <string name="menu.cast">投影到裝置</string>
+    <string name="menu.faq">FAQ</string>
+    <string name="menu.add_user">新增使用者</string>
+    <string name="menu.rescan">重新同步伺服器</string>
+    <string name="menu.rate">設定評分</string>
+    <string name="menu.top_tracks">前一個廣播上的熱門歌曲</string>
+    <string name="menu.similar_artists">類似演唱者</string>
+    <string name="menu.similar_artists.missing">錯過的演唱者</string>
+    <string name="menu.start_radio">開始廣播</string>
+    <string name="menu.first_level_artist">最佳演唱者</string>
+
+    <string name="playlist.label">播放清單</string>
+    <string name="playlist.update_info">更新資訊</string>
+    <string name="playlist.updated_info">已更新%s播放清單</string>
+    <string name="playlist.updated_info_error">獲取%s播放清單資訊失敗</string>
+    <string name="playlist.overwrite">覆蓋現有的播放列表</string>
+    <string name="playlist.add_to">新增至播放清單</string>
+    <string name="playlist.create_new">建立新的播放清單</string>
+    <string name="playlist.delete">刪除播放清單</string>
+
+    <string name="search.label">搜尋</string>
+    <string name="search.title">搜尋</string>
+    <string name="search.search">搜尋</string>
+    <string name="search.no_match">沒有找到相應資料，請再試一次</string>
+    <string name="search.artists">演唱者</string>
+    <string name="search.albums">專輯</string>
+    <string name="search.songs">歌曲</string>
+
+    <string name="progress.wait">請稍等...</string>
+    <string name="progress.artist_info">讀取演唱者封面</string>
+
+    <string name="select_album.n_selected">%d已被選擇</string>
+    <string name="select_album.offline">離線</string>
+    <string name="select_album.no_sdcard">錯誤:未發現SD卡</string>
+    <string name="select_album.no_network">警告:無法使用網路</string>
+    <string name="select_album.no_room">警告:只剩下%s儲存空間</string>
+    <string name="select_album.not_licensed">伺服器尚未註冊。%s天試用期已結束</string>
+    <string name="select_album.donate_dialog_message">藉由贊助Subsonic獲得無限制下載權限</string>
+    <string name="select_album.donate_dialog_now">現在</string>
+    <string name="select_album.donate_dialog_later">稍後</string>
+    <string name="select_album.donate_dialog_0_trial_days_left">試用期結束</string>
+
+    <string name="offline.sync_dialog_title">離線歌曲正在等待同步</string>
+    <string name="offline.sync_dialog_message">是否處理%1$d離線塗鴉？
+	\n是否處理 %2$d 離線星號？
+    </string>
+    <string name="offline.sync_dialog_default">設為預設動作</string>
+    <string name="offline.sync_success">成功同步%1$d首歌曲</string>
+    <string name="offline.sync_partial">成功同步 %2$d中 %1$d 首歌曲</string>
+    <string name="offline.sync_error">同步歌曲失敗</string>
+    <string name="select_genre.blank">Blank</string>
+    <string name="select_genre.songs">%d首歌曲</string>
+    <string name="select_genre.albums">%d部專輯</string>
+
+    <string name="select_podcasts.error">在伺服器上下載此Podcast時出錯。伺服器必須優先下載它。</string>
+    <string name="select_podcasts.skipped">此Podcast尚未下載到伺服器上。伺服器必須優先下載它。</string>
+    <string name="select_podcasts.initializing">此Podcast頻道正在伺服器上初始化。請稍後重新整理。</string>
+    <string name="select_podcasts.server_download">從伺服器上下載</string>
+    <string name="select_podcasts.server_delete">從伺服器上刪除</string>
+    <string name="select_podcasts.downloading">正在從伺服器下載%s</string>
+    <string name="select_podcasts.refreshing">伺服器正在檢查新的Podcast</string>
+    <string name="select_podcasts.deleted">刪除%sPodcast</string>
+    <string name="select_podcasts.deleted_error">刪除%sPodcast失敗</string>
+    <string name="select_podcasts.add_url">URL:</string>
+    <string name="select_podcasts.created_error">新增%sPodcast失敗</string>
+    <string name="select_podcasts.invalid_podcast_channel">失效的Podcast頻道：％s</string>
+    <string name="select_podcasts.delete">刪除Podcast</string>
+    <string name="select_podcasts.channels">Podcast頻道</string>
+
+    <string name="download.empty">播放清單是空的</string>
+    <string name="download.shuffle_loading">正在讀取隨機清單...</string>
+    <string name="download.playerstate_downloading">正在下載 %s</string>
+    <string name="download.playerstate_mobile_disabled">等待WiFi或本地 (非漫遊) 網絡下載</string>
+    <string name="download.playerstate_buffering">緩衝中</string>
+    <string name="download.playerstate_playing_shuffle">隨機模式</string>
+    <string name="download.playerstate_playing_artist_radio">演唱者電台</string>
+    <string name="download.menu_show_album">顯示專輯</string>
+    <string name="download.menu_lyrics">歌詞</string>
+    <string name="download.menu_remove_all">移除全部</string>
+    <string name="download.menu_screen_on">維持螢幕開啟</string>
+    <string name="download.menu_shuffle">隨機</string>
+    <string name="download.menu_toggle">切換</string>
+    <string name="download.menu_save">儲存播放清單</string>
+    <string name="download.menu_shuffle_notification">隨機播放清單內歌曲</string>
+    <string name="download.menu_remove_played_songs">移除播放過的歌曲</string>
+    <string name="download.playlist_title">儲存播放清單</string>
+    <string name="download.playlist_name">輸入播放清單名稱:</string>
+    <string name="download.playlist_saving">正在儲存"%s"播放清單...</string>
+    <string name="download.playlist_done">播放清單儲存成功</string>
+    <string name="download.playlist_error">播放清單儲存失敗，請稍後再試</string>
+    <string name="download.repeat_off">重播關閉</string>
+    <string name="download.repeat_all">重播全部</string>
+    <string name="download.repeat_single">重播單曲</string>
+    <string name="download.jukebox_server_too_old">不支持遠端控制。請升級您的Subsonic伺服器。</string>
+    <string name="download.jukebox_offline">在離線模式不支援運行遠端控制</string>
+    <string name="download.jukebox_not_authorized">不允許進行遠端控制。請在Subsonic伺服器上的 <b>使用者 &gt; 設定</b>中啟用點唱機模式。</string>
+    <string name="download.start_timer">啟動計時器</string>
+    <string name="download.stop_time_remaining">停止於%1$s</string>
+    <string name="download.need_download">影片需要先下載</string>
+    <string name="download.no_streaming_player">無播放器支援此直播</string>
+    <string name="download.playing_out_of">正在播放:%1$d/%2$d</string>
+    <string name="download.save_bookmark_title">建立標記點</string>
+    <string name="download.save_bookmark">標記點已建立</string>
+    <string name="download.save_bookmark_failed">標記點建立失敗</string>
+    <string name="download.downloading_title">正在下載%1$d歌曲</string>
+    <string name="download.downloading_summary">Current: %1$s 現正下載:%1$s</string>
+    <string name="download.downloading_summary_expanded">現正下載:%1$s \n預估大小: </string>
+    <string name="download.failed_to_load">讀取失敗</string>
+    <string name="download.restore_play_queue">以下時間繼續播放先前中斷的位置: </string>
+    <string name="download.thumbs_up">讚!</string>
+    <string name="download.thumbs_down">反對</string>
+    <string name="download.batch_mode">批次處理模式</string>
+    <string name="download.playback_speed_half">0.5倍速</string>
+    <string name="download.playback_speed_normal">1倍速</string>
+    <string name="download.playback_speed_one_half">1.5倍速</string>
+    <string name="download.playback_speed_double">2倍速</string>
+    <string name="download.playback_speed_tripple">3倍速</string>
+    <string name="download.playback_speed_custom">自訂</string>
+
+    <string name="sync.new_podcasts">有新的Podcast可使用</string>
+    <string name="sync.new_playlists">在播放清單中有新歌曲</string>
+    <string name="sync.new_albums">有新專輯</string>
+    <string name="sync.new_starred">有新的「喜愛的歌曲」可聆聽</string>
+
+    <string name="starring_content_starred">\"%s\"已加星號</string>
+    <string name="starring_content_unstarred">\"%s\"取消星號</string>
+    <string name="starring_content_error">\"%s\"更新失敗，請稍後再試</string>
+
+    <string name="playlist.mine">我的播放清單</string>
+    <string name="playlist.shared">分享的播放清單</string>
+    <string name="playlist_error">無法獲取播放列表</string>
+    <string name="updated_playlist">新增%1$s到\"%2$s\"</string>
+    <string name="updated_playlist_error">\"%s\"更新失敗，請稍後再試</string>
+    <string name="removed_playlist">從\"%2$s\"移除%1$s</string>
+
+    <string name="bookmark.delete">刪除標記點</string>
+    <string name="bookmark.delete_title">從XX移除標記點</string>
+    <string name="bookmark.deleted">從\"%s\"移除標記點</string>
+    <string name="bookmark.deleted_error">從\"%s\"移除標記點失敗</string>
+    <string name="bookmark.details_title">標記點詳細資料</string>
+    <string name="bookmark.resume_title">是否繼續播放?</string>
+    <string name="bookmark.resume">從%2$s繼續播放\'%1$s\'</string>
+    <string name="bookmark.action_resume">繼續</string>
+    <string name="bookmark.action_start_over">重新開始</string>
+
+    <string name="rating.title">對\"%s\"評分</string>
+    <string name="rating.set_rating">已對\"%s\"評分</string>
+    <string name="rating.set_rating_failed">對\"%s\"評分失敗</string>
+    <string name="rating.remove_rating">移除對\"%s\"評分</string>
+    <string name="rating.remove_rating_failed">移除\"%s\"評分失敗</string>
+
+    <string name="song_details.error">錯誤</string>
+    <string name="song_details.skipped">跳過</string>
+    <string name="song_details.downloading">下載中</string>
+
+    <string name="lyrics.nomatch">未搜尋到歌詞</string>
+
+    <string name="error.label">錯誤</string>
+
+    <string name="shuffle.title">隨機播放</string>
+    <string name="shuffle.startYear">開始年份:</string>
+    <string name="shuffle.endYear">結束年份:</string>
+    <string name="shuffle.genre">曲風:</string>
+    <string name="shuffle.pick_genre">選擇曲風</string>
+
+    <string name="share.create_error">無法建立分享％s</string>
+    <string name="share.expires">期限:％s</string>
+    <string name="share.expires_never">沒有期限</string>
+    <string name="share.deleted">刪除分享%s</string>
+    <string name="share.deleted_error">刪除分享%s失敗</string>
+    <string name="share.no_expiration">尚未到期</string>
+    <string name="share.expiration">期限:</string>
+    <string name="share.updated_info">更新了％s的分享信息</string>
+    <string name="share.updated_info_error">無法更新％s的分享信息</string>
+    <string name="share.via">藉由分享</string>
+    <string name="share.delete">刪除分享</string>
+
+    <string name="admin.add_user_username">用戶名:</string>
+    <string name="admin.add_user_email">Email:</string>
+    <string name="admin.add_user_password">密碼:</string>
+    <string name="admin.create_user_success">成功建立新使用者</string>
+    <string name="admin.create_user_error">建立新使用者失敗</string>
+    <string name="admin.change_username_invalid">輸入有效的使用者名</string>
+    <string name="admin.update_permissions">更新權限</string>
+    <string name="admin.update_permissions_success">已成功更新％1$s的權限</string>
+    <string name="admin.update_permissions_error">無法更新％1$s的權限</string>
+    <string name="admin.change_email">更改Email</string>
+    <string name="admin.change_email_success">已成功更新％1$s的Email</string>
+    <string name="admin.change_email_error">無法更改％1$s的Email</string>
+    <string name="admin.change_email_label">新Email:</string>
+    <string name="admin.change_email_invalid">輸入有效Email</string>
+    <string name="admin.change_password">更改密碼</string>
+    <string name="admin.change_password_success">已成功更新％1$s的密碼</string>
+    <string name="admin.change_password_error">無法更改％1$s的密碼</string>
+    <string name="admin.change_password_current_label">目前密碼:</string>
+    <string name="admin.change_password_label">新密碼:</string>
+    <string name="admin.change_password_invalid">輸入有效密碼</string>
+    <string name="admin.delete_user">刪除使用者</string>
+    <string name="admin.delete_user_success">已成功刪除％1$s</string>
+    <string name="admin.delete_user_error">刪除％1$s失敗</string>
+    <string name="admin.confirm_password">確認密碼</string>
+    <string name="admin.confirm_password_bad">輸入的密碼錯誤</string>
+    <string name="admin.permissions">權限</string>
+    <string name="admin.musicFolders">音樂資料夾</string>
+    <string name="admin.scrobblingEnabled">允許塗鴉</string>
+    <string name="admin.role.admin">管理員</string>
+    <string name="admin.role.settings">更改設定</string>
+    <string name="admin.role.download">下載原始檔案</string>
+    <string name="admin.role.upload">上傳至伺服器</string>
+    <string name="admin.role.coverArt">變更專輯封面</string>
+    <string name="admin.role.comment">增加評論</string>
+    <string name="admin.role.podcast">管理Podcasts</string>
+    <string name="admin.role.stream">串流音樂</string>
+    <string name="admin.role.jukebox">控制點唱機</string>
+    <string name="admin.role.share">管理分享</string>
+    <string name="admin.role.video_conversion">轉換影片</string>
+    <string name="admin.role.lastfm">使用Last.FM的功能</string>
+
+    <string name="music_service.retry">發生網絡錯誤。正在重試％2$d中的％1$d。</string>
+
+    <string name="background_task.no_network">此程序需要連接網絡。請開啟Wifi或行動網絡。</string>
+    <string name="background_task.network_error">發生網絡錯誤。請檢查伺服器地址或稍後重試。</string>
+    <string name="background_task.not_found">找不到資源。請檢查伺服器地址。</string>
+    <string name="background_task.parse_error">與伺服器連線時發生問題。請檢查伺服器地址，並確認您可以使用設備上的瀏覽器進行連接。</string>
+
+    <string name="service.connecting">正在與伺服器連線，請稍候</string>
+
+    <string name="parser.upgrade_client">不相容的版本。請升級Notify</string>
+    <string name="parser.upgrade_server">不相容的版本。請升級Subsonic伺服器</string>
+    <string name="parser.not_authenticated">錯誤的用戶名或密碼</string>
+    <string name="parser.not_authorized">未授權。在Subsonic伺服器中檢查用戶權限</string>
+    <string name="parser.artist_count">有％d位演唱者</string>
+    <string name="parser.server_error">伺服器錯誤:%s</string>
+    <string name="parser.scan_count">掃描了％d個項目</string>
+
+    <string name="select_artist.folder">選擇資料夾</string>
+    <string name="select_artist.all_folders">所有資料夾</string>
+
+    <string name="equalizer.label">等化器</string>
+    <string name="equalizer.enabled">開啟</string>
+    <string name="equalizer.preset">選擇預設</string>
+    <string name="equalizer.bass_booster">低音強化器</string>
+    <string name="equalizer.voice_booster">人聲強化器</string>
+    <string name="equalizer.db_size">%d dB</string>
+
+    <string name="widget.4x1">Notify (4x1)</string>
+    <string name="widget.4x2">Notify (4x2)</string>
+    <string name="widget.4x3">Notify (4x3)</string>
+    <string name="widget.4x4">Notify (4x4)</string>
+    <string name="widget.initial_text">觸碰以選擇音樂</string>
+    <string name="widget.sdcard_busy">SD卡不可使用</string>
+    <string name="widget.sdcard_missing">未偵測到SD卡</string>
+
+    <string name="util.bytes_format.gigabyte">0.00 GB</string>
+    <string name="util.bytes_format.megabyte">0.00 MB</string>
+    <string name="util.bytes_format.kilobyte">0 KB</string>
+    <string name="util.bytes_format.byte">0 B</string>
+
+    <string name="changelog_full_title">更新日誌</string>
+    <string name="changelog_title">What\'s New</string>
+    <string name="changelog_ok_button">確認</string>
+    <string name="changelog_show_full">更多...</string>
+
+    <string name="chat.send_a_message">發送訊息</string>
+
+    <string name="changelog_version_format">版本%s</string>
+
+    <string name="tasker.start_playing">開始播放</string>
+    <string name="tasker.start_playing_shuffled">開始以隨機播放模式播放</string>
+    <string name="tasker.start_playing_title">任務 -> 開啟Notify</string>
+    <string name="tasker.edit_shuffle_mode">以隨機播放模式開始： </string>
+    <string name="tasker.edit_shuffle_start_year">隨機開始年份：</string>
+    <string name="tasker.edit_shuffle_end_year">隨機結束年份：</string>
+    <string name="tasker.edit_shuffle_genre">依曲風隨機:</string>
+    <string name="tasker.edit_server_offline">離線切換：</string>
+    <string name="tasker.edit_do_nothing">什麼都不處理</string>
+
+    <string name="details.title.song">歌曲資訊</string>
+    <string name="details.title.album">專輯資訊</string>
+    <string name="details.title.podcast">Podcast資訊</string>
+    <string name="details.title.playlist">播放清單資訊</string>
+    <string name="details.title.artist">演唱者資料</string>
+    <string name="details.title.internet_radio_station">線上廣播資訊</string>
+    <string name="details.podcast">Podcast</string>
+    <string name="details.status">狀態</string>
+    <string name="details.artist">演唱者</string>
+    <string name="details.album">專輯</string>
+    <string name="details.track">歌曲</string>
+    <string name="details.genre">曲風</string>
+    <string name="details.year">年份</string>
+    <string name="details.server_format">伺服器格式</string>
+    <string name="details.server_bitrate">伺服器位元率</string>
+    <string name="details.cached_format">快取格式</string>
+    <string name="details.cached_bitrate">快取位元率</string>
+    <string name="details.size">大小</string>
+    <string name="details.length">歌曲長度</string>
+    <string name="details.bookmark_position">書籤位置</string>
+    <string name="details.rating">評分</string>
+    <string name="details.description">描述</string>
+    <string name="details.owner">所有人</string>
+    <string name="details.comments">註釋</string>
+    <string name="details.song_count">歌曲數</string>
+    <string name="details.public">出版人</string>
+    <string name="details.created">建立者</string>
+    <string name="details.title">曲名</string>
+    <string name="details.url">URL</string>
+    <string name="details.error">錯誤訊息</string>
+    <string name="details.author">作曲者</string>
+    <string name="details.email">Email</string>
+    <string name="details.version">版本</string>
+    <string name="details.files_cached">快取文件</string>
+    <string name="details.files_permanent">永久緩存</string>
+    <string name="details.used_space">已使用空間</string>
+    <string name="details.available_space">可用空間</string>
+    <string name="details.of">%1$s / %2$s</string>
+    <string name="details.song">歌曲</string>
+    <string name="details.position">位置</string>
+    <string name="details.updated">更新</string>
+    <string name="details.starred">已加星號</string>
+    <string name="details.last_played">最後播放</string>
+    <string name="details.expiration">期限</string>
+    <string name="details.played_count">播放數</string>
+    <string name="details.stream_url">串流 URL</string>
+    <string name="details.home_page">首頁</string>
+
+    <string name="notify.mainPage.recommendedSongs.title">推薦歌曲 Recommended Songs</string>
+    <string name="notify.mainPage.recommendedAlbums.title">推薦專輯 Recommended Albums</string>
+    <string name="notify.mainPage.recommendedGenres.title">推薦曲風 Recommended Genres</string>
+    <string name="notify.genresPage.title">曲風</string>
+    <string name="notify.albumPage.categoryTitle">專輯歌曲 Songs</string>
+    <string name="notify.artistPage.categoryTitle">精選專輯 Albums</string>
+
+    <string name="permission.external_storage.failed">Notify無法運行，無法寫入存儲</string>
+
+    <plurals name="select_album_n_songs">
+        <item quantity="zero">沒有歌曲</item>
+        <item quantity="one">一首歌</item>
+        <item quantity="other">%d首歌</item>
+    </plurals>
+    <plurals name="select_album_n_songs_downloading">
+        <item quantity="one">預定下載一首歌曲</item>
+        <item quantity="other">預定下載%d首歌曲</item>
+    </plurals>
+    <plurals name="select_album_n_songs_added">
+        <item quantity="one">已添加一首歌曲至播放列表</item>
+        <item quantity="other">已添加％d首歌曲至播放列表</item>
+    </plurals>
+    <plurals name="select_album_donate_dialog_n_trial_days_left">
+        <item quantity="one">試用期還剩一天</item>
+        <item quantity="other">試用期還剩%d天</item>
+    </plurals>
+</resources>

@@ -10,7 +10,6 @@ android {
 		versionCode 202
 		versionName '5.4.4'
 		setProperty("archivesBaseName", "DSub $versionName")
-		resConfigs "de", "es", "fr", "hu", "nl", "pt-rPT", "ru", "sv"
 
 		compileOptions {
 			sourceCompatibility JavaVersion.VERSION_1_8
@@ -53,6 +52,15 @@ android {
 	}
 
 	signingConfigs {
+		buildTypes {
+			debug {
+				buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
+			}
+			release {
+				buildConfigField "java.util.Date", "BUILD_TIME", "new java.util.Date(" + System.currentTimeMillis() + "L)"
+			}
+		}
+
 		debug {
 			storeFile file('../debug.keystore')
 		}
