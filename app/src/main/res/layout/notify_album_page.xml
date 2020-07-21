@@ -41,7 +41,7 @@
 
         <TextView
             style="@style/NotifyCategoryTitle"
-            android:text="@string/notify.artistPage.categoryTitle" />
+            android:text="@string/notify.albumPage.categoryTitle" />
 
         <ImageView style="@style/NotifyCategoryLine" />
 
