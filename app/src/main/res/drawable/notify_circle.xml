@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:innerRadiusRatio="2.5"
+        android:shape="ring"
+        android:thickness="6px"
+        android:useLevel="false" >
+
+    <gradient
+        android:angle="0"
+        android:startColor="#00000000"
+        android:centerColor="#00000000"
+        android:endColor="@color/notifyCircleProcessBarColor"
+        android:type="sweep"
+        android:useLevel="false" />
+</shape>

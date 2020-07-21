@@ -51,6 +51,14 @@
                 android:textSize="38px"
                 android:textStyle="bold" />
 
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="120px"
+                android:indeterminate="true"
+                android:indeterminateDuration="1500"
+                android:indeterminateDrawable="@drawable/notify_circle_drawable"
+                android:visibility="gone"/>
+
             <TextView
                 android:id="@+id/notify_dialog_context"
                 android:layout_width="match_parent"
