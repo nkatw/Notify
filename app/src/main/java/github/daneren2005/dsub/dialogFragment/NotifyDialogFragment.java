@@ -1,23 +1,22 @@
 package github.daneren2005.dsub.dialogFragment;
 
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.util.Util;
 
-public class NotifyDialogFragmentTemplate extends AppCompatDialogFragment {
+public class NotifyDialogFragment extends AppCompatDialogFragment {
 
     @Nullable
     @Override
@@ -27,7 +26,7 @@ public class NotifyDialogFragmentTemplate extends AppCompatDialogFragment {
         View view = inflater.inflate(R.layout.notify_dialog, container, false);
         ImageButton dismissBtn = view.findViewById(R.id.notify_dialog_dismiss_imgbtn);
         dismissBtn.setOnClickListener(v -> this.dismiss());
-        LinearLayout layout = view.findViewById(R.id.dialog_background);
+        View layout = view.findViewById(R.id.notify_dialog_background);
         layout.setOnClickListener(v -> this.dismiss());
 
         return view;
@@ -37,13 +36,7 @@ public class NotifyDialogFragmentTemplate extends AppCompatDialogFragment {
     public void onStart() {
         super.onStart();
 
-        Window window = getDialog().getWindow();
-        window.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT
-        );
-        window.setBackgroundDrawable(new ColorDrawable(
-                ContextCompat.getColor(getContext(), R.color.notifyDialogDimBackgroundColor)));
+        Util.toSetNotifyDialog(getContext(), getDialog());
     }
 
     @Override

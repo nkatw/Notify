@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dialog_background"
+    android:id="@+id/notify_dialog_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -9,12 +9,14 @@
     android:gravity="center">
 
     <LinearLayout
+        android:id="@+id/notify_dialog_layout"
         android:layout_width="@dimen/NotifyDialog.Width"
         android:layout_height="@dimen/NotifyDialog.Height"
         android:background="@drawable/bg_notify_dialog"
         android:clickable="true"
         android:focusable="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -55,9 +57,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="120px"
                 android:indeterminate="true"
-                android:indeterminateDuration="1500"
                 android:indeterminateDrawable="@drawable/notify_circle_drawable"
-                android:visibility="gone"/>
+                android:indeterminateDuration="1500"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/notify_dialog_context"
@@ -78,6 +80,7 @@
                 android:background="@drawable/bg_text_field"
                 android:orientation="horizontal"
                 android:paddingHorizontal="51px"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notify_dialog_title">
@@ -88,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginRight="37px"
-                    android:src="@drawable/ic_password" />
+                    android:src="@drawable/ic_password"
+                    android:visibility="gone" />
 
                 <EditText
                     android:id="@+id/notify_dialog_input_edt"
@@ -96,8 +100,6 @@
                     android:layout_height="100px"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
-                    android:hint="@string/notify.dialog.password_hint"
-                    android:inputType="textPassword"
                     android:textAllCaps="false"
                     android:textColor="@color/notifyFontColorWhite"
                     android:textColorHint="@color/notifyFontColorHintGary"
