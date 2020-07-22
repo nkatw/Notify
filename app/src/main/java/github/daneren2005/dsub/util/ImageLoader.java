@@ -205,18 +205,23 @@ public class ImageLoader {
 			return getUnknownImage(entry, size);
 		}
 
-		Bitmap bitmap = cache.get(getKey(entry.getCoverArt(), size));
-		if(bitmap == null || bitmap.isRecycled()) {
-			bitmap = FileUtil.getAlbumArtBitmap(context, entry, size);
-			String key = getKey(entry.getCoverArt(), size);
-			cache.put(key, bitmap);
-			cache.get(key);
-		}
+		try {
+			Bitmap bitmap = cache.get(getKey(entry.getCoverArt(), size));
+			if(bitmap == null || bitmap.isRecycled()) {
+				bitmap = FileUtil.getAlbumArtBitmap(context, entry, size);
+				String key = getKey(entry.getCoverArt(), size);
+				cache.put(key, bitmap);
+				cache.get(key);
+			}
 
-		if(bitmap != null && bitmap.isRecycled()) {
-			bitmap = null;
+			if(bitmap != null && bitmap.isRecycled()) {
+				bitmap = null;
+			}
+			return bitmap;
+		} catch (Exception e) {
+			Log.e(TAG, "getCachedImage: Error on caching image cover art");
+			return getUnknownImage(entry, size);
 		}
-		return bitmap;
 	}
 
 	public SilentBackgroundTask loadImage(View view, MusicDirectory.Entry entry, boolean large, boolean crossfade) {
