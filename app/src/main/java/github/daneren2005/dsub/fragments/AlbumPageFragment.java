@@ -93,10 +93,6 @@ public class AlbumPageFragment extends NotifyFragment {
                 holder.layout.setOnClickListener( view -> {
                     playNow(songs, song, position);
                 });
-
-                // TODO: Show now playing icon if song was playing
-//                holder.indexText.setVisibility(XXX ? View.GONE : View.VISIBLE);
-//                holder.nowPlaying.setVisibility(XXX ? View.VISIBLE : View.GONE);
             }
 
             @Override

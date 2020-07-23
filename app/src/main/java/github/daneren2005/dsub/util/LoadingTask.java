@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
+import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
 
 /**
@@ -29,7 +30,7 @@ public abstract class LoadingTask<T> extends BackgroundTask<T> {
 
     @Override
     public void execute() {
-        loading = ProgressDialog.show(tabActivity, "", "Loading. Please Wait...", true, cancellable, new DialogInterface.OnCancelListener() {
+        loading = ProgressDialog.show(tabActivity, "", tabActivity.getResources().getString(R.string.service_connecting), true, cancellable, new DialogInterface.OnCancelListener() {
 			public void onCancel(DialogInterface dialog) {
 				cancel();
 			}

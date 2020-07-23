@@ -2984,6 +2984,10 @@ public class DownloadService extends Service {
 		});
 	}
 
+	public synchronized boolean isPlayingSong(MusicDirectory.Entry song) {
+		return currentPlaying != null && currentPlaying.getSong().getId().equals(song.getId());
+	}
+
 	private class BufferTask extends SilentBackgroundTask<Void> {
 		private final DownloadFile downloadFile;
 		private final int position;
