@@ -293,4 +293,11 @@
 		<item name="android:layout_height">3px</item>
 		<item name="android:src">@drawable/notify_gradient_color</item>
 	</style>
+
+	<style name="NotifyPlayerPageTimeText">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">45px</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">@dimen/Notify.playerPage.fontSize</item>
+	</style>
 </resources>

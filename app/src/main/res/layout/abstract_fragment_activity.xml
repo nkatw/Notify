@@ -95,7 +95,7 @@
                         android:gravity="center_vertical"
                         android:layout_marginStart="103px"
                         android:adjustViewBounds="true"
-                        android:background="@color/notifyTransparent"
+                        android:background="@android:color/transparent"
                         android:scaleType="fitCenter"
                         android:src="@mipmap/icon_play_m" />
                 </LinearLayout>

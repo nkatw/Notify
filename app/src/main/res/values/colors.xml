@@ -25,5 +25,4 @@
 	<color name="notifyGradientStartColor">#FC6076</color>
 	<color name="notifyGradientEndColor">#FF9944</color>
 	<color name="notifySubtitleWrite">#DCDCDC</color>
-	<color name="notifyTransparent">#00000000</color>
 </resources>

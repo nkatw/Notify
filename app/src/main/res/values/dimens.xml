@@ -36,4 +36,5 @@
 	<dimen name="Notify.playerBar.seekBar.height">10px</dimen>
 	<dimen name="Notify.playerBar.paddingHorizontal">165px</dimen>
 	<dimen name="Notify.playerBar.fontSize">30px</dimen>
+	<dimen name="Notify.playerPage.fontSize">30px</dimen>
 </resources>
