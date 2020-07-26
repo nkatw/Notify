@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -119,8 +118,8 @@ public class ArtistPageFragment extends NotifyFragment {
 
         for (ArtistPageItem item : albums) {
             item.layout.setOnClickListener(view -> {
-                // TODO: Show album page
-                Toast.makeText(context, "Artist item click!", Toast.LENGTH_SHORT).show();
+                MusicDirectory.Entry album = item.getAlbum();
+                showAlbumPage(album.getId(), album.getTitle());
             });
         }
     }
@@ -147,8 +146,6 @@ public class ArtistPageFragment extends NotifyFragment {
         artistNameTxtView.setText(artistName);
         artistBiographyTxtView.setText(loadedArtistInfo.getBiography());
         getImageLoader().loadImage(artistImage, loadedArtistInfo.getImageUrl(), false);
-
-        // TODO: Update data on album item
     }
 
     private void loadArtist() {
@@ -171,11 +168,15 @@ public class ArtistPageFragment extends NotifyFragment {
         int albumIdx = 0;
         for (ArtistPageItem item : this.albums) {
             if (albumIdx < shuffledAlbums.size()) {
-                item.name.setText(shuffledAlbums.get(albumIdx).getTitle());
-                Integer year = shuffledAlbums.get(albumIdx).getYear();
+                MusicDirectory.Entry album = shuffledAlbums.get(albumIdx);
+
+                item.setAlbum(album);
+                item.name.setText(album.getTitle());
+                Integer year = album.getYear();
                 item.year.setText(year != null ? year.toString() : "");
-                getImageLoader().loadImage(item.coverArt, shuffledAlbums.get(albumIdx++),
-                        false, false);
+                getImageLoader().loadImage(item.coverArt, album, false, false);
+
+                albumIdx++;
             } else {
                 item.layout.setVisibility(View.INVISIBLE);
             }
@@ -211,12 +212,21 @@ public class ArtistPageFragment extends NotifyFragment {
         View layout;
         ImageView coverArt;
         TextView name, year;
+        MusicDirectory.Entry album;
 
         ArtistPageItem(View layout, ImageView coverArt, TextView name, TextView year) {
             this.layout = layout;
             this.coverArt = coverArt;
             this.name = name;
             this.year = year;
+        }
+
+        public MusicDirectory.Entry getAlbum() {
+            return album;
+        }
+
+        public void setAlbum(MusicDirectory.Entry album) {
+            this.album = album;
         }
     }
 }
