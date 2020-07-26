@@ -77,7 +77,7 @@ public class ImageLoader {
 	private boolean clearingCache = false;
 	private final int cacheSize;
 
-	private final static int[] COLORS = {0xFF33B5E5, 0xFFAA66CC, 0xFF99CC00, 0xFFFFBB33, 0xFFFF4444};
+	private final static int COLORS = 0xFF6E6E6E;
 
 	public ImageLoader(Context context) {
 		this.context = context;
@@ -140,24 +140,12 @@ public class ImageLoader {
 
 	private Bitmap getUnknownImage(MusicDirectory.Entry entry, int size) {
 		String key;
-		int color;
+		int color = COLORS;
 		if(entry == null) {
 			key = getKey("unknown", size);
-			color = COLORS[0];
-
 			return getUnknownImage(key, size, color, null, null);
 		} else {
 			key = getKey(entry.getId() + "unknown", size);
-			String hash;
-			if(entry.getAlbum() != null) {
-				hash = entry.getAlbum();
-			} else if(entry.getArtist() != null) {
-				hash = entry.getArtist();
-			} else {
-				hash = entry.getId();
-			}
-			color = COLORS[Math.abs(hash.hashCode()) % COLORS.length];
-
 			return getUnknownImage(key, size, color, entry.getAlbum(), entry.getArtist());
 		}
 	}
@@ -177,24 +165,7 @@ public class ImageLoader {
 		Paint color = new Paint();
 		color.setColor(primaryColor);
 		canvas.drawRect(0, 0, size, size * 2.0f / 3.0f, color);
-
-		color.setShader(new LinearGradient(0, 0, 0, size / 3.0f, Color.rgb(82, 82, 82), Color.BLACK, Shader.TileMode.MIRROR));
 		canvas.drawRect(0, size * 2.0f / 3.0f, size, size, color);
-
-		if(topText != null || bottomText != null) {
-			Paint font = new Paint();
-			font.setFlags(Paint.ANTI_ALIAS_FLAG);
-			font.setColor(Color.WHITE);
-			font.setTextSize(3.0f + size * 0.07f);
-
-			if(topText != null) {
-				canvas.drawText(topText, size * 0.05f, size * 0.6f, font);
-			}
-
-			if(bottomText != null) {
-				canvas.drawText(bottomText, size * 0.05f, size * 0.8f, font);
-			}
-		}
 
 		return bitmap;
 	}
@@ -270,7 +241,7 @@ public class ImageLoader {
 		int size = large ? imageSizeLarge : imageSizeDefault;
 		if (url == null) {
 			String key = getKey(url + "unknown", size);
-			int color = COLORS[Math.abs(key.hashCode()) % COLORS.length];
+			int color = COLORS;
 			bitmap = getUnknownImage(key, size, color, null, null);
 			setImage(view, Util.createDrawableFromBitmap(context, bitmap), true);
 			return null;
