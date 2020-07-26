@@ -15,6 +15,7 @@
 	<dimen name="FastScroller.RightMargin">4dp</dimen>
 	
 	<!-- Notify Dimen -->
+	<dimen name="Notify.paddingHorizontal">165px</dimen>
 	<dimen name="NotifyMainPage.Block.BottomMargin">115px</dimen>
 	<dimen name="NotifyMainPage.HorizontalMargin">165px</dimen>
 	<dimen name="NotifyToolbar.TopMargin">129px</dimen>
@@ -37,4 +38,7 @@
 	<dimen name="Notify.playerBar.paddingHorizontal">165px</dimen>
 	<dimen name="Notify.playerBar.fontSize">30px</dimen>
 	<dimen name="Notify.playerPage.fontSize">30px</dimen>
+	<dimen name="Notify.playerPage.paddingHorizontal">200px</dimen>
+	<dimen name="Notify.playerPage.downloadStatus.layoutMarginTop">225px</dimen>
+	<dimen name="Notify.radioPage.downloadStatus.layoutMarginTop">96px</dimen>
 </resources>

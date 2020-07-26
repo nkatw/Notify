@@ -73,6 +73,7 @@ public class NotifyFragment extends SubsonicFragment {
         backBtn.setVisibility(hasBack ? View.VISIBLE : View.GONE);
 
         searchBar.setVisibility(hasSearchBar ? View.VISIBLE : View.INVISIBLE);
+        searchBar.setEnabled(hasSearchBar);
         ViewGroup.MarginLayoutParams radioBtnMlp = (ViewGroup.MarginLayoutParams) radioBtn.getLayoutParams();
         radioBtnMlp.setMarginStart(hasSearchBar ? RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_HAS_SEARCH_BAR :
                 RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_DEFAULT);

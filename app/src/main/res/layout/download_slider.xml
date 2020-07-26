@@ -21,8 +21,9 @@
         android:indeterminate="false"
         android:paddingHorizontal="40px"
         android:paddingVertical="17.5px"
-        android:progressDrawable="@drawable/notify_process_bar_drawable"
-        android:thumbTint="@android:color/transparent" />
+        android:progressDrawable="@drawable/notify_now_playing_process_bar_drawable"
+        android:thumbTint="@android:color/transparent"
+        android:thumb="@null"/>
 
     <TextView
         android:id="@+id/download_duration"

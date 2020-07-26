@@ -100,6 +100,7 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	private Toolbar mainToolbar;
 	private Toolbar nowPlayingToolbar;
 	private ProgressBar playerProgressBar;
+	private ImageButton playerPageBackBtn;
 
 	private View bottomBar;
 	private TextView playerBarTitle;
@@ -219,7 +220,7 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 				getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 				bottomBar.setVisibility(View.GONE);
-				nowPlayingToolbar.setVisibility(View.VISIBLE);
+				nowPlayingToolbar.setVisibility(View.GONE);
 				setSupportActionBar(nowPlayingToolbar);
 
 				if(secondaryFragment == null) {
@@ -292,6 +293,14 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 				}.execute();
 			}
 		});
+
+		createNotifyCustomToolbarWithBackOnly();
+	}
+
+	private void createNotifyCustomToolbarWithBackOnly() {
+		playerPageBackBtn = findViewById(R.id.notify_toolbar_back);
+		playerPageBackBtn.setOnClickListener(view -> closeNowPlaying());
+		playerPageBackBtn.setImageResource(R.drawable.ic_page_arrow_down_24dp);
 	}
 
 	@Override

@@ -30,6 +30,7 @@
         android:id="@+id/slide_up_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/notifyBackgroundColor"
         android:orientation="vertical">
 
         <FrameLayout
@@ -102,11 +103,19 @@
             </LinearLayout>
         </FrameLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/Notify.paddingHorizontal">
+            <include layout="@layout/notify_custom_toolbar_layout" />
+        </LinearLayout>
+
         <FrameLayout
             android:id="@+id/now_playing_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
+            android:background="@color/notifyBackgroundColor"
             android:clickable="true" />
     </LinearLayout>
 
