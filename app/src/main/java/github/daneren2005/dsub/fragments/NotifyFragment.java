@@ -84,7 +84,6 @@ public class NotifyFragment extends SubsonicFragment {
     }
 
     protected void showAlbumPage(String albumId, String albumName) {
-        Log.d(TAG, "showAlbumPage: id = " + albumId + ", name = " + albumName);
         SubsonicFragment fragment = new AlbumPageFragment();
         Bundle args = new Bundle();
         args.putString(Constants.INTENT_EXTRA_NAME_ID, albumId);
