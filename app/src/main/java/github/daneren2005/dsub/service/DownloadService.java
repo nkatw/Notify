@@ -158,6 +158,8 @@ public class DownloadService extends Service {
 	private boolean removePlayed;
 	private boolean shufflePlay;
 	private boolean artistRadio;
+	private boolean notifyRadio;
+	private String notifyRadioName;
 	private final CopyOnWriteArrayList<OnSongChangedListener> onSongChangedListeners = new CopyOnWriteArrayList<>();
 	private long revision;
 	private static DownloadService instance;
@@ -655,6 +657,23 @@ public class DownloadService extends Service {
 	}
 	public boolean isArtistRadio() {
 		return artistRadio;
+	}
+
+	public boolean isNotifyRadio() {
+		return notifyRadio;
+	}
+
+	public void setNotifyRadio(boolean notifyRadio) {
+		this.notifyRadio = notifyRadio;
+	}
+
+	public void setNotifyRadio(boolean notifyRadio, String radioName) {
+		setNotifyRadio(notifyRadio);
+		this.notifyRadioName = radioName;
+	}
+
+	public String getNotifyRadioName() {
+		return notifyRadioName;
 	}
 
 	public synchronized void shuffle() {

@@ -91,7 +91,7 @@ public class AlbumPageFragment extends NotifyFragment {
                 holder.artist.setText(song.getArtist());
                 holder.duration.setText(Util.formatDuration(song.getDuration()));
                 holder.layout.setOnClickListener( view -> {
-                    playNow(songs, song, position);
+                    playAlbumBySongPosition(songs, song, position);
                 });
             }
 

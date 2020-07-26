@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -14,6 +13,7 @@ import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.dialogFragment.AdminLoginDialogFragment;
 import github.daneren2005.dsub.domain.Genre;
 import github.daneren2005.dsub.domain.MusicDirectory;
+import github.daneren2005.dsub.service.DownloadService;
 import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
 import github.daneren2005.dsub.util.Constants;
@@ -25,7 +25,8 @@ public class NotifyFragment extends SubsonicFragment {
 
     public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_DEFAULT = 73;
     public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_HAS_SEARCH_BAR = 42;
-    public static int SONG_NOT_FOUND = -1;
+    public static final int SONG_NOT_FOUND = -1;
+    public static final String PLAYLIST_ID = "1";
 
     protected ImageButton backBtn, adminSettingsBtn, searchBtn, radioBtn;
     protected EditText searchBar;
@@ -52,17 +53,13 @@ public class NotifyFragment extends SubsonicFragment {
 
         searchBtn = rootView.findViewById(R.id.notify_toolbar_search_button);
         searchBtn.setOnClickListener(v -> {
-            // TODO: Show notifySearchFragment
-            Toast.makeText(context, "Show search fragment", Toast.LENGTH_SHORT).show();
             SubsonicFragment fragment = new NotifySearchFragment();
             replaceFragment(fragment);
         });
 
         radioBtn = rootView.findViewById(R.id.notify_toolbar_radio_button);
         radioBtn.setOnClickListener(v -> {
-            // TODO: Show notifyRadioFragment
-            Toast.makeText(context, "Show radio fragment", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "createNotifyCustomToolbar: radioBtn");
+            playNotifyRadioByLoadPlaylist();
         });
 
         toolbarItemVisibility(hasBack, hasSearchBar, hasAdmin, hasSearch, hasRadio);
@@ -109,13 +106,34 @@ public class NotifyFragment extends SubsonicFragment {
         replaceFragment(fragment);
     }
 
-    protected void playAlbumBySongPosition(
-            List<MusicDirectory.Entry> songs, MusicDirectory.Entry song, int position) {
+    protected void playNotifyRadioByLoadPlaylist() {
+        LoadDataTask<MusicDirectory> loadPlaylist = new LoadDataTask<>(this, null,
+                NotifyDataType.PLAYLIST,
+                ((musicService, listener) -> {
+                    try {
+                        return musicService.getPlaylist(false, PLAYLIST_ID, null, context, listener);
+                    } catch (Exception e) {
+                        Log.e(TAG, "loadGenres: exception = ", e);
+                        return null;
+                    }
+                }));
+        loadPlaylist.execute();
+    }
+
+    private void showRadioPage(MusicDirectory loadedPlaylist) {
+        DownloadService.getInstance().setNotifyRadio(true, loadedPlaylist.getName());
+        playNow(loadedPlaylist.getSongs());
+    }
+
+    protected void playAlbumBySongPosition(List<MusicDirectory.Entry> songs, MusicDirectory.Entry song,
+                                           int position) {
+        DownloadService.getInstance().setNotifyRadio(false);
         playNow(songs, song, position);
     }
 
     protected void loadAndPlayAlbumBySong(MusicDirectory.Entry song) {
-        new LoadAlbumTask<>(this, song,
+        LoadDataTask<MusicDirectory> loadAlbumTask = new LoadDataTask<>(this, song,
+                NotifyDataType.ALBUM,
                 ((musicService, listener) -> {
                     try {
                         return musicService.getMusicDirectory(song.getAlbumId(), song.getAlbum(), false, context, listener);
@@ -124,10 +142,12 @@ public class NotifyFragment extends SubsonicFragment {
                         return null;
                     }
                 })
-        ).execute();
+        );
+        loadAlbumTask.execute();
     }
 
     private void playAlbumBySong(MusicDirectory album, MusicDirectory.Entry songToPlay) {
+        DownloadService.getInstance().setNotifyRadio(false);
         List<MusicDirectory.Entry> songs = album.getSongs();
         playNow(songs, songToPlay, getSongPosition(songs, songToPlay));
     }
@@ -146,16 +166,16 @@ public class NotifyFragment extends SubsonicFragment {
         return SONG_NOT_FOUND;
     }
 
-    private class LoadAlbumTask<T> extends TabBackgroundTask<T> {
-        private SubsonicFragment fragment;
-        private MusicDirectory.Entry song;
+    private class LoadDataTask<T> extends TabBackgroundTask<T> {
+        private MusicDirectory.Entry entry;
+        private NotifyDataType dataType;
         private GetDataListener<T> getDataListener;
 
-        public LoadAlbumTask(SubsonicFragment fragment, MusicDirectory.Entry song,
-                             GetDataListener<T> getDataListener) {
+        public LoadDataTask(SubsonicFragment fragment, MusicDirectory.Entry entry,
+                            NotifyDataType dataType, GetDataListener<T> getDataListener) {
             super(fragment);
-            this.fragment = fragment;
-            this.song = song;
+            this.entry = entry;
+            this.dataType = dataType;
             this.getDataListener = getDataListener;
         }
 
@@ -167,7 +187,18 @@ public class NotifyFragment extends SubsonicFragment {
 
         @Override
         protected void done(T result) {
-            playAlbumBySong((MusicDirectory) result, song);
+            switch (dataType) {
+                case ALBUM:
+                    playAlbumBySong((MusicDirectory) result, entry);
+                    break;
+                case PLAYLIST:
+                    showRadioPage((MusicDirectory) result);
+                    break;
+            }
         }
+    }
+
+    public enum NotifyDataType {
+        ALBUM, PLAYLIST
     }
 }

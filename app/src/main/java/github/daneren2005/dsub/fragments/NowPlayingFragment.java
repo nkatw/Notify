@@ -35,6 +35,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -87,6 +88,7 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
     private ImageView albumArtImageView;
     private TextView positionTextView;
     private TextView durationTextView;
+    private TextView radioTitleTextView;
     protected TextView statusTextView;
     private SeekBar progressBar;
     private AutoRepeatButton previousButton;
@@ -98,6 +100,7 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
     private View startButton;
     private ImageButton repeatButton;
     private ImageButton shuffleButton;
+    private ViewGroup radioTitleLayout;
 
     private ScheduledExecutorService executorService;
     private DownloadFile currentPlaying;
@@ -144,10 +147,12 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
         gestureScanner = new GestureDetector(this);
 
         artistTitleTextView = (TextView) rootView.findViewById(R.id.download_artist_title);
+        artistTitleTextView.setText(null);
         albumArtImageView = (ImageView) rootView.findViewById(R.id.download_album_art_image);
         positionTextView = (TextView) rootView.findViewById(R.id.download_position);
         durationTextView = (TextView) rootView.findViewById(R.id.download_duration);
         statusTextView = (TextView) rootView.findViewById(R.id.download_status);
+        radioTitleTextView = rootView.findViewById(R.id.radio_title);
         progressBar = (SeekBar) rootView.findViewById(R.id.download_progress_bar);
         previousButton = (AutoRepeatButton) rootView.findViewById(R.id.download_previous);
         nextButton = (AutoRepeatButton) rootView.findViewById(R.id.download_next);
@@ -158,6 +163,7 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
         startButton = rootView.findViewById(R.id.download_start);
         repeatButton = (ImageButton) rootView.findViewById(R.id.download_repeat);
         shuffleButton = rootView.findViewById(R.id.download_shuffle);
+        radioTitleLayout = rootView.findViewById(R.id.radio_title_layout);
 
         View.OnTouchListener touchListener = new View.OnTouchListener() {
             @Override
@@ -971,8 +977,8 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
     @Override
     public void onSongChanged(DownloadFile currentPlaying, int currentPlayingIndex, boolean shouldFastForward) {
         this.currentPlaying = currentPlaying;
+        artistTitleTextView.setText(null);
         setupSubtitle(currentPlayingIndex);
-
         updateMediaButton(shouldFastForward);
         updateTitle();
     }
@@ -1028,8 +1034,6 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
     public void onSongsChanged(List<DownloadFile> songs, DownloadFile currentPlaying, int currentPlayingIndex, boolean shouldFastForward) {
         currentPlayingSize = songs.size();
 
-        DownloadService downloadService = getDownloadService();
-
         if (songListAdapter == null) {
             songList = new ArrayList<>();
             songList.addAll(songs);
@@ -1046,6 +1050,31 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
             updateMediaButton(shouldFastForward);
             setupSubtitle(currentPlayingIndex);
         }
+
+        createNotifyRadio();
+    }
+
+    private void createNotifyRadio() {
+        DownloadService downloadService = DownloadService.getInstance();
+        if (downloadService.isNotifyRadio()) {
+            artistTitleTextView.setText(null);
+            radioTitleLayout.setVisibility(View.VISIBLE);
+            radioTitleTextView.setText(downloadService.getNotifyRadioName());
+            setLayoutMarginTopOnRadioTitle(
+                    (int) getResources().getDimension(R.dimen.Notify_playerPage_downloadStatus_isNotifyRadio_layoutMarginTop));
+        } else {
+            radioTitleLayout.setVisibility(View.GONE);
+            setLayoutMarginTopOnRadioTitle(
+                    (int) getResources().getDimension(R.dimen.Notify_playerPage_downloadStatus_layoutMarginTop));
+        }
+    }
+
+    private void setLayoutMarginTopOnRadioTitle(int dimension) {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, dimension,
+                0, (int) getResources().getDimension(R.dimen.Notify_playerPage_downloadStatus_layoutMarginButton));
+        radioTitleTextView.setLayoutParams(params);
     }
 
     @Override

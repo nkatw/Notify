@@ -22,7 +22,7 @@ public class NotifySongsAdapter extends RecyclerView.Adapter<NotifySongsAdapter.
     private Thread updateThread;
     private Handler uiHandler;
     private Runnable runnable = () -> {
-        // TODO: Replace with Broadcast
+        // TODO: Replace with Broadcast or listener pattern
         while (!Thread.currentThread().isInterrupted()) {
             for (NotifySongsHolder holder : songsHolderList) {
                 boolean isPlaying = DownloadService.getInstance().isPlayingSong(holder.getSong());

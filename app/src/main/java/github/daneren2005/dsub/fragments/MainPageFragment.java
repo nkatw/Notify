@@ -273,7 +273,6 @@ public class MainPageFragment extends NotifyFragment {
             LoadMainPageDataTask.this.dataType = mainPageDataType;
         }
 
-
         @Override
         protected T doInBackground() throws Throwable {
             MusicService musicService = MusicServiceFactory.getMusicService(context);

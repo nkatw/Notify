@@ -40,5 +40,6 @@
 	<dimen name="Notify.playerPage.fontSize">30px</dimen>
 	<dimen name="Notify.playerPage.paddingHorizontal">200px</dimen>
 	<dimen name="Notify.playerPage.downloadStatus.layoutMarginTop">225px</dimen>
-	<dimen name="Notify.radioPage.downloadStatus.layoutMarginTop">96px</dimen>
+    <dimen name="Notify.playerPage.downloadStatus.layoutMarginButton">30px</dimen>
+    <dimen name="Notify.playerPage.downloadStatus.isNotifyRadio.layoutMarginTop">96px</dimen>
 </resources>

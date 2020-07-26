@@ -41,6 +41,7 @@
                 android:id="@+id/radio_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:letterSpacing="0.0263"
                 android:text="Radio title"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
@@ -52,21 +53,20 @@
             android:id="@+id/download_status"
             android:layout_width="wrap_content"
             android:layout_height="66px"
-            android:layout_marginBottom="30px"
             android:layout_marginTop="@dimen/Notify.playerPage.downloadStatus.layoutMarginTop"
-            android:ellipsize="end"
-            android:singleLine="true"
+            android:layout_marginBottom="30px"
+            android:letterSpacing="0.11112"
             android:text="Download status and album title"
             android:textAllCaps="false"
             android:textColor="@color/notifyFontColorWhite"
-            android:textSize="45px"
-            android:textStyle="bold" />
+            android:textSize="45px" />
 
         <TextView
             android:id="@+id/download_artist_title"
             android:layout_width="wrap_content"
             android:layout_height="59px"
             android:layout_gravity="center_horizontal"
+            android:letterSpacing="0.125"
             android:singleLine="true"
             android:text="Artist title"
             android:textAllCaps="false"
