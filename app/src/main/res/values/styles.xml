@@ -98,8 +98,7 @@
 		<item name="android:layout_height">match_parent</item>
 		<item name="android:background">@color/notifyBackgroundColor</item>
 		<item name="android:orientation">vertical</item>
-		<item name="android:paddingStart">165px</item>
-		<item name="android:paddingEnd">165px</item>
+		<item name="android:paddingHorizontal">@dimen/Notify.paddingHorizontal</item>
 	</style>
 
 	<style name="NotifyMainPageTitle">
@@ -293,4 +292,39 @@
 		<item name="android:layout_height">3px</item>
 		<item name="android:src">@drawable/notify_gradient_color</item>
 	</style>
+
+	<style name="NotifyPlayerPageTimeText">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">45px</item>
+		<item name="android:textColor">@color/notifyFontColorWhite</item>
+		<item name="android:textSize">@dimen/Notify.playerPage.fontSize</item>
+		<item name="android:letterSpacing">0.0667</item>
+	</style>
+
+    <style name="NotifyPlayerPageMediaButton">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="NotifyPlayerPageMediaButton.repeatOrShuffle">
+        <item name="android:layout_width">50px</item>
+    </style>
+
+    <style name="NotifyPlayerPageMediaButton.previous">
+        <item name="android:layout_width">40px</item>
+        <item name="android:layout_marginStart">242px</item>
+        <item name="android:layout_marginEnd">212px</item>
+    </style>
+
+    <style name="NotifyPlayerPageMediaButton.next">
+        <item name="android:layout_width">40px</item>
+        <item name="android:layout_marginStart">212px</item>
+        <item name="android:layout_marginEnd">242px</item>
+    </style>
+
+    <style name="NotifyPlayerPageMediaButton.start">
+        <item name="android:layout_width">105px</item>
+    </style>
 </resources>

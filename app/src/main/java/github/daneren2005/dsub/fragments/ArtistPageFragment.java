@@ -37,7 +37,6 @@ public class ArtistPageFragment extends NotifyFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.notify_artist_page, container, false);
 
-        // TODO: Get artist id and artist name from bundle
         artistId = getArguments().getString(Constants.INTENT_EXTRA_NAME_ID);
         artistName = getArguments().getString(Constants.INTENT_EXTRA_NAME_NAME);
 

@@ -93,8 +93,7 @@ public class NotifySearchFragment extends NotifyFragment implements SearchItemOn
 
     @Override
     public void onSongItemClick(MusicDirectory.Entry song) {
-        // TODO: show player page
-        showPlayerPage();
+        loadAndPlayAlbumBySong(song);
     }
 
     private class LoadSearchData<T> extends TabBackgroundTask<T> {

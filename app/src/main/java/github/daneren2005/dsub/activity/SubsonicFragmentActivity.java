@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -39,7 +38,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
@@ -57,7 +56,6 @@ import github.daneren2005.dsub.domain.ServerInfo;
 import github.daneren2005.dsub.fragments.AdminFragment;
 import github.daneren2005.dsub.fragments.ChatFragment;
 import github.daneren2005.dsub.fragments.DownloadFragment;
-import github.daneren2005.dsub.fragments.MainFragment;
 import github.daneren2005.dsub.fragments.MainPageFragment;
 import github.daneren2005.dsub.fragments.NowPlayingFragment;
 import github.daneren2005.dsub.fragments.SearchFragment;
@@ -88,6 +86,8 @@ import github.daneren2005.dsub.view.ChangeLog;
  */
 public class SubsonicFragmentActivity extends SubsonicActivity implements DownloadService.OnSongChangedListener {
 	private static String TAG = SubsonicFragmentActivity.class.getSimpleName();
+	public final String PLAYER_BAR_TITLE_FORMAT = "%s | %s";
+	public final int PROCESS_BAR_MAX_PERCENTAGE = 100;
 	private static boolean infoDialogDisplayed;
 	private static boolean sessionInitialized = false;
 	private static long ALLOWED_SKEW = 30000L;
@@ -99,19 +99,14 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	private SubsonicFragment secondaryFragment;
 	private Toolbar mainToolbar;
 	private Toolbar nowPlayingToolbar;
+	private ProgressBar playerProgressBar;
+	private ImageButton playerPageBackBtn;
 
 	private View bottomBar;
-	private ImageView coverArtView;
-	private TextView trackView;
-	private TextView artistView;
+	private TextView playerBarTitle;
 	private ImageButton startButton;
 	private long lastBackPressTime = 0;
 	private DownloadFile currentPlaying;
-	private PlayerState currentState;
-	private ImageButton previousButton;
-	private ImageButton nextButton;
-	private ImageButton rewindButton;
-	private ImageButton fastforwardButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -225,7 +220,7 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 				getSupportActionBar().setDisplayShowTitleEnabled(true);
 
 				bottomBar.setVisibility(View.GONE);
-				nowPlayingToolbar.setVisibility(View.VISIBLE);
+				nowPlayingToolbar.setVisibility(View.GONE);
 				setSupportActionBar(nowPlayingToolbar);
 
 				if(secondaryFragment == null) {
@@ -265,9 +260,8 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 		bottomBar = findViewById(R.id.bottom_bar);
 		mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
 		nowPlayingToolbar = (Toolbar) findViewById(R.id.now_playing_toolbar);
-		coverArtView = (ImageView) bottomBar.findViewById(R.id.album_art);
-		trackView = (TextView) bottomBar.findViewById(R.id.track_name);
-		artistView = (TextView) bottomBar.findViewById(R.id.artist_name);
+		playerProgressBar = findViewById(R.id.player_progress_bar);
+		playerBarTitle = (TextView) bottomBar.findViewById(R.id.artist_name_and_track_name);
 
 		setSupportActionBar(mainToolbar);
 
@@ -277,42 +271,6 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 			trans.add(R.id.now_playing_fragment_container, nowPlayingFragment, nowPlayingFragment.getTag() + "");
 			trans.commit();
 		}
-
-		rewindButton = (ImageButton) findViewById(R.id.download_rewind);
-		rewindButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new SilentBackgroundTask<Void>(SubsonicFragmentActivity.this) {
-					@Override
-					protected Void doInBackground() throws Throwable {
-						if (getDownloadService() == null) {
-							return null;
-						}
-
-						getDownloadService().rewind();
-						return null;
-					}
-				}.execute();
-			}
-		});
-
-		previousButton = (ImageButton) findViewById(R.id.download_previous);
-		previousButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new SilentBackgroundTask<Void>(SubsonicFragmentActivity.this) {
-					@Override
-					protected Void doInBackground() throws Throwable {
-						if(getDownloadService() == null) {
-							return null;
-						}
-
-						getDownloadService().previous();
-						return null;
-					}
-				}.execute();
-			}
-		});
 
 		startButton = (ImageButton) findViewById(R.id.download_start);
 		startButton.setOnClickListener(new View.OnClickListener() {
@@ -336,41 +294,13 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 			}
 		});
 
-		nextButton = (ImageButton) findViewById(R.id.download_next);
-		nextButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new SilentBackgroundTask<Void>(SubsonicFragmentActivity.this) {
-					@Override
-					protected Void doInBackground() throws Throwable {
-						if(getDownloadService() == null) {
-							return null;
-						}
+		createNotifyCustomToolbarWithBackOnly();
+	}
 
-						getDownloadService().next();
-						return null;
-					}
-				}.execute();
-			}
-		});
-
-		fastforwardButton = (ImageButton) findViewById(R.id.download_fastforward);
-		fastforwardButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				new SilentBackgroundTask<Void>(SubsonicFragmentActivity.this) {
-					@Override
-					protected Void doInBackground() throws Throwable {
-						if (getDownloadService() == null) {
-							return null;
-						}
-
-						getDownloadService().fastForward();
-						return null;
-					}
-				}.execute();
-			}
-		});
+	private void createNotifyCustomToolbarWithBackOnly() {
+		playerPageBackBtn = findViewById(R.id.notify_toolbar_back);
+		playerPageBackBtn.setOnClickListener(view -> closeNowPlaying());
+		playerPageBackBtn.setImageResource(R.drawable.ic_page_arrow_down_24dp);
 	}
 
 	@Override
@@ -946,65 +876,17 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 		}
 	}
 
-	public Toolbar getActiveToolbar() {
-		return slideUpPanel.getPanelState() == SlidingUpPanelLayout.PanelState.EXPANDED ? nowPlayingToolbar : mainToolbar;
-	}
-
 	@Override
 	public void onSongChanged(DownloadFile currentPlaying, int currentPlayingIndex, boolean shouldFastForward) {
 		this.currentPlaying = currentPlaying;
 
-		MusicDirectory.Entry song = null;
 		if (currentPlaying != null) {
-			song = currentPlaying.getSong();
-			trackView.setText(song.getTitle());
-
-			if(song.getArtist() != null) {
-				artistView.setVisibility(View.VISIBLE);
-				artistView.setText(song.getArtist());
-			} else {
-				artistView.setVisibility(View.GONE);
-			}
+			MusicDirectory.Entry song = currentPlaying.getSong();
+			playerBarTitle.setText(
+					String.format(PLAYER_BAR_TITLE_FORMAT, song.getArtist(), song.getTitle()));
 		} else {
-			trackView.setText(R.string.main_title);
-			artistView.setText(R.string.main_artist);
-		}
-
-		if (coverArtView != null) {
-			int height = coverArtView.getHeight();
-			if (height <= 0) {
-				int[] attrs = new int[]{R.attr.actionBarSize};
-				TypedArray typedArray = this.obtainStyledAttributes(attrs);
-				height = typedArray.getDimensionPixelSize(0, 0);
-				typedArray.recycle();
-			}
-			getImageLoader().loadImage(coverArtView, song, false, height, false);
-		}
-
-		updateMediaButtons(shouldFastForward);
-	}
-
-	private void updateMediaButtons(boolean shouldFastForward) {
-		DownloadService downloadService = getDownloadService();
-		if(downloadService.isCurrentPlayingSingle()) {
-			previousButton.setVisibility(View.GONE);
-			nextButton.setVisibility(View.GONE);
-			rewindButton.setVisibility(View.GONE);
-			fastforwardButton.setVisibility(View.GONE);
-		} else {
-			if (shouldFastForward) {
-				previousButton.setVisibility(View.GONE);
-				nextButton.setVisibility(View.GONE);
-
-				rewindButton.setVisibility(View.VISIBLE);
-				fastforwardButton.setVisibility(View.VISIBLE);
-			} else {
-				previousButton.setVisibility(View.VISIBLE);
-				nextButton.setVisibility(View.VISIBLE);
-
-				rewindButton.setVisibility(View.GONE);
-				fastforwardButton.setVisibility(View.GONE);
-			}
+			playerBarTitle.setText(
+					String.format(PLAYER_BAR_TITLE_FORMAT, R.string.main_artist, R.string.main_title));
 		}
 	}
 
@@ -1012,36 +894,26 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	public void onSongsChanged(List<DownloadFile> songs, DownloadFile currentPlaying, int currentPlayingIndex, boolean shouldFastForward) {
 		if(this.currentPlaying != currentPlaying || this.currentPlaying == null) {
 			onSongChanged(currentPlaying, currentPlayingIndex, shouldFastForward);
-		} else {
-			updateMediaButtons(shouldFastForward);
 		}
 	}
 
 	@Override
 	public void onSongProgress(DownloadFile currentPlaying, int millisPlayed, Integer duration, boolean isSeekable) {
-
+		if (currentPlaying != null) {
+			int millisTotal = duration == null ? 0 : duration;
+			playerProgressBar.setMax(millisTotal == 0 ? PROCESS_BAR_MAX_PERCENTAGE : millisTotal);
+			playerProgressBar.setProgress(millisPlayed);
+		}
 	}
 
 	@Override
 	public void onStateUpdate(DownloadFile downloadFile, PlayerState playerState) {
-		int[] attrs = new int[]{(playerState == PlayerState.STARTED) ? R.attr.actionbar_pause : R.attr.actionbar_start};
-		TypedArray typedArray = this.obtainStyledAttributes(attrs);
-		startButton.setImageResource(typedArray.getResourceId(0, 0));
-		typedArray.recycle();
+		 startButton.setImageResource((playerState == PlayerState.STARTED) ? R.mipmap.icon_pause_s : R.mipmap.icon_play_m);
 	}
 
 	@Override
 	public void onMetadataUpdate(MusicDirectory.Entry song, int fieldChange) {
-		if(song != null && coverArtView != null && fieldChange == DownloadService.METADATA_UPDATED_COVER_ART) {
-			int height = coverArtView.getHeight();
-			if (height <= 0) {
-				int[] attrs = new int[]{R.attr.actionBarSize};
-				TypedArray typedArray = this.obtainStyledAttributes(attrs);
-				height = typedArray.getDimensionPixelSize(0, 0);
-				typedArray.recycle();
-			}
-			getImageLoader().loadImage(coverArtView, song, false, height, false);
-
+		if(song != null && fieldChange == DownloadService.METADATA_UPDATED_COVER_ART) {
 			// We need to update it immediately since it won't update if updater is not running for it
 			if(nowPlayingFragment != null && slideUpPanel.getPanelState() == SlidingUpPanelLayout.PanelState.COLLAPSED) {
 				nowPlayingFragment.onMetadataUpdate(song, fieldChange);

@@ -74,6 +74,7 @@ import java.util.Set;
 
 import static github.daneren2005.dsub.domain.MusicDirectory.Entry;
 
+@Deprecated
 public class SelectDirectoryFragment extends SubsonicFragment implements SectionAdapter.OnItemClickedListener<Entry> {
 	private static final String TAG = SelectDirectoryFragment.class.getSimpleName();
 

@@ -29,7 +29,6 @@ public class MainPageFragment extends NotifyFragment {
 
     public static int SONGS_QUANTITY = 4;
     public static int ALBUMS_QUANTITY = 4;
-    public static int GENRES_QUANTITY = 8;
     public static String ALBUM_TYPE = "alphabeticalByName";
 
 
@@ -74,8 +73,7 @@ public class MainPageFragment extends NotifyFragment {
 
         for (MainPageItem item : songItems) {
             item.coverArt.setOnClickListener(v -> {
-                // TODO: Show song on music player
-                showPlayerPage();
+                loadAndPlayAlbumBySong((MusicDirectory.Entry) item.detail);
             });
         }
     }
@@ -266,6 +264,7 @@ public class MainPageFragment extends NotifyFragment {
     private class LoadMainPageDataTask<T> extends TabBackgroundTask<T> {
         GetDataListener<T> getDataListener;
         MainPageDataType dataType;
+        Object parameter;
 
         LoadMainPageDataTask(SubsonicFragment fragment, MainPageDataType mainPageDataType,
                              GetDataListener<T> getDataListener) {

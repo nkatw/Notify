@@ -1,148 +1,122 @@
-<com.sothree.slidinguppanel.SlidingUpPanelLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:sothree="http://schemas.android.com/apk/res-auto"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/slide_up_panel"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:gravity="bottom"
-	sothree:umanoPanelHeight="?attr/actionBarSize"
-	sothree:umanoShadowHeight="4dp"
-	sothree:umanoDragView="@+id/slide_up_swipe_target">
+<com.sothree.slidinguppanel.SlidingUpPanelLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/slide_up_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    sothree:umanoDragView="@+id/slide_up_swipe_target"
+    sothree:umanoPanelHeight="@dimen/Notify.playerBar.height"
+    sothree:umanoShadowHeight="0dp">
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-		<android.support.v7.widget.Toolbar
-			android:id="@+id/main_toolbar"
-			android:layout_height="?attr/actionBarSize"
-			android:layout_width="match_parent"
-			android:background="@color/notifyBackgroundColor"
-			android:elevation="0dp"
-			android:visibility="gone"
-			android:theme="?attr/actionbarThemeStyle"
-			app:popupTheme="?attr/actionbarPopupStyle"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/notifyBackgroundColor"
+            android:elevation="0dp"
+            android:theme="?attr/actionbarThemeStyle"
+            android:visibility="gone"
+            app:popupTheme="?attr/actionbarPopupStyle" />
 
-		<include layout="@layout/abstract_fragment_container"/>
-	</FrameLayout>
+        <include layout="@layout/abstract_fragment_container" />
+    </FrameLayout>
 
-	<LinearLayout
-		android:id="@+id/slide_up_frame"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/slide_up_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/notifyBackgroundColor"
+        android:orientation="vertical">
 
-		<FrameLayout
-			android:id="@+id/slide_up_swipe_target"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:background="@color/notifyBackgroundColor">
+        <FrameLayout
+            android:id="@+id/slide_up_swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/notifyBackgroundColor">
 
-			<android.support.v7.widget.Toolbar
-				android:id="@+id/now_playing_toolbar"
-				android:layout_height="?attr/actionBarSize"
-				android:layout_width="match_parent"
-				android:elevation="4dp"
-				android:visibility="gone"
-				android:theme="?attr/actionbarThemeStyle"
-				app:popupTheme="?attr/actionbarPopupStyle"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/now_playing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="4dp"
+                android:theme="?attr/actionbarThemeStyle"
+                android:visibility="gone"
+                app:popupTheme="?attr/actionbarPopupStyle" />
 
-			<LinearLayout
-				android:id="@+id/bottom_bar"
-				android:layout_width="fill_parent"
-				android:layout_height="wrap_content"
-				style="@style/BasicButton"
-				android:orientation="horizontal"
-				android:elevation="4dp">
+            <LinearLayout
+                android:id="@+id/bottom_bar"
+                style="@style/BasicButton"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/Notify.playerBar.height"
+                android:elevation="4dp"
+                android:orientation="vertical">
 
-				<github.daneren2005.dsub.view.RecyclingImageView
-					android:id="@+id/album_art"
-					android:layout_width="?attr/actionBarSize"
-					android:layout_height="?attr/actionBarSize"
-					android:layout_gravity="left|center"
-					android:scaleType="fitCenter"/>
+                <ProgressBar
+                    android:id="@+id/player_progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/Notify.playerBar.seekBar.height"
+                    android:enabled="false"
+                    android:indeterminate="false"
+                    android:padding="0dp"
+                    android:progressDrawable="@drawable/notify_process_bar_drawable" />
 
-				<LinearLayout
-					android:layout_width="0dp"
-					android:layout_height="wrap_content"
-					android:layout_gravity="center_vertical"
-					android:layout_weight="1"
-					android:orientation="vertical"
-					android:paddingLeft="8dip">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/Notify.playerBar.height"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/Notify.playerBar.paddingHorizontal">
 
-					<TextView
-						android:id="@+id/track_name"
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:singleLine="true"
-						android:text="@string/main.title"
-						android:ellipsize="marquee"
-						android:marqueeRepeatLimit="marquee_forever"
-						android:scrollHorizontally="true"
-						android:focusable="true"
-						android:focusableInTouchMode="true"
-						style="?attr/actionbarTitleStyle">
+                    <TextView
+                        android:id="@+id/artist_name_and_track_name"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:ellipsize="end"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:singleLine="true"
+                        android:letterSpacing="0.04444"
+                        android:text="@string/main.title"
+                        android:textAllCaps="false"
+                        android:textColor="@color/notifyFontColorWhite"
+                        android:textSize="@dimen/Notify.playerBar.fontSize">
+                    </TextView>
 
-						<requestFocus android:focusable="true"
-							android:focusableInTouchMode="true"
-							android:duplicateParentState="true" />
-					</TextView>
+                    <ImageButton
+                        android:id="@+id/download_start"
+                        android:layout_width="65px"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_marginStart="103px"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@mipmap/icon_play_m" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
 
-					<TextView
-						android:id="@+id/artist_name"
-						android:layout_height="wrap_content"
-						android:layout_width="wrap_content"
-						android:singleLine="true"
-						android:text="@string/main.artist"
-						style="?attr/actionbarSubtitleStyle"/>
-				</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/Notify.paddingHorizontal">
+            <include layout="@layout/notify_custom_toolbar_layout" />
+        </LinearLayout>
 
+        <FrameLayout
+            android:id="@+id/now_playing_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/notifyBackgroundColor"
+            android:clickable="true" />
+    </LinearLayout>
 
-				<LinearLayout
-					android:layout_height="fill_parent"
-					android:layout_width="0dp"
-					android:layout_weight="1">
-
-					<ImageButton
-						style="@style/PlaybackControl.BottomBar"
-						android:id="@+id/download_rewind"
-						android:src="?attr/actionbar_rewind"
-						android:padding="2dp"
-						android:visibility="gone"/>
-
-					<ImageButton
-						style="@style/PlaybackControl.BottomBar"
-						android:id="@+id/download_previous"
-						android:src="?attr/actionbar_backward"
-						android:padding="2dp"/>
-
-					<ImageButton
-						style="@style/PlaybackControl.BottomBar"
-						android:id="@+id/download_start"
-						android:src="?attr/actionbar_start"/>
-
-					<ImageButton
-						style="@style/PlaybackControl.BottomBar"
-						android:id="@+id/download_next"
-						android:src="?attr/actionbar_forward"
-						android:padding="2dp"/>
-
-					<ImageButton
-						style="@style/PlaybackControl.BottomBar"
-						android:id="@+id/download_fastforward"
-						android:src="?attr/actionbar_fastforward"
-						android:padding="2dp"
-						android:visibility="gone"/>
-				</LinearLayout>
-			</LinearLayout>
-		</FrameLayout>
-
-		<FrameLayout
-					android:id="@+id/now_playing_fragment_container"
-					android:layout_width="match_parent"
-					android:layout_height="0dp"
-					android:layout_weight="1"
-					android:clickable="true"/>
-	</LinearLayout>
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>

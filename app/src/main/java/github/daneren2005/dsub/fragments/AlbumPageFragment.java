@@ -91,13 +91,8 @@ public class AlbumPageFragment extends NotifyFragment {
                 holder.artist.setText(song.getArtist());
                 holder.duration.setText(Util.formatDuration(song.getDuration()));
                 holder.layout.setOnClickListener( view -> {
-                    // TODO: Play music from song id
-                    showPlayerPage();
+                    playAlbumBySongPosition(songs, song, position);
                 });
-
-                // TODO: Show now playing icon if song was playing
-//                holder.indexText.setVisibility(XXX ? View.GONE : View.VISIBLE);
-//                holder.nowPlaying.setVisibility(XXX ? View.VISIBLE : View.GONE);
             }
 
             @Override

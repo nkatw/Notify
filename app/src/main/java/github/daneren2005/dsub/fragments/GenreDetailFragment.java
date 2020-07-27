@@ -1,5 +1,6 @@
 package github.daneren2005.dsub.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,6 +32,7 @@ public class GenreDetailFragment extends NotifyFragment {
     private static final String SONG_INDEX_FORMAT = "%03d";
 
     private RecyclerView recyclerView;
+    private NotifySongsAdapter adapter;
 
     @Nullable
     @Override
@@ -70,30 +72,38 @@ public class GenreDetailFragment extends NotifyFragment {
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new NotifySongsAdapter() {
+        adapter = new NotifySongsAdapter() {
             @Override
             public void onBindViewHolder(@NonNull NotifySongsHolder holder, int position) {
                 MusicDirectory.Entry song = loadedSongs.get(position);
                 holder.indexText.setText(String.format(SONG_INDEX_FORMAT, (position + SONGS_INDEX_OFFSET)));
-
                 holder.songName.setText(song.getTitle());
                 holder.artist.setText(song.getArtist());
                 holder.duration.setText(Util.formatDuration(song.getDuration()));
-                holder.layout.setOnClickListener( view -> {
-                    // TODO: Play music from song id
-                    showPlayerPage();
+                holder.layout.setOnClickListener(view -> {
+                    playAlbumBySongPosition(loadedSongs, song, position);
                 });
+                holder.setSong(song);
 
-                // TODO: Show now playing icon if song was playing
-//                holder.indexText.setVisibility(XXX ? View.GONE : View.VISIBLE);
-//                holder.nowPlaying.setVisibility(XXX ? View.VISIBLE : View.GONE);
+                addHolderToCheck(holder);
             }
 
             @Override
             public int getItemCount() {
                 return loadedSongs.size();
             }
-        });
+        };
+        adapter.startCheckPlaying();
+
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adapter != null) {
+            adapter.stopCheckPlaying();
+        }
+        super.onDestroy();
     }
 
     private class LoadSongsDataTask<T> extends TabBackgroundTask<T> {
