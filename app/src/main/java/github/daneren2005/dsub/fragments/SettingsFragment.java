@@ -541,35 +541,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		serverUrlPreference.setSummary(serverUrlPreference.getText());
 		screen.setSummary(serverUrlPreference.getText());
 
-		final EditTextPreference serverLocalNetworkSSIDPreference = new EditTextPreference(context) {
-			@Override
-			protected void onAddEditTextToDialogView(View dialogView, final EditText editText) {
-				super.onAddEditTextToDialogView(dialogView, editText);
-				ViewGroup root = (ViewGroup) ((ViewGroup) dialogView).getChildAt(0);
-
-				Button defaultButton = new Button(getContext());
-				defaultButton.setText(internalSSIDDisplay);
-				defaultButton.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						editText.setText(internalSSID);
-					}
-				});
-				root.addView(defaultButton);
-			}
-		};
-		serverLocalNetworkSSIDPreference.setKey(Constants.PREFERENCES_KEY_SERVER_LOCAL_NETWORK_SSID + instance);
-		serverLocalNetworkSSIDPreference.setTitle(R.string.settings_server_local_network_ssid);
-		serverLocalNetworkSSIDPreference.setDialogTitle(R.string.settings_server_local_network_ssid);
-
-		final EditTextPreference serverInternalUrlPreference = new EditTextPreference(context);
-		serverInternalUrlPreference.setKey(Constants.PREFERENCES_KEY_SERVER_INTERNAL_URL + instance);
-		serverInternalUrlPreference.getEditText().setInputType(InputType.TYPE_TEXT_VARIATION_URI);
-		serverInternalUrlPreference.setDefaultValue("");
-		serverInternalUrlPreference.setTitle(R.string.settings_server_internal_address);
-		serverInternalUrlPreference.setDialogTitle(R.string.settings_server_internal_address);
-		serverInternalUrlPreference.setSummary(serverInternalUrlPreference.getText());
-
 		final EditTextPreference serverUsernamePreference = new EditTextPreference(context);
 		serverUsernamePreference.setKey(Constants.PREFERENCES_KEY_USERNAME + instance);
 		serverUsernamePreference.setTitle(R.string.settings_server_username);
@@ -663,8 +634,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		List<Preference> preferenceList = new ArrayList<>();
 		preferenceList.add(serverNamePreference);
 		preferenceList.add(serverUrlPreference);
-		preferenceList.add(serverInternalUrlPreference);
-		preferenceList.add(serverLocalNetworkSSIDPreference);
 		preferenceList.add(serverUsernamePreference);
 		preferenceList.add(serverPasswordPreference);
 		preferenceList.add(serverTagPreference);
@@ -681,8 +650,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 
 		screen.addPreference(serverNamePreference);
 		screen.addPreference(serverUrlPreference);
-		screen.addPreference(serverInternalUrlPreference);
-		screen.addPreference(serverLocalNetworkSSIDPreference);
 		screen.addPreference(serverUsernamePreference);
 		screen.addPreference(serverPasswordPreference);
 		screen.addPreference(serverTagPreference);
@@ -820,8 +787,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		private int instance;
 		private EditTextPreference serverName;
 		private EditTextPreference serverUrl;
-		private EditTextPreference serverLocalNetworkSSID;
-		private EditTextPreference serverInternalUrl;
 		private EditTextPreference username;
 		private PreferenceScreen screen;
 
@@ -830,8 +795,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			screen = (PreferenceScreen) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 			serverName = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
 			serverUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
-			serverLocalNetworkSSID = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_LOCAL_NETWORK_SSID + instance);
-			serverInternalUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_INTERNAL_URL + instance);
 			username = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
 
 			if(serverName != null) {
@@ -840,27 +803,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 					public boolean onPreferenceChange(Preference preference, Object value) {
 						try {
 							String url = (String) value;
-							new URL(url);
-							if (url.contains(" ") || url.contains("@")) {
-								throw new Exception();
-							}
-						} catch (Exception x) {
-							new ErrorDialog(context, R.string.settings_invalid_url, false);
-							return false;
-						}
-						return true;
-					}
-				});
-				serverInternalUrl.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
-					public boolean onPreferenceChange(Preference preference, Object value) {
-						try {
-							String url = (String) value;
-							// Allow blank internal IP address
-							if ("".equals(url) || url == null) {
-								return true;
-							}
-
 							new URL(url);
 							if (url.contains(" ") || url.contains("@")) {
 								throw new Exception();
@@ -898,8 +840,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 				if (serverName != null) {
 					serverName.setSummary(serverName.getText());
 					serverUrl.setSummary(serverUrl.getText());
-					serverLocalNetworkSSID.setSummary(serverLocalNetworkSSID.getText());
-					serverInternalUrl.setSummary(serverInternalUrl.getText());
 					username.setSummary(username.getText());
 
 					setTitle(serverName.getText());
