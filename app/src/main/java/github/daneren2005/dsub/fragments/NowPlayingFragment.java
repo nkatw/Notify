@@ -1074,7 +1074,7 @@ public class NowPlayingFragment extends SubsonicFragment implements OnGestureLis
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, dimension,
                 0, (int) getResources().getDimension(R.dimen.Notify_playerPage_downloadStatus_layoutMarginButton));
-        radioTitleTextView.setLayoutParams(params);
+        statusTextView.setLayoutParams(params);
     }
 
     @Override

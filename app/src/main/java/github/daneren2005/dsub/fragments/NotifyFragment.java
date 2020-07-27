@@ -26,7 +26,7 @@ public class NotifyFragment extends SubsonicFragment {
     public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_DEFAULT = 73;
     public static final int RADIO_BTN_LAYOUT_MARGIN_LEFT_VALUE_HAS_SEARCH_BAR = 42;
     public static final int SONG_NOT_FOUND = -1;
-    public static final String PLAYLIST_ID = "1";
+    public static final String PLAYLIST_ID = "4";
 
     protected ImageButton backBtn, adminSettingsBtn, searchBtn, radioBtn;
     protected EditText searchBar;
