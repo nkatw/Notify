@@ -47,12 +47,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="56px"
                 android:layout_marginBottom="61px"
+                android:font="@font/bold"
                 android:gravity="center"
+                android:letterSpacing="0.05263"
                 android:text="@string/notify.admin_login_page.title"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
-                android:textSize="38px"
-                android:font="@font/bold" />
+                android:textSize="38px" />
 
             <ProgressBar
                 android:id="@+id/notify_dialog_progress_bar"
@@ -103,6 +104,7 @@
                     android:layout_height="100px"
                     android:layout_gravity="center_vertical"
                     android:background="@null"
+                    android:font="@font/regular"
                     android:textAllCaps="false"
                     android:textColor="@color/notifyFontColorWhite"
                     android:textColorHint="@color/notifyFontColorHintGary"
@@ -114,9 +116,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="100px"
                 android:background="@drawable/bg_btn_enter"
+                android:letterSpacing="0.0625"
                 android:text="@string/notify.dialog.button_enter"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
+                android:textSize="32px"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -303,6 +303,7 @@
 	</style>
 
 	<style name="NotifyCategoryTitle.settings">
+		<item name="android:letterSpacing">0.036</item>
 		<item name="android:paddingBottom">8px</item>
 		<item name="android:textSize">35px</item>
 		<item name="android:id">@+android:id/title</item>
@@ -354,13 +355,14 @@
 		<item name="android:font">@font/bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceTitle.fontSize</item>
-		<item name="android:letterSpacing">0.02632</item>
+		<item name="android:letterSpacing">0.03263</item>
 	</style>
 
 
 	<style name="NotifySettingsSummary">
 		<item name="android:textColor">@color/notifyDimWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceSummary.fontSize</item>
-		<item name="android:letterSpacing">0.03125</item>
+        <item name="android:font">@font/regular</item>
+		<item name="android:letterSpacing">0.02</item>
 	</style>
 </resources>
