@@ -35,6 +35,9 @@ public final class Constants {
     public static final String CHROMECAST_CLIENT_ID = "DSubCC";
 	public static final String LAST_VERSION = "subsonic.version";
 
+	// Determine user is first time to open app
+	public static final String NOTIFY_FIRST_TIME = "notifyFirstTime";
+
     // Names for intent extras.
     public static final String INTENT_EXTRA_NAME_ID = "subsonic.id";
     public static final String INTENT_EXTRA_NAME_NAME = "subsonic.name";

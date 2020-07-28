@@ -88,7 +88,6 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	private static String TAG = SubsonicFragmentActivity.class.getSimpleName();
 	public final String PLAYER_BAR_TITLE_FORMAT = "%s | %s";
 	public final int PROCESS_BAR_MAX_PERCENTAGE = 100;
-	private static boolean infoDialogDisplayed;
 	private static boolean sessionInitialized = false;
 	private static long ALLOWED_SKEW = 30000L;
 
@@ -868,9 +867,13 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	}
 
 	private void showInfoDialog() {
-		// TODO: Replace infoDialogDisplayed to firstWelcome
-		if (!infoDialogDisplayed) {
-			infoDialogDisplayed = true;
+		SharedPreferences prefs = Util.getPreferences(this);
+		boolean firstTime = prefs.getBoolean(Constants.NOTIFY_FIRST_TIME, true);
+		if (firstTime) {
+			SharedPreferences.Editor editor = prefs.edit();
+			editor.putBoolean(Constants.NOTIFY_FIRST_TIME, false);
+			editor.commit();
+			
 			Util.info(this, R.string.main_welcome_title, getResources()
 					.getString(R.string.main_welcome_text, BuildConfig.BUILD_TIME.toString()));
 		}
