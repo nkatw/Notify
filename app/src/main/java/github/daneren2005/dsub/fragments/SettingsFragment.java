@@ -53,6 +53,7 @@ import java.util.Map;
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
 import github.daneren2005.dsub.dialogFragment.NotifyConfirmDialogPreference;
+import github.daneren2005.dsub.dialogFragment.NotifyDialogFragment;
 import github.daneren2005.dsub.dialogFragment.NotifyEditTextPreference;
 import github.daneren2005.dsub.service.DownloadService;
 import github.daneren2005.dsub.service.HeadphoneListenerService;
@@ -759,8 +760,14 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			@Override
 			protected void error(Throwable error) {
 				Log.w(TAG, error.toString(), error);
-				new ErrorDialog(context, getResources().getString(R.string.settings_connection_failure) +
-						" " + getErrorMessage(error), false);
+				NotifyDialogFragment notifyDialogFragment = NotifyDialogFragment.show(
+						getFragmentManager(), getResources().getString(R.string.error_label),
+						getResources().getString(R.string.settings_connection_failure) +
+								" " + getErrorMessage(error),
+						true, true, dialog -> {}
+						// TODO: Add cancel listener if necessary
+				);
+				notifyDialogFragment.showDismiss(true);
 			}
 		};
 		task.execute();

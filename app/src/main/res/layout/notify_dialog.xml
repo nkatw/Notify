@@ -46,7 +46,7 @@
                 android:id="@+id/notify_dialog_title"
                 android:layout_width="match_parent"
                 android:layout_height="56px"
-                android:layout_marginBottom="59px"
+                android:layout_marginBottom="61px"
                 android:gravity="center"
                 android:text="@string/notify.admin_login_page.title"
                 android:textAllCaps="false"
