@@ -76,7 +76,7 @@
 	<style name="DownloadActionButton" parent="@style/BasicButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:textStyle">bold</item>
+		<item name="android:font">@font/bold</item>
 		<item name="android:textSize">22sp</item>
 		<item name="android:paddingTop">4dip</item>
 		<item name="android:paddingBottom">4dip</item>
@@ -247,16 +247,18 @@
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageTitle.album">
+		<item name="android:letterSpacing">0.05714</item>
+		<item name="android:font">@font/regular</item>
 		<item name="android:textSize">35px</item>
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageSubtitle">
-		<item name="android:lineSpacingExtra">1.5px</item>
 		<item name="android:textAllCaps">false</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageSubtitle.artist">
+		<item name="android:lineSpacingExtra">1.5px</item>
 		<item name="android:letterSpacing">0.1</item>
 		<item name="android:layout_width">785px</item>
 		<item name="android:layout_height">180px</item>
@@ -264,12 +266,12 @@
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageSubtitle.album">
-		<item name="android:letterSpacing">0.091</item>
+		<item name="android:letterSpacing">0.09</item>
 		<item name="android:layout_width">825px</item>
 		<item name="android:layout_height">235px</item>
 		<item name="android:textSize">55px</item>
-		<item name="android:textStyle">bold</item>
-		<item name="android:lineSpacingExtra">17px</item>
+		<item name="android:font">@font/bold</item>
+		<item name="android:lineSpacingExtra">1px</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">3</item>
 	</style>
@@ -349,7 +351,7 @@
 
 	<style name="NotifySettingsTitle">
 		<item name="android:layout_marginBottom">15px</item>
-		<item name="android:textStyle">bold</item>
+		<item name="android:font">@font/bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceTitle.fontSize</item>
 		<item name="android:letterSpacing">0.02632</item>
