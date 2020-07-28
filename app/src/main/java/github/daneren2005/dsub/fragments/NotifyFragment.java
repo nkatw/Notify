@@ -2,10 +2,7 @@ package github.daneren2005.dsub.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -43,7 +40,7 @@ public class NotifyFragment extends SubsonicFragment {
         hideKeyboard();
     }
 
-    private void hideKeyboard() {
+    protected void hideKeyboard() {
         View view = getView();
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -104,7 +101,7 @@ public class NotifyFragment extends SubsonicFragment {
     }
 
     protected void showAlbumPage(String albumId, String albumName) {
-        SubsonicFragment fragment = new AlbumPageFragment();
+        SubsonicFragment fragment = new NotifyAlbumPageFragment();
         Bundle args = new Bundle();
         args.putString(Constants.INTENT_EXTRA_NAME_ID, albumId);
         args.putString(Constants.INTENT_EXTRA_NAME_NAME, albumName);
