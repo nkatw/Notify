@@ -56,6 +56,7 @@ import java.util.Map;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
+import github.daneren2005.dsub.dialogFragment.NotifyEditTextPreference;
 import github.daneren2005.dsub.service.DownloadService;
 import github.daneren2005.dsub.service.HeadphoneListenerService;
 import github.daneren2005.dsub.service.MusicService;
@@ -541,7 +542,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		serverUrlPreference.setSummary(serverUrlPreference.getText());
 		screen.setSummary(serverUrlPreference.getText());
 
-		final EditTextPreference serverUsernamePreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverUsernamePreference = new NotifyEditTextPreference(context);
 		serverUsernamePreference.setKey(Constants.PREFERENCES_KEY_USERNAME + instance);
 		serverUsernamePreference.setTitle(R.string.settings_server_username);
 		serverUsernamePreference.setDialogTitle(R.string.settings_server_username);
@@ -787,7 +788,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		private int instance;
 		private EditTextPreference serverName;
 		private EditTextPreference serverUrl;
-		private EditTextPreference username;
+		private NotifyEditTextPreference username;
 		private PreferenceScreen screen;
 
 		private ServerSettings(int instance) {
@@ -795,7 +796,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			screen = (PreferenceScreen) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 			serverName = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
 			serverUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
-			username = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
+			username = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
 
 			if(serverName != null) {
 				serverUrl.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
