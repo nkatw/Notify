@@ -11,6 +11,7 @@
         android:id="@+id/search_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:letterSpacing="0.05882"
         android:paddingBottom="15px"
         android:textAllCaps="false"
         android:textColor="@color/notifyFontColorWhite"
@@ -20,6 +21,8 @@
         android:id="@+id/search_item_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:letterSpacing="0.0714"
         android:textAllCaps="false"
         android:textColor="@color/notifyDimWrite"
         android:textSize="28px" />

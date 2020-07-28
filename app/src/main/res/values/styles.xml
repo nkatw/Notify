@@ -149,11 +149,10 @@
 		<item name="android:gravity">center</item>
 		<item name="android:letterSpacing">0.071428</item>
 		<item name="android:font">@font/regular</item>
-		<item name="android:text">Song Name Text Song Name Text</item>
     </style>
 
 	<style name="NotifyMainPageAlbumButtonTitle" parent="NotifyMainPageSongButtonTitle">
-		<item name="android:text">Album Name Text Album Name Text</item>
+
 	</style>
 
 	<style name="NotifyMainPageGenresButton">
