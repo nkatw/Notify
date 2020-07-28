@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,8 +11,9 @@ import android.widget.EditText;
 
 import github.daneren2005.dsub.R;
 
-public class NotifyEditTextPreference extends NotifyDialogPreference {
+public class NotifyEditTextPreference extends NotifyDialogPreference implements View.OnClickListener {
     public final static int NO_ID_ON_VIEW = 0;
+    public final static int NO_TYPE_ON_VIEW = 0;
     private String text;
     private boolean hasSetText = false;
 
@@ -22,6 +22,7 @@ public class NotifyEditTextPreference extends NotifyDialogPreference {
     private ViewGroup layout;
 
     private int strResIdOnPositiveBtn = NO_ID_ON_VIEW;
+    private int inputType = NO_TYPE_ON_VIEW;
 
     public NotifyEditTextPreference(Context context) {
         super(context);
@@ -41,12 +42,12 @@ public class NotifyEditTextPreference extends NotifyDialogPreference {
 
         editText = view.findViewById(R.id.notify_dialog_input_edt);
         editText.setText(getPersistedString(text));
+        if (inputType != NO_TYPE_ON_VIEW) {
+            editText.setInputType(inputType);
+        }
 
         positiveBtn = view.findViewById(R.id.notify_dialog_bottom_btn);
-        positiveBtn.setOnClickListener(v -> {
-            setText(editText.getText().toString());
-            getDialog().dismiss();
-        });
+        positiveBtn.setOnClickListener(this);
         if (strResIdOnPositiveBtn != NO_ID_ON_VIEW) {
             positiveBtn.setText(strResIdOnPositiveBtn);
         }
@@ -102,7 +103,13 @@ public class NotifyEditTextPreference extends NotifyDialogPreference {
         return editText;
     }
 
-    public void needPassword(boolean isNeedPassword) {
-//        editText.
+    public void setInputType(int type) {
+        inputType = type;
+    }
+
+    @Override
+    public void onClick(View view) {
+        setText(editText.getText().toString());
+        getDialog().dismiss();
     }
 }

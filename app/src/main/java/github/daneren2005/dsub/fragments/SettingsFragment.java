@@ -38,10 +38,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.io.File;
@@ -68,8 +64,8 @@ import github.daneren2005.dsub.util.MediaRouteManager;
 import github.daneren2005.dsub.util.SyncUtil;
 import github.daneren2005.dsub.util.Util;
 import github.daneren2005.dsub.view.CacheLocationPreference;
+import github.daneren2005.dsub.view.NotifyEditPasswordPreference;
 import github.daneren2005.dsub.view.ErrorDialog;
-import github.daneren2005.dsub.view.EditPasswordPreference;
 
 public class SettingsFragment extends PreferenceCompatFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private final static String TAG = SettingsFragment.class.getSimpleName();
@@ -516,7 +512,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		screen.setTitle(R.string.settings_server_unused);
 		screen.setKey(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 
-		final EditTextPreference serverNamePreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverNamePreference = new NotifyEditTextPreference(context);
 		serverNamePreference.setKey(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
 		serverNamePreference.setDefaultValue(getResources().getString(R.string.settings_server_unused));
 		serverNamePreference.setTitle(R.string.settings_server_name);
@@ -528,9 +524,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 
 		serverNamePreference.setSummary(serverNamePreference.getText());
 
-		final EditTextPreference serverUrlPreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverUrlPreference = new NotifyEditTextPreference(context);
 		serverUrlPreference.setKey(Constants.PREFERENCES_KEY_SERVER_URL + instance);
-		serverUrlPreference.getEditText().setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+		serverUrlPreference.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 		serverUrlPreference.setDefaultValue("http://yourhost");
 		serverUrlPreference.setTitle(R.string.settings_server_address);
 		serverUrlPreference.setDialogTitle(R.string.settings_server_address);
@@ -547,9 +543,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		serverUsernamePreference.setTitle(R.string.settings_server_username);
 		serverUsernamePreference.setDialogTitle(R.string.settings_server_username);
 
-		final EditTextPreference serverPasswordPreference = new EditPasswordPreference(context, instance);
+		final NotifyEditPasswordPreference serverPasswordPreference = new NotifyEditPasswordPreference(context, instance);
 		serverPasswordPreference.setKey(Constants.PREFERENCES_KEY_PASSWORD + instance);
-		serverPasswordPreference.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		serverPasswordPreference.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 		serverPasswordPreference.setSummary("***");
 		serverPasswordPreference.setTitle(R.string.settings_server_password);
 
@@ -786,16 +782,16 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 
 	private class ServerSettings {
 		private int instance;
-		private EditTextPreference serverName;
-		private EditTextPreference serverUrl;
+		private NotifyEditTextPreference serverName;
+		private NotifyEditTextPreference serverUrl;
 		private NotifyEditTextPreference username;
 		private PreferenceScreen screen;
 
 		private ServerSettings(int instance) {
 			this.instance = instance;
 			screen = (PreferenceScreen) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
-			serverName = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
-			serverUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
+			serverName = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
+			serverUrl = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
 			username = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
 
 			if(serverName != null) {
