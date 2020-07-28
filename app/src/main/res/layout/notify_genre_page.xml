@@ -19,7 +19,7 @@
             android:text="@string/notify.genresPage.title"
             android:textColor="@color/notifyFontColorWhite"
             android:textAllCaps="false"
-            android:fontFamily="@font/bold"
+            android:font="@font/bold"
             android:letterSpacing="0.08334"
             android:textSize="60px"/>
 

@@ -28,6 +28,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/artist_page_artist_name" />
 
+
             <ImageView
                 android:id="@+id/artist_page_artist_image"
                 style="@style/NotifyArtistAndAlbumPageTitleImage"
