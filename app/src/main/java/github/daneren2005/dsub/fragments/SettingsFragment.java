@@ -62,6 +62,7 @@ import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.FileUtil;
 import github.daneren2005.dsub.util.LoadingTask;
 import github.daneren2005.dsub.util.MediaRouteManager;
+import github.daneren2005.dsub.util.NotifySettingsLoadingTask;
 import github.daneren2005.dsub.util.SyncUtil;
 import github.daneren2005.dsub.util.Util;
 import github.daneren2005.dsub.view.CacheLocationPreference;
@@ -720,7 +721,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	}
 
 	private void testConnection(final int instance) {
-		LoadingTask<Boolean> task = new LoadingTask<Boolean>(context) {
+		NotifySettingsLoadingTask<Boolean> task = new NotifySettingsLoadingTask<Boolean>(context, context.getSupportFragmentManager()) {
 			private int previousInstance;
 
 			@Override

@@ -12,11 +12,11 @@
         android:id="@+id/notify_dialog_layout"
         android:layout_width="@dimen/NotifyDialog.Width"
         android:layout_height="@dimen/NotifyDialog.Height"
+        android:layout_gravity="center"
         android:background="@drawable/bg_notify_dialog"
         android:clickable="true"
         android:focusable="true"
-        android:orientation="vertical"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,6 +29,7 @@
                 android:layout_width="24.1px"
                 android:layout_height="25.1px"
                 android:src="@mipmap/icon_cross"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,8 +55,11 @@
                 android:textStyle="bold" />
 
             <ProgressBar
+                android:id="@+id/notify_dialog_progress_bar"
                 android:layout_width="match_parent"
                 android:layout_height="120px"
+                android:layout_marginTop="75px"
+                android:layout_marginBottom="70px"
                 android:indeterminate="true"
                 android:indeterminateDrawable="@drawable/notify_circle_drawable"
                 android:indeterminateDuration="1500"
@@ -67,7 +71,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="55px"
                 android:gravity="center"
-                android:text="DefaultDetailDefaultDetailDefaultDetailDefaultDetail"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
                 android:visibility="gone" />
@@ -114,6 +117,7 @@
                 android:text="@string/notify.dialog.button_enter"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notify_dialog_input_layout" />

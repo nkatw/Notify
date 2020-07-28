@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SettingsActivity;
+import github.daneren2005.dsub.util.Util;
 
 public class AdminLoginDialogFragment extends NotifyDialogFragment implements View.OnClickListener {
     private static final String TAG = AdminLoginDialogFragment.class.getSimpleName();
@@ -28,6 +29,8 @@ public class AdminLoginDialogFragment extends NotifyDialogFragment implements Vi
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
+        showDismiss(true);
+
         LinearLayout inputLayout = view.findViewById(R.id.notify_dialog_input_layout);
         inputLayout.setVisibility(View.VISIBLE);
 
@@ -39,9 +42,17 @@ public class AdminLoginDialogFragment extends NotifyDialogFragment implements Vi
         passwordEdt.setHint(R.string.notify_dialog_password_hint);
 
         Button enterBtn = view.findViewById(R.id.notify_dialog_bottom_btn);
+        enterBtn.setVisibility(View.VISIBLE);
         enterBtn.setOnClickListener(this);
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Util.toSetNotifyDialog(getContext(), getDialog(), R.color.notifyDialogDimBackgroundColor);
     }
 
     @Override

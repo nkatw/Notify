@@ -35,6 +35,7 @@ public class NotifyConfirmDialogPreference extends NotifyDialogPreference {
 
         positiveBtn = view.findViewById(R.id.notify_dialog_bottom_btn);
         positiveBtn.setOnClickListener(listener);
+        positiveBtn.setVisibility(View.VISIBLE);
         if (strResIdOnPositiveBtn != NO_ID_ON_VIEW) {
             positiveBtn.setText(strResIdOnPositiveBtn);
         }

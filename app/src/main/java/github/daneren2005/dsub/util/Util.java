@@ -1546,11 +1546,20 @@ public final class Util {
 		}
 	}
 
+
+
 	public static void toSetNotifyDialog(Context context, Dialog dialog) {
+		toSetNotifyDialog(context, dialog, 0);
+	}
+
+	public static void toSetNotifyDialog(Context context, Dialog dialog, int resId) {
 		Window window = dialog.getWindow();
 		window.setLayout(
 		        WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+		if (resId == 0) {
+			resId = R.color.notifyDialogDimBackgroundColorOnDefault;
+		}
 		window.setBackgroundDrawable(new ColorDrawable(
-				ContextCompat.getColor(context, R.color.notifyDialogDimBackgroundColor)));
+				ContextCompat.getColor(context, resId)));
 	}
 }
