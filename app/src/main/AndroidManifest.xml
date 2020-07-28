@@ -61,8 +61,8 @@
 
     <application
         android:backupAgent="github.daneren2005.dsub.util.SettingsBackupAgent"
-        android:icon="@drawable/launch"
-        android:label="@string/common.appname"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/notify.label"
         android:largeHeap="true"
         android:theme="@style/Theme.DSub.Light">
 
