@@ -26,7 +26,7 @@
         android:hint="@string/search.search"
         android:imeOptions="actionSearch"
         android:textAllCaps="false"
-        android:inputType="textNoSuggestions"
+        android:inputType="textPassword|textVisiblePassword"
         android:textColor="@color/notifyFontColorWhite"
         android:textColorHint="@color/notifyFontColorWhite"
         android:textSize="@dimen/NotifyToolbar.SearchBar.fontSize"
