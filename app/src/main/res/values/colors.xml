@@ -25,6 +25,6 @@
 	<color name="notifyDialogDimBackgroundColorOnDefault">#80000000</color>
 	<color name="notifyGradientStartColor">#FC6076</color>
 	<color name="notifyGradientEndColor">#FF9944</color>
-	<color name="notifyDimWrite">#DCDCDC</color>
+	<color name="notifyDimWhite">#DCDCDC</color>
 	<color name="notifyCircleProcessBarColor">#FF9944</color>
 </resources>

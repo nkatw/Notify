@@ -15,5 +15,5 @@
         android:textAllCaps="false"
         android:textColor="@color/notifyFontColorWhite"
         android:textSize="@dimen/Notify.songItem.title.fontSize"
-        android:textStyle="bold" />
+        android:letterSpacing="0.05882" />
 </LinearLayout>

@@ -144,7 +144,7 @@
         <item name="android:layout_height">41px</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/notifyDimWrite</item>
+        <item name="android:textColor">@color/notifyDimWhite</item>
         <item name="android:textSize">28px</item>
 		<item name="android:gravity">center</item>
 		<item name="android:letterSpacing">0.071428</item>
@@ -351,7 +351,7 @@
 
 
 	<style name="NotifySettingsSummary">
-		<item name="android:textColor">@color/notifyDimWrite</item>
+		<item name="android:textColor">@color/notifyDimWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceSummary.fontSize</item>
 		<item name="android:letterSpacing">0.03125</item>
 	</style>

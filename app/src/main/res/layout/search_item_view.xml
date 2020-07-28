@@ -24,6 +24,6 @@
         android:fontFamily="@font/regular"
         android:letterSpacing="0.0714"
         android:textAllCaps="false"
-        android:textColor="@color/notifyDimWrite"
+        android:textColor="@color/notifyDimWhite"
         android:textSize="28px" />
 </LinearLayout>
