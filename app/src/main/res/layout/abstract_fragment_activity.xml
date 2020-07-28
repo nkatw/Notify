@@ -82,7 +82,7 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:singleLine="true"
-                        android:letterSpacing="0.04444"
+                        android:letterSpacing="0.0667"
                         android:text="@string/main.title"
                         android:textAllCaps="false"
                         android:textColor="@color/notifyFontColorWhite"

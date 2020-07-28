@@ -9,6 +9,8 @@
     <TextView
         android:id="@+id/download_position"
         style="@style/NotifyPlayerPageTimeText"
+        android:font="@font/regular"
+        android:letterSpacing="0.067"
         android:text="00:00" />
 
     <SeekBar
@@ -28,5 +30,7 @@
     <TextView
         android:id="@+id/download_duration"
         style="@style/NotifyPlayerPageTimeText"
+        android:font="@font/regular"
+        android:letterSpacing="0.067"
         android:text="--:--" />
 </LinearLayout>
