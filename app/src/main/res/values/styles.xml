@@ -106,7 +106,8 @@
 		<item name="android:layout_height">56px</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">38px</item>
-		<item name="android:textStyle">bold</item>
+		<item name="android:font">@font/bold</item>
+		<item name="android:letterSpacing">0.079</item>
 		<item name="android:layout_marginBottom">50px</item>
 		<item name="android:text">Title String</item>
 	</style>
@@ -143,9 +144,11 @@
         <item name="android:layout_height">41px</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColor">@color/notifyFontColorWhite</item>
+        <item name="android:textColor">@color/notifyDimWrite</item>
         <item name="android:textSize">28px</item>
 		<item name="android:gravity">center</item>
+		<item name="android:letterSpacing">0.071428</item>
+		<item name="android:font">@font/regular</item>
 		<item name="android:text">Song Name Text Song Name Text</item>
     </style>
 
@@ -171,6 +174,7 @@
 		<item name="android:gravity">center_vertical|center_horizontal</item>
         <item name="android:textColor">@color/notifyFontColorWhite</item>
         <item name="android:textSize">35px</item>
+		<item name="android:letterSpacing">0.08571</item>
 		<item name="android:text">Genre Name</item>
 	</style>
 
@@ -348,7 +352,7 @@
 
 
 	<style name="NotifySettingsSummary">
-		<item name="android:textColor">@color/notifySubtitleWrite</item>
+		<item name="android:textColor">@color/notifyDimWrite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceSummary.fontSize</item>
 		<item name="android:letterSpacing">0.03125</item>
 	</style>

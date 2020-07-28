@@ -21,6 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:textColor="@color/notifySubtitleWrite"
+        android:textColor="@color/notifyDimWrite"
         android:textSize="28px" />
 </LinearLayout>
