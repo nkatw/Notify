@@ -6,22 +6,19 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import github.daneren2005.dsub.R;
 
-public class NotifyEditTextPreference extends NotifyDialogPreference implements View.OnClickListener {
-    public final static int NO_ID_ON_VIEW = 0;
+public class NotifyEditTextPreference extends NotifyConfirmDialogPreference implements View.OnClickListener {
+
     public final static int NO_TYPE_ON_VIEW = 0;
     private String text;
     private boolean hasSetText = false;
 
-    private EditText editText;
-    private Button positiveBtn;
     private ViewGroup layout;
+    private EditText editText;
 
-    private int strResIdOnPositiveBtn = NO_ID_ON_VIEW;
     private int inputType = NO_TYPE_ON_VIEW;
 
     public NotifyEditTextPreference(Context context) {
@@ -40,20 +37,16 @@ public class NotifyEditTextPreference extends NotifyDialogPreference implements 
     protected View onCreateDialogView() {
         View view = super.onCreateDialogView();
 
+        setOnButtonClickListener(NotifyEditTextPreference.this);
+
+        layout = view.findViewById(R.id.notify_dialog_input_layout);
+        layout.setVisibility(View.VISIBLE);
+
         editText = view.findViewById(R.id.notify_dialog_input_edt);
         editText.setText(getPersistedString(text));
         if (inputType != NO_TYPE_ON_VIEW) {
             editText.setInputType(inputType);
         }
-
-        positiveBtn = view.findViewById(R.id.notify_dialog_bottom_btn);
-        positiveBtn.setOnClickListener(this);
-        if (strResIdOnPositiveBtn != NO_ID_ON_VIEW) {
-            positiveBtn.setText(strResIdOnPositiveBtn);
-        }
-
-        layout = view.findViewById(R.id.notify_dialog_input_layout);
-        layout.setVisibility(View.VISIBLE);
 
         return view;
     }
@@ -71,14 +64,6 @@ public class NotifyEditTextPreference extends NotifyDialogPreference implements 
     @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return a.getString(index);
-    }
-
-    public void setButtonText(int resId) {
-        if (positiveBtn == null) {
-            strResIdOnPositiveBtn = resId;
-        } else {
-            positiveBtn.setText(resId);
-        }
     }
 
     public void setText(String text) {

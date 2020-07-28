@@ -19,7 +19,7 @@ public class NotifyDialogPreference extends DialogPreference {
     protected TextView titleTxv;
     protected TextView contentTxv;
     private int strResIdOnTitle = NO_ID_ON_VIEW;
-    private int strResIdOnContent = NO_ID_ON_VIEW;
+    private String strResIdOnContent;
 
     public NotifyDialogPreference(Context context) {
         super(context);
@@ -60,10 +60,12 @@ public class NotifyDialogPreference extends DialogPreference {
         }
 
         contentTxv = view.findViewById(R.id.notify_dialog_content);
-        if (strResIdOnContent != NO_ID_ON_VIEW) {
+        if (strResIdOnContent != null) {
             contentTxv.setText(strResIdOnContent);
+            contentTxv.setVisibility(View.VISIBLE);
+        } else {
+            contentTxv.setVisibility(View.GONE);
         }
-        contentTxv.setVisibility(View.GONE);
 
         return view;
     }
@@ -83,18 +85,11 @@ public class NotifyDialogPreference extends DialogPreference {
         }
     }
 
-    public void setDialogContent(int resId) {
+    public void setDialogContent(String text) {
         if (contentTxv == null) {
-            strResIdOnContent = resId;
+            strResIdOnContent = text;
         } else {
-            contentTxv.setText(resId);
+            contentTxv.setText(text);
         }
-
-        contentTxv.setText(resId);
-        setDialogContentVisibility(View.VISIBLE);
-    }
-
-    public void setDialogContentVisibility(int type) {
-        contentTxv.setVisibility(type);
     }
 }

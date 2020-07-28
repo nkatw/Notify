@@ -52,6 +52,7 @@ import java.util.Map;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
+import github.daneren2005.dsub.dialogFragment.NotifyConfirmDialogPreference;
 import github.daneren2005.dsub.dialogFragment.NotifyEditTextPreference;
 import github.daneren2005.dsub.service.DownloadService;
 import github.daneren2005.dsub.service.HeadphoneListenerService;
@@ -574,47 +575,44 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			}
 		});
 
-		Preference serverRemoveServerPreference = new Preference(context);
+		NotifyConfirmDialogPreference serverRemoveServerPreference = new NotifyConfirmDialogPreference(context);
 		serverRemoveServerPreference.setKey(Constants.PREFERENCES_KEY_SERVER_REMOVE + instance);
-		serverRemoveServerPreference.setPersistent(false);
 		serverRemoveServerPreference.setLayoutResource(R.layout.notify_custom_button_style_preference_on_settings);
 		serverRemoveServerPreference.setTitle(R.string.settings_servers_remove);
-		serverRemoveServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				Util.confirmDialog(context, R.string.common_delete, screen.getTitle().toString(), new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// Reset values to null so when we ask for them again they are new
-						serverNamePreference.setText(null);
-						serverUrlPreference.setText(null);
-						serverUsernamePreference.setText(null);
-						serverPasswordPreference.setText(null);
+		serverRemoveServerPreference.setDialogTitle(R.string.settings_servers_remove);
 
-						// Don't use Util.getActiveServer since it is 0 if offline
-						int activeServer = Util.getPreferences(context).getInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1);
-						for (int i = instance; i <= serverCount; i++) {
-							Util.removeInstanceName(context, i, activeServer);
-						}
+		String action = context.getResources().getString(R.string.common_delete);
+		serverRemoveServerPreference.setDialogContent(
+				context.getResources().getString(R.string.notify_settingPage_confirm_message, action, screen.getTitle().toString())
+		);
 
-						serverCount--;
-						SharedPreferences.Editor editor = settings.edit();
-						editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
-						editor.commit();
+		serverRemoveServerPreference.setButtonText(R.string.notify_settingPage_delete);
+		serverRemoveServerPreference.setOnButtonClickListener(v -> {
+            // Reset values to null so when we ask for them again they are new
+            serverNamePreference.setText(null);
+            serverUrlPreference.setText(null);
+            serverUsernamePreference.setText(null);
+            serverPasswordPreference.setText(null);
 
-						removeCurrent();
+            // Don't use Util.getActiveServer since it is 0 if offline
+            int activeServer = Util.getPreferences(context).getInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1);
+            for (int i = instance; i <= serverCount; i++) {
+                Util.removeInstanceName(context, i, activeServer);
+            }
 
-						SubsonicFragment parentFragment = context.getCurrentFragment();
-						if(parentFragment instanceof SettingsFragment) {
-							SettingsFragment serverSelectionFragment = (SettingsFragment) parentFragment;
-							serverSelectionFragment.checkForRemoved();
-						}
-					}
-				});
+            serverCount--;
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
+            editor.commit();
 
-				return true;
-			}
-		});
+            removeCurrent();
+
+            SubsonicFragment parentFragment = context.getCurrentFragment();
+            if(parentFragment instanceof SettingsFragment) {
+                SettingsFragment serverSelectionFragment = (SettingsFragment) parentFragment;
+                serverSelectionFragment.checkForRemoved();
+            }
+        });
 
 		Preference serverTestConnectionPreference = new Preference(context);
 		serverTestConnectionPreference.setKey(Constants.PREFERENCES_KEY_TEST_CONNECTION + instance);

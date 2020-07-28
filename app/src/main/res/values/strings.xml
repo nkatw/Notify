@@ -676,6 +676,7 @@
 	<string name="notify.artistPage.categoryTitle">Albums</string>
 	<string name="notify.settingPage.confirm_message" translatable="false">Do you want to %1$s %2$s?</string>
 	<string name="notify.settingPage.confirm" translatable="false">Confirm</string>
+	<string name="notify.settingPage.delete" translatable="false">Delete</string>
 
 	<string name="permission.external_storage.failed">DSub cannot function without the ability to write to storage</string>
 
