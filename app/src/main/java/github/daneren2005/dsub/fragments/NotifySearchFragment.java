@@ -93,6 +93,7 @@ public class NotifySearchFragment extends NotifyFragment implements SearchItemOn
 
     @Override
     public void onSongItemClick(MusicDirectory.Entry song) {
+        hideKeyboard();
         loadAndPlayAlbumBySong(song);
     }
 

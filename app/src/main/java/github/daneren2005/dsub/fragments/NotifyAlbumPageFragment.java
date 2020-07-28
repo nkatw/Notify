@@ -24,8 +24,8 @@ import github.daneren2005.dsub.util.GetDataListener;
 import github.daneren2005.dsub.util.TabBackgroundTask;
 import github.daneren2005.dsub.util.Util;
 
-public class AlbumPageFragment extends NotifyFragment {
-    private static final String TAG = AlbumPageFragment.class.getSimpleName();
+public class NotifyAlbumPageFragment extends NotifyFragment {
+    private static final String TAG = NotifyAlbumPageFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private String albumId, albumName;
     private TextView albumTitle, albumSubtitle;
