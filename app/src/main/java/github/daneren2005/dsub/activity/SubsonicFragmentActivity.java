@@ -672,25 +672,23 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 			SharedPreferences.Editor editor = prefs.edit();
 			editor.putBoolean(Constants.PREFERENCES_KEY_OFFLINE, false);
 
-			editor.putString(Constants.PREFERENCES_KEY_SERVER_NAME + 1, "Demo Server");
-			editor.putString(Constants.PREFERENCES_KEY_SERVER_URL + 1, "http://demo.subsonic.org");
-			editor.putString(Constants.PREFERENCES_KEY_USERNAME + 1, "guest2");
-			if (Build.VERSION.SDK_INT < 23) {
-				editor.putString(Constants.PREFERENCES_KEY_PASSWORD + 1, "guest");
-			} else {
-				// Attempt to encrypt password
-				String encryptedDefaultPassword = KeyStoreUtil.encrypt("guest");
+			editor.putString(Constants.PREFERENCES_KEY_SERVER_NAME + 1, "Notify Server");
+			editor.putString(Constants.PREFERENCES_KEY_SERVER_URL + 1, "http://210.64.146.209");
+			editor.putString(Constants.PREFERENCES_KEY_USERNAME + 1, "guest");
 
-				if (encryptedDefaultPassword != null) {
-					// If encryption succeeds, store encrypted password and flag password as encrypted
-					editor.putString(Constants.PREFERENCES_KEY_PASSWORD + 1, encryptedDefaultPassword);
-					editor.putBoolean(Constants.PREFERENCES_KEY_ENCRYPTED_PASSWORD + 1, true);
-				} else {
-					// Fall back to plaintext if Keystore is having issue
-					editor = editor.putString(Constants.PREFERENCES_KEY_PASSWORD + 1, "guest");
-					editor.putBoolean(Constants.PREFERENCES_KEY_ENCRYPTED_PASSWORD + 1, false);
-				}
+			// Attempt to encrypt password
+			String encryptedDefaultPassword = KeyStoreUtil.encrypt("42641203");
+
+			if (encryptedDefaultPassword != null) {
+				// If encryption succeeds, store encrypted password and flag password as encrypted
+				editor.putString(Constants.PREFERENCES_KEY_PASSWORD + 1, encryptedDefaultPassword);
+				editor.putBoolean(Constants.PREFERENCES_KEY_ENCRYPTED_PASSWORD + 1, true);
+			} else {
+				// Fall back to plaintext if Keystore is having issue
+				editor = editor.putString(Constants.PREFERENCES_KEY_PASSWORD + 1, "42641203");
+				editor.putBoolean(Constants.PREFERENCES_KEY_ENCRYPTED_PASSWORD + 1, false);
 			}
+
 			editor.putInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1);
 			editor.commit();
 		}
