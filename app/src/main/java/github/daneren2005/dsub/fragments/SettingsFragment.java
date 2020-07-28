@@ -23,6 +23,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,21 +38,23 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.InputType;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.activity.SubsonicActivity;
+import github.daneren2005.dsub.dialogFragment.NotifyConfirmDialogPreference;
+import github.daneren2005.dsub.dialogFragment.NotifyDialogFragment;
+import github.daneren2005.dsub.dialogFragment.NotifyEditTextPreference;
 import github.daneren2005.dsub.service.DownloadService;
 import github.daneren2005.dsub.service.HeadphoneListenerService;
 import github.daneren2005.dsub.service.MusicService;
@@ -59,11 +63,12 @@ import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.FileUtil;
 import github.daneren2005.dsub.util.LoadingTask;
 import github.daneren2005.dsub.util.MediaRouteManager;
+import github.daneren2005.dsub.util.NotifySettingsLoadingTask;
 import github.daneren2005.dsub.util.SyncUtil;
 import github.daneren2005.dsub.util.Util;
 import github.daneren2005.dsub.view.CacheLocationPreference;
+import github.daneren2005.dsub.view.NotifyEditPasswordPreference;
 import github.daneren2005.dsub.view.ErrorDialog;
-import github.daneren2005.dsub.view.EditPasswordPreference;
 
 public class SettingsFragment extends PreferenceCompatFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
 	private final static String TAG = SettingsFragment.class.getSimpleName();
@@ -83,7 +88,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	private ListPreference tempLoss;
 	private ListPreference pauseDisconnect;
 	private Preference addServerPreference;
-	private PreferenceCategory serversCategory;
+	private PreferenceScreen serversOnPreferenceScreen;
 	private ListPreference songPressAction;
 	private ListPreference videoPlayer;
 	private ListPreference syncInterval;
@@ -125,6 +130,19 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			serverSettings.put(Integer.toString(instance), new ServerSettings(instance));
 			onInitPreferences(preferenceScreen);
 		}
+	}
+
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+
+		// Set height and color to transparent on divider
+		ListView listView = getListView();
+		listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
+		listView.setDividerHeight(60);
+
+		// Set no padding
+		listView.setPadding(0, 0, 0, 0);
 	}
 
 	@Override
@@ -248,7 +266,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		keepPlayedCount = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_KEEP_PLAYED_CNT);
 		tempLoss = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_TEMP_LOSS);
 		pauseDisconnect = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_PAUSE_DISCONNECT);
-		serversCategory = (PreferenceCategory) this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY);
+		serversOnPreferenceScreen = (PreferenceScreen) this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY);
 		addServerPreference = this.findPreference(Constants.PREFERENCES_KEY_SERVER_ADD);
 		videoPlayer = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_VIDEO_PLAYER);
 		songPressAction = (ListPreference) this.findPreference(Constants.PREFERENCES_KEY_SONG_PRESS_ACTION);
@@ -329,13 +347,13 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			});
 		}
 
-		if(serversCategory != null) {
+		if(serversOnPreferenceScreen != null) {
 			addServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 				@Override
 				public boolean onPreferenceClick(Preference preference) {
 					serverCount++;
 					int instance = serverCount;
-					serversCategory.addPreference(addServer(serverCount));
+					serversOnPreferenceScreen.addPreference(addServer(serverCount));
 
 					SharedPreferences.Editor editor = settings.edit();
 					editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
@@ -353,9 +371,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 				}
 			});
 
-			serversCategory.setOrderingAsAdded(false);
+			serversOnPreferenceScreen.setOrderingAsAdded(false);
 			for (int i = 1; i <= serverCount; i++) {
-				serversCategory.addPreference(addServer(i));
+				serversOnPreferenceScreen.addPreference(addServer(i));
 				serverSettings.put(String.valueOf(i), new ServerSettings(i));
 			}
 		}
@@ -463,7 +481,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	public void checkForRemoved() {
 		for (ServerSettings ss : serverSettings.values()) {
 			if(!ss.update()) {
-				serversCategory.removePreference(ss.getScreen());
+				serversOnPreferenceScreen.removePreference(ss.getScreen());
 				serverCount--;
 			}
 		}
@@ -473,6 +491,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		final PreferenceScreen screen = this.getPreferenceManager().createPreferenceScreen(context);
 		screen.setKey(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 		screen.setOrder(instance);
+		screen.setLayoutResource(R.layout.notify_custom_preference_on_settings);
 
 		screen.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
 			@Override
@@ -496,7 +515,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		screen.setTitle(R.string.settings_server_unused);
 		screen.setKey(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
 
-		final EditTextPreference serverNamePreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverNamePreference = new NotifyEditTextPreference(context);
 		serverNamePreference.setKey(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
 		serverNamePreference.setDefaultValue(getResources().getString(R.string.settings_server_unused));
 		serverNamePreference.setTitle(R.string.settings_server_name);
@@ -508,9 +527,9 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 
 		serverNamePreference.setSummary(serverNamePreference.getText());
 
-		final EditTextPreference serverUrlPreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverUrlPreference = new NotifyEditTextPreference(context);
 		serverUrlPreference.setKey(Constants.PREFERENCES_KEY_SERVER_URL + instance);
-		serverUrlPreference.getEditText().setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+		serverUrlPreference.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 		serverUrlPreference.setDefaultValue("http://yourhost");
 		serverUrlPreference.setTitle(R.string.settings_server_address);
 		serverUrlPreference.setDialogTitle(R.string.settings_server_address);
@@ -522,43 +541,14 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 		serverUrlPreference.setSummary(serverUrlPreference.getText());
 		screen.setSummary(serverUrlPreference.getText());
 
-		final EditTextPreference serverLocalNetworkSSIDPreference = new EditTextPreference(context) {
-			@Override
-			protected void onAddEditTextToDialogView(View dialogView, final EditText editText) {
-				super.onAddEditTextToDialogView(dialogView, editText);
-				ViewGroup root = (ViewGroup) ((ViewGroup) dialogView).getChildAt(0);
-
-				Button defaultButton = new Button(getContext());
-				defaultButton.setText(internalSSIDDisplay);
-				defaultButton.setOnClickListener(new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
-						editText.setText(internalSSID);
-					}
-				});
-				root.addView(defaultButton);
-			}
-		};
-		serverLocalNetworkSSIDPreference.setKey(Constants.PREFERENCES_KEY_SERVER_LOCAL_NETWORK_SSID + instance);
-		serverLocalNetworkSSIDPreference.setTitle(R.string.settings_server_local_network_ssid);
-		serverLocalNetworkSSIDPreference.setDialogTitle(R.string.settings_server_local_network_ssid);
-
-		final EditTextPreference serverInternalUrlPreference = new EditTextPreference(context);
-		serverInternalUrlPreference.setKey(Constants.PREFERENCES_KEY_SERVER_INTERNAL_URL + instance);
-		serverInternalUrlPreference.getEditText().setInputType(InputType.TYPE_TEXT_VARIATION_URI);
-		serverInternalUrlPreference.setDefaultValue("");
-		serverInternalUrlPreference.setTitle(R.string.settings_server_internal_address);
-		serverInternalUrlPreference.setDialogTitle(R.string.settings_server_internal_address);
-		serverInternalUrlPreference.setSummary(serverInternalUrlPreference.getText());
-
-		final EditTextPreference serverUsernamePreference = new EditTextPreference(context);
+		final NotifyEditTextPreference serverUsernamePreference = new NotifyEditTextPreference(context);
 		serverUsernamePreference.setKey(Constants.PREFERENCES_KEY_USERNAME + instance);
 		serverUsernamePreference.setTitle(R.string.settings_server_username);
 		serverUsernamePreference.setDialogTitle(R.string.settings_server_username);
 
-		final EditTextPreference serverPasswordPreference = new EditPasswordPreference(context, instance);
+		final NotifyEditPasswordPreference serverPasswordPreference = new NotifyEditPasswordPreference(context, instance);
 		serverPasswordPreference.setKey(Constants.PREFERENCES_KEY_PASSWORD + instance);
-		serverPasswordPreference.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+		serverPasswordPreference.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 		serverPasswordPreference.setSummary("***");
 		serverPasswordPreference.setTitle(R.string.settings_server_password);
 
@@ -587,47 +577,44 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			}
 		});
 
-		Preference serverRemoveServerPreference = new Preference(context);
+		NotifyConfirmDialogPreference serverRemoveServerPreference = new NotifyConfirmDialogPreference(context);
 		serverRemoveServerPreference.setKey(Constants.PREFERENCES_KEY_SERVER_REMOVE + instance);
-		serverRemoveServerPreference.setPersistent(false);
+		serverRemoveServerPreference.setLayoutResource(R.layout.notify_custom_button_style_preference_on_settings);
 		serverRemoveServerPreference.setTitle(R.string.settings_servers_remove);
+		serverRemoveServerPreference.setDialogTitle(R.string.settings_servers_remove);
 
-		serverRemoveServerPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-			@Override
-			public boolean onPreferenceClick(Preference preference) {
-				Util.confirmDialog(context, R.string.common_delete, screen.getTitle().toString(), new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// Reset values to null so when we ask for them again they are new
-						serverNamePreference.setText(null);
-						serverUrlPreference.setText(null);
-						serverUsernamePreference.setText(null);
-						serverPasswordPreference.setText(null);
+		String action = context.getResources().getString(R.string.common_delete);
+		serverRemoveServerPreference.setDialogContent(
+				context.getResources().getString(R.string.notify_settingPage_confirm_message, action, screen.getTitle().toString())
+		);
 
-						// Don't use Util.getActiveServer since it is 0 if offline
-						int activeServer = Util.getPreferences(context).getInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1);
-						for (int i = instance; i <= serverCount; i++) {
-							Util.removeInstanceName(context, i, activeServer);
-						}
+		serverRemoveServerPreference.setButtonText(R.string.notify_settingPage_delete);
+		serverRemoveServerPreference.setOnButtonClickListener(v -> {
+            // Reset values to null so when we ask for them again they are new
+            serverNamePreference.setText(null);
+            serverUrlPreference.setText(null);
+            serverUsernamePreference.setText(null);
+            serverPasswordPreference.setText(null);
 
-						serverCount--;
-						SharedPreferences.Editor editor = settings.edit();
-						editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
-						editor.commit();
+            // Don't use Util.getActiveServer since it is 0 if offline
+            int activeServer = Util.getPreferences(context).getInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1);
+            for (int i = instance; i <= serverCount; i++) {
+                Util.removeInstanceName(context, i, activeServer);
+            }
 
-						removeCurrent();
+            serverCount--;
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putInt(Constants.PREFERENCES_KEY_SERVER_COUNT, serverCount);
+            editor.commit();
 
-						SubsonicFragment parentFragment = context.getCurrentFragment();
-						if(parentFragment instanceof SettingsFragment) {
-							SettingsFragment serverSelectionFragment = (SettingsFragment) parentFragment;
-							serverSelectionFragment.checkForRemoved();
-						}
-					}
-				});
+            removeCurrent();
 
-				return true;
-			}
-		});
+            SubsonicFragment parentFragment = context.getCurrentFragment();
+            if(parentFragment instanceof SettingsFragment) {
+                SettingsFragment serverSelectionFragment = (SettingsFragment) parentFragment;
+                serverSelectionFragment.checkForRemoved();
+            }
+        });
 
 		Preference serverTestConnectionPreference = new Preference(context);
 		serverTestConnectionPreference.setKey(Constants.PREFERENCES_KEY_TEST_CONNECTION + instance);
@@ -641,10 +628,25 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			}
 		});
 
+		List<Preference> preferenceList = new ArrayList<>();
+		preferenceList.add(serverNamePreference);
+		preferenceList.add(serverUrlPreference);
+		preferenceList.add(serverUsernamePreference);
+		preferenceList.add(serverPasswordPreference);
+		preferenceList.add(serverTagPreference);
+		preferenceList.add(serverSyncPreference);
+		preferenceList.add(serverTestConnectionPreference);
+		preferenceList.add(serverOpenBrowser);
+		for (Preference preference : preferenceList) {
+			preference.setLayoutResource(R.layout.notify_custom_preference_on_settings);
+			if (preference instanceof CheckBoxPreference) {
+				preference.setWidgetLayoutResource(R.layout.notify_custom_check_box_preference_on_settings);
+			}
+		}
+
+
 		screen.addPreference(serverNamePreference);
 		screen.addPreference(serverUrlPreference);
-		screen.addPreference(serverInternalUrlPreference);
-		screen.addPreference(serverLocalNetworkSSIDPreference);
 		screen.addPreference(serverUsernamePreference);
 		screen.addPreference(serverPasswordPreference);
 		screen.addPreference(serverTagPreference);
@@ -720,7 +722,7 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 	}
 
 	private void testConnection(final int instance) {
-		LoadingTask<Boolean> task = new LoadingTask<Boolean>(context) {
+		NotifySettingsLoadingTask<Boolean> task = new NotifySettingsLoadingTask<Boolean>(context, context.getSupportFragmentManager()) {
 			private int previousInstance;
 
 			@Override
@@ -758,8 +760,14 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 			@Override
 			protected void error(Throwable error) {
 				Log.w(TAG, error.toString(), error);
-				new ErrorDialog(context, getResources().getString(R.string.settings_connection_failure) +
-						" " + getErrorMessage(error), false);
+				NotifyDialogFragment notifyDialogFragment = NotifyDialogFragment.show(
+						getFragmentManager(), getResources().getString(R.string.error_label),
+						getResources().getString(R.string.settings_connection_failure) +
+								" " + getErrorMessage(error),
+						true, true, dialog -> {}
+						// TODO: Add cancel listener if necessary
+				);
+				notifyDialogFragment.showDismiss(true);
 			}
 		};
 		task.execute();
@@ -780,21 +788,17 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 
 	private class ServerSettings {
 		private int instance;
-		private EditTextPreference serverName;
-		private EditTextPreference serverUrl;
-		private EditTextPreference serverLocalNetworkSSID;
-		private EditTextPreference serverInternalUrl;
-		private EditTextPreference username;
+		private NotifyEditTextPreference serverName;
+		private NotifyEditTextPreference serverUrl;
+		private NotifyEditTextPreference username;
 		private PreferenceScreen screen;
 
 		private ServerSettings(int instance) {
 			this.instance = instance;
 			screen = (PreferenceScreen) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_KEY + instance);
-			serverName = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
-			serverUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
-			serverLocalNetworkSSID = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_LOCAL_NETWORK_SSID + instance);
-			serverInternalUrl = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_INTERNAL_URL + instance);
-			username = (EditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
+			serverName = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_NAME + instance);
+			serverUrl = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_SERVER_URL + instance);
+			username = (NotifyEditTextPreference) SettingsFragment.this.findPreference(Constants.PREFERENCES_KEY_USERNAME + instance);
 
 			if(serverName != null) {
 				serverUrl.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
@@ -802,27 +806,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 					public boolean onPreferenceChange(Preference preference, Object value) {
 						try {
 							String url = (String) value;
-							new URL(url);
-							if (url.contains(" ") || url.contains("@")) {
-								throw new Exception();
-							}
-						} catch (Exception x) {
-							new ErrorDialog(context, R.string.settings_invalid_url, false);
-							return false;
-						}
-						return true;
-					}
-				});
-				serverInternalUrl.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-					@Override
-					public boolean onPreferenceChange(Preference preference, Object value) {
-						try {
-							String url = (String) value;
-							// Allow blank internal IP address
-							if ("".equals(url) || url == null) {
-								return true;
-							}
-
 							new URL(url);
 							if (url.contains(" ") || url.contains("@")) {
 								throw new Exception();
@@ -860,8 +843,6 @@ public class SettingsFragment extends PreferenceCompatFragment implements Shared
 				if (serverName != null) {
 					serverName.setSummary(serverName.getText());
 					serverUrl.setSummary(serverUrl.getText());
-					serverLocalNetworkSSID.setSummary(serverLocalNetworkSSID.getText());
-					serverInternalUrl.setSummary(serverInternalUrl.getText());
 					username.setSummary(username.getText());
 
 					setTitle(serverName.getText());

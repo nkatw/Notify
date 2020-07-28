@@ -79,7 +79,6 @@ import github.daneren2005.dsub.service.MusicService;
 import github.daneren2005.dsub.service.MusicServiceFactory;
 import github.daneren2005.dsub.util.Constants;
 import github.daneren2005.dsub.util.DrawableTint;
-import github.daneren2005.dsub.util.DrawerHider;
 import github.daneren2005.dsub.util.ImageLoader;
 import github.daneren2005.dsub.util.SilentBackgroundTask;
 import github.daneren2005.dsub.util.ThemeUtil;
@@ -89,7 +88,7 @@ import github.daneren2005.dsub.util.UserUtil;
 
 import static android.Manifest.*;
 
-public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener, DrawerHider {
+public class SubsonicActivity extends AppCompatActivity implements OnItemSelectedListener {
 	private static final String TAG = SubsonicActivity.class.getSimpleName();
 	private static ImageLoader IMAGE_LOADER;
 	protected static String theme;
@@ -1191,7 +1190,7 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 		offline.putInt(Constants.OFFLINE_STAR_COUNT, 0);
 		offline.commit();
 	}
-	
+
 	public int getDrawerItemId(String fragmentType) {
 		if(fragmentType == null) {
 			return R.id.drawer_home;
@@ -1263,27 +1262,6 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 				}
 
 			}
-		}
-	}
-
-	@Override
-	public void setDrawerEnable(Boolean enable) {
-		drawerToggle.setDrawerIndicatorEnabled(enable);
-		if (enable) {
-			drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-		} else {
-			drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-		}
-		if (getSupportActionBar() != null) {
-			getSupportActionBar().setDisplayShowTitleEnabled(enable);
-			getSupportActionBar().setDisplayHomeAsUpEnabled(enable);
-		}
-	}
-
-	@Override
-	public void setDrawerTitle(String title) {
-		if (getSupportActionBar() != null) {
-			getSupportActionBar().setTitle(title == null ? "" : title);
 		}
 	}
 }

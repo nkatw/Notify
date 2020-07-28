@@ -19,13 +19,9 @@ package github.daneren2005.dsub.util;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.media.AudioAttributes;
-import android.media.AudioFocusRequest;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AlertDialog;
-import android.content.ClipboardManager;
+import android.app.Dialog;
 import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,37 +31,34 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.util.SparseArray;
-import android.view.View;
 import android.view.Gravity;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import github.daneren2005.dsub.R;
-import github.daneren2005.dsub.adapter.DetailsAdapter;
-import github.daneren2005.dsub.domain.MusicDirectory;
-import github.daneren2005.dsub.domain.PlayerState;
-import github.daneren2005.dsub.domain.RepeatMode;
-import github.daneren2005.dsub.domain.ServerInfo;
-import github.daneren2005.dsub.receiver.MediaButtonIntentReceiver;
-import github.daneren2005.dsub.service.DownloadService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
@@ -91,6 +84,15 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
 
+import github.daneren2005.dsub.R;
+import github.daneren2005.dsub.adapter.DetailsAdapter;
+import github.daneren2005.dsub.domain.MusicDirectory;
+import github.daneren2005.dsub.domain.PlayerState;
+import github.daneren2005.dsub.domain.RepeatMode;
+import github.daneren2005.dsub.domain.ServerInfo;
+import github.daneren2005.dsub.receiver.MediaButtonIntentReceiver;
+import github.daneren2005.dsub.service.DownloadService;
+
 /**
  * @author Sindre Mehus
  * @version $Id$
@@ -113,7 +115,7 @@ public final class Util {
 
     public static final String EVENT_META_CHANGED = "github.daneren2005.dsub.EVENT_META_CHANGED";
     public static final String EVENT_PLAYSTATE_CHANGED = "github.daneren2005.dsub.EVENT_PLAYSTATE_CHANGED";
-	
+
 	public static final String AVRCP_PLAYSTATE_CHANGED = "com.android.music.playstatechanged";
 	public static final String AVRCP_METADATA_CHANGED = "com.android.music.metachanged";
 
@@ -137,7 +139,7 @@ public final class Util {
         SharedPreferences prefs = getPreferences(context);
 		return prefs.getBoolean(Constants.PREFERENCES_KEY_OFFLINE, false);
     }
-	
+
 	public static void setOffline(Context context, boolean offline) {
 		SharedPreferences prefs = getPreferences(context);
 		SharedPreferences.Editor editor = prefs.edit();
@@ -183,7 +185,7 @@ public final class Util {
 		SharedPreferences prefs = getPreferences(context);
 		return Math.max(1, prefs.getInt(Constants.PREFERENCES_KEY_SERVER_INSTANCE, 1));
 	}
-	
+
 	public static int getServerCount(Context context) {
 		SharedPreferences prefs = getPreferences(context);
 		return prefs.getInt(Constants.PREFERENCES_KEY_SERVER_COUNT, 1);
@@ -273,7 +275,7 @@ public final class Util {
 		editor.putBoolean(Constants.PREFERENCES_KEY_ALBUMS_PER_FOLDER + instance, perFolder);
 		editor.commit();
 	}
-	
+
 	public static boolean getDisplayTrack(Context context) {
 		SharedPreferences prefs = getPreferences(context);
         return prefs.getBoolean(Constants.PREFERENCES_KEY_DISPLAY_TRACK, true);
@@ -290,7 +292,7 @@ public final class Util {
         SharedPreferences prefs = getPreferences(context);
         return Integer.parseInt(prefs.getString(wifi ? Constants.PREFERENCES_KEY_MAX_BITRATE_WIFI : Constants.PREFERENCES_KEY_MAX_BITRATE_MOBILE, "0"));
     }
-	
+
 	public static int getMaxVideoBitrate(Context context) {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
@@ -309,7 +311,7 @@ public final class Util {
         if (networkInfo == null) {
             return 3;
         }
-		
+
         SharedPreferences prefs = getPreferences(context);
 		boolean wifi = networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
         int preloadCount = Integer.parseInt(prefs.getString(wifi ? Constants.PREFERENCES_KEY_PRELOAD_COUNT_WIFI : Constants.PREFERENCES_KEY_PRELOAD_COUNT_MOBILE, "-1"));
@@ -456,7 +458,7 @@ public final class Util {
 		SharedPreferences prefs = getPreferences(context);
 		return prefs.getBoolean(Constants.PREFERENCES_KEY_BROWSE_TAGS + instance, false);
 	}
-	
+
 	public static boolean isSyncEnabled(Context context, int instance) {
 		SharedPreferences prefs = getPreferences(context);
 		return prefs.getBoolean(Constants.PREFERENCES_KEY_SERVER_SYNC + instance, true);
@@ -488,7 +490,7 @@ public final class Util {
 
 	public static String getVideoPlayerType(Context context) {
 		SharedPreferences prefs = getPreferences(context);
-		return prefs.getString(Constants.PREFERENCES_KEY_VIDEO_PLAYER, "raw"); 
+		return prefs.getString(Constants.PREFERENCES_KEY_VIDEO_PLAYER, "raw");
 	}
 
     public static SharedPreferences getPreferences(Context context) {
@@ -497,7 +499,7 @@ public final class Util {
 	public static SharedPreferences getOfflineSync(Context context) {
 		return context.getSharedPreferences(Constants.OFFLINE_SYNC_NAME, 0);
 	}
-	
+
 	public static String getSyncDefault(Context context) {
 		SharedPreferences prefs = Util.getOfflineSync(context);
 		return prefs.getString(Constants.OFFLINE_SYNC_DEFAULT, null);
@@ -522,7 +524,7 @@ public final class Util {
 		String s = getRestUrl(context, null, instance, false);
 		return name + "-" + s.hashCode() + ".ser";
 	}
-	
+
 	public static int offlineScrobblesCount(Context context) {
 		SharedPreferences offline = getOfflineSync(context);
 		return offline.getInt(Constants.OFFLINE_SCROBBLE_COUNT, 0);
@@ -531,7 +533,7 @@ public final class Util {
 		SharedPreferences offline = getOfflineSync(context);
 		return offline.getInt(Constants.OFFLINE_STAR_COUNT, 0);
 	}
-	
+
 	public static String parseOfflineIDSearch(Context context, String id, String cacheLocation) {
 		// Try to get this info based off of tags first
 		String name = parseOfflineIDSearch(id);
@@ -548,7 +550,7 @@ public final class Util {
 		int index = name.lastIndexOf(".");
 		name = index == -1 ? name : name.substring(0, index);
 		String[] details = name.split("/");
-		
+
 		String title = details[details.length - 1];
 		if(index == -1) {
 			if(details.length > 1) {
@@ -573,7 +575,7 @@ public final class Util {
 			title = "title:\"" + title.substring(title.indexOf('-') + 1) + "\"";
 			name = artist + " AND " + title;
 		}
-		
+
 		return name;
 	}
 
@@ -733,7 +735,7 @@ public final class Util {
         }
         toast.show();
     }
-	
+
 	public static void confirmDialog(Context context, int action, int subject, DialogInterface.OnClickListener onClick) {
 		Util.confirmDialog(context, context.getResources().getString(action).toLowerCase(), context.getResources().getString(subject), onClick, null);
 	}
@@ -749,8 +751,8 @@ public final class Util {
 	public static void confirmDialog(Context context, String action, String subject, DialogInterface.OnClickListener onClick, DialogInterface.OnClickListener onCancel) {
 		new AlertDialog.Builder(context)
 			.setIcon(android.R.drawable.ic_dialog_alert)
-			.setTitle(R.string.common_confirm)
-			.setMessage(context.getResources().getString(R.string.common_confirm_message, action, subject))
+			.setTitle(R.string.notify_settingPage_confirm)
+			.setMessage(context.getResources().getString(R.string.notify_settingPage_confirm_message, action, subject))
 			.setPositiveButton(R.string.common_ok, onClick)
 			.setNegativeButton(R.string.common_cancel, onCancel)
 			.show();
@@ -982,7 +984,7 @@ public final class Util {
             throw new RuntimeException(x.getMessage(), x);
         }
     }
-	
+
 	public static boolean isNullOrWhiteSpace(String string) {
 		return string == null || "".equals(string) || "".equals(string.trim());
 	}
@@ -1172,7 +1174,7 @@ public final class Util {
 		if(linkify) {
 			Linkify.addLinks(ss, Linkify.ALL);
 		}
-		
+
 		AlertDialog dialog = new AlertDialog.Builder(context)
 			.setIcon(icon)
 			.setTitle(title)
@@ -1184,7 +1186,7 @@ public final class Util {
 				}
 			})
 			.show();
-		
+
 		((TextView)dialog.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
     }
 	public static void showHTMLDialog(Context context, int title, int message) {
@@ -1329,7 +1331,7 @@ public final class Util {
             // Ignored.
         }
     }
-    
+
     @TargetApi(8)
 	public static void requestAudioFocus(final Context context, final AudioManager audioManager) {
     	if(Build.VERSION.SDK_INT >= 26) {
@@ -1506,7 +1508,7 @@ public final class Util {
 			intent.putExtra("package","github.daneren2005.dsub");
 		}
 	}
-	
+
 	public static WifiManager.WifiLock createWifiLock(Context context, String tag) {
 		WifiManager wm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		int lockType = WifiManager.WIFI_MODE_FULL;
@@ -1542,5 +1544,22 @@ public final class Util {
 							| View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
 			);
 		}
+	}
+
+
+
+	public static void toSetNotifyDialog(Context context, Dialog dialog) {
+		toSetNotifyDialog(context, dialog, 0);
+	}
+
+	public static void toSetNotifyDialog(Context context, Dialog dialog, int resId) {
+		Window window = dialog.getWindow();
+		window.setLayout(
+		        WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+		if (resId == 0) {
+			resId = R.color.notifyDialogDimBackgroundColorOnDefault;
+		}
+		window.setBackgroundDrawable(new ColorDrawable(
+				ContextCompat.getColor(context, resId)));
 	}
 }

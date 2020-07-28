@@ -67,6 +67,8 @@ public class NotifyFragment extends SubsonicFragment {
         adminSettingsBtn = rootView.findViewById(R.id.notify_toolbar_admin_settings);
         adminSettingsBtn.setOnLongClickListener(v -> {
             AdminLoginDialogFragment adminLoginDialogFragment = new AdminLoginDialogFragment();
+            adminLoginDialogFragment.setTitle(
+                    context.getResources().getString(R.string.notify_admin_login_page_title));
             adminLoginDialogFragment.show(context.getSupportFragmentManager(), "NotifyAdminLogin");
             return true;
         });

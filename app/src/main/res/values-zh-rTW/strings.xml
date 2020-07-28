@@ -10,7 +10,6 @@
     <string name="common.play_last">前一首</string>
     <string name="common.download">快取</string>
     <string name="common.pin">永久緩存</string>
-    <string name="common.delete">刪除</string>
     <string name="common.star">加入「喜歡的歌曲」</string>
     <string name="common.unstar">從「喜歡的歌曲」中移除</string>
     <string name="common.info">詳細資料</string>
@@ -262,8 +261,6 @@
 
     <string name="lyrics.nomatch">未搜尋到歌詞</string>
 
-    <string name="error.label">錯誤</string>
-
     <string name="shuffle.title">隨機播放</string>
     <string name="shuffle.startYear">開始年份:</string>
     <string name="shuffle.endYear">結束年份:</string>
@@ -322,13 +319,6 @@
     <string name="admin.role.share">管理分享</string>
     <string name="admin.role.video_conversion">轉換影片</string>
     <string name="admin.role.lastfm">使用Last.FM的功能</string>
-
-    <string name="music_service.retry">發生網絡錯誤。正在重試％2$d中的％1$d。</string>
-
-    <string name="background_task.no_network">此程序需要連接網絡。請開啟Wifi或行動網絡。</string>
-    <string name="background_task.network_error">發生網絡錯誤。請檢查伺服器地址或稍後重試。</string>
-    <string name="background_task.not_found">找不到資源。請檢查伺服器地址。</string>
-    <string name="background_task.parse_error">與伺服器連線時發生問題。請檢查伺服器地址，並確認您可以使用設備上的瀏覽器進行連接。</string>
 
     <string name="service.connecting">正在與伺服器連線，請稍候</string>
 

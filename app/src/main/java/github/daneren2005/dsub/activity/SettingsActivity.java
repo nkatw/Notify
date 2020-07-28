@@ -22,6 +22,8 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.fragments.PreferenceCompatFragment;
@@ -42,7 +44,7 @@ public class SettingsActivity extends SubsonicActivity {
 		if (savedInstanceState == null) {
 			fragment = new SettingsFragment();
 			Bundle args = new Bundle();
-			args.putInt(Constants.INTENT_EXTRA_FRAGMENT_TYPE, R.xml.settings);
+			args.putInt(Constants.INTENT_EXTRA_FRAGMENT_TYPE, R.xml.settings_servers);
 
 			fragment.setArguments(args);
 			fragment.setRetainInstance(true);
@@ -54,5 +56,21 @@ public class SettingsActivity extends SubsonicActivity {
 
 		Toolbar mainToolbar = (Toolbar) findViewById(R.id.main_toolbar);
 		setSupportActionBar(mainToolbar);
+
+		createNotifyCustomToolbar();
+	}
+
+	private void createNotifyCustomToolbar() {
+		ImageView backBtn = rootView.findViewById(R.id.notify_toolbar_back);
+		backBtn.setOnClickListener(view -> onBackPressed());
+
+		View searchBar = rootView.findViewById(R.id.notify_toolbar_search_bar);
+		searchBar.setVisibility(View.INVISIBLE);
+		View adminSettingsBtn = rootView.findViewById(R.id.notify_toolbar_admin_settings);
+		adminSettingsBtn.setVisibility(View.GONE);
+		View searchBtn = rootView.findViewById(R.id.notify_toolbar_search_button);
+		searchBtn.setVisibility(View.GONE);
+		View radioBtn = rootView.findViewById(R.id.notify_toolbar_radio_button);
+		radioBtn.setVisibility(View.GONE);
 	}
 }
