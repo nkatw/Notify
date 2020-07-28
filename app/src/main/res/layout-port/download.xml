@@ -70,7 +70,7 @@
             android:layout_height="59px"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
-            android:font="@font/regular"
+            android:font="@font/noto_sans_cjk_tc_regular"
             android:letterSpacing="0.125"
             android:singleLine="true"
             android:text="Artist title"

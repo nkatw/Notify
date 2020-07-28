@@ -76,7 +76,7 @@
 	<style name="DownloadActionButton" parent="@style/BasicButton">
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:textSize">22sp</item>
 		<item name="android:paddingTop">4dip</item>
 		<item name="android:paddingBottom">4dip</item>
@@ -106,7 +106,7 @@
 		<item name="android:layout_height">56px</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">38px</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:letterSpacing">0.079</item>
 		<item name="android:layout_marginBottom">50px</item>
 		<item name="android:text">Title String</item>
@@ -148,7 +148,7 @@
         <item name="android:textSize">28px</item>
 		<item name="android:gravity">center</item>
 		<item name="android:letterSpacing">0.071428</item>
-		<item name="android:font">@font/regular</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_regular</item>
     </style>
 
 	<style name="NotifyMainPageAlbumButtonTitle" parent="NotifyMainPageSongButtonTitle">
@@ -220,7 +220,7 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:gravity">start</item>
 		<item name="android:letterSpacing">0.116</item>
-		<item name="android:font">@font/regular</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_regular</item>
 		<item name="android:textColor">@color/notifyDimWhite</item>
 		<item name="android:textSize">25px</item>
 		<item name="android:textAllCaps">false</item>
@@ -242,13 +242,13 @@
 
 	<style name="NotifyArtistAndAlbumPageTitle.artist">
 		<item name="android:letterSpacing">0.08334</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:textSize">60px</item>
 	</style>
 
 	<style name="NotifyArtistAndAlbumPageTitle.album">
 		<item name="android:letterSpacing">0.05714</item>
-		<item name="android:font">@font/regular</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_regular</item>
 		<item name="android:textSize">35px</item>
 	</style>
 
@@ -270,7 +270,7 @@
 		<item name="android:layout_width">825px</item>
 		<item name="android:layout_height">235px</item>
 		<item name="android:textSize">55px</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:lineSpacingExtra">1px</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">3</item>
@@ -297,7 +297,7 @@
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:letterSpacing">0.1</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.categoryTitle.fontSize</item>
 	</style>
@@ -352,7 +352,7 @@
 
 	<style name="NotifySettingsTitle">
 		<item name="android:layout_marginBottom">15px</item>
-		<item name="android:font">@font/bold</item>
+		<item name="android:font">@font/noto_sans_cjk_tc_bold</item>
 		<item name="android:textColor">@color/notifyFontColorWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceTitle.fontSize</item>
 		<item name="android:letterSpacing">0.03263</item>
@@ -362,7 +362,7 @@
 	<style name="NotifySettingsSummary">
 		<item name="android:textColor">@color/notifyDimWhite</item>
 		<item name="android:textSize">@dimen/Notify.settingsPreferenceSummary.fontSize</item>
-        <item name="android:font">@font/regular</item>
+        <item name="android:font">@font/noto_sans_cjk_tc_regular</item>
 		<item name="android:letterSpacing">0.02</item>
 	</style>
 </resources>

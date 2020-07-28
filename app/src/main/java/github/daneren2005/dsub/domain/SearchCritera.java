@@ -62,7 +62,7 @@ public class SearchCritera {
 	 */
 	public Pattern getPattern() {
 
-		// If the pattern wasn't already cached, create a new regular expression
+		// If the pattern wasn't already cached, create a new noto_sans_cjk_tc_regular expression
 		// from the search string :
 		//  * Surround the search string with ".*" (match anything)
 		//  * Replace spaces and wildcard '*' characters with ".*"

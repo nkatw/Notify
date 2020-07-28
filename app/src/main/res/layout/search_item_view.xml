@@ -21,7 +21,7 @@
         android:id="@+id/search_item_subtitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:font="@font/regular"
+        android:font="@font/noto_sans_cjk_tc_regular"
         android:letterSpacing="0.0714"
         android:textAllCaps="false"
         android:textColor="@color/notifyDimWhite"
