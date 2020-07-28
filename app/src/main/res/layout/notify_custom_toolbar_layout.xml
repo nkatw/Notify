@@ -30,6 +30,7 @@
         android:textColor="@color/notifyFontColorWhite"
         android:textColorHint="@color/notifyFontColorWhite"
         android:textSize="@dimen/NotifyToolbar.SearchBar.fontSize"
+        android:letterSpacing="0.034"
         android:visibility="invisible"
         android:enabled="false"/>
 

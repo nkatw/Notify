@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/genre_list_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/notifyBackgroundColor"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/Notify.songItem.paddingBottomSize">
+
+    <TextView
+        android:id="@+id/genre_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Genres Default Title"
+        android:textAllCaps="false"
+        android:textColor="@color/notifyFontColorWhite"
+        android:textSize="@dimen/Notify.songItem.title.fontSize"
+        android:letterSpacing="0.05882" />
+</LinearLayout>

@@ -42,7 +42,7 @@
                 android:id="@+id/radio_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:letterSpacing="0.0263"
+                android:letterSpacing="0.05263"
                 android:text="Radio title"
                 android:textAllCaps="false"
                 android:textColor="@color/notifyFontColorWhite"
@@ -70,11 +70,12 @@
             android:layout_height="59px"
             android:layout_gravity="center_horizontal"
             android:ellipsize="end"
+            android:font="@font/noto_sans_cjk_tc_regular"
             android:letterSpacing="0.125"
             android:singleLine="true"
             android:text="Artist title"
             android:textAllCaps="false"
-            android:textColor="@color/notifyFontColorWhite"
+            android:textColor="@color/notifyDimWhite"
             android:textSize="40px" />
     </LinearLayout>
 

@@ -19,7 +19,8 @@
             android:text="@string/notify.genresPage.title"
             android:textColor="@color/notifyFontColorWhite"
             android:textAllCaps="false"
-            android:textStyle="bold"
+            android:font="@font/noto_sans_cjk_tc_bold"
+            android:letterSpacing="0.08334"
             android:textSize="60px"/>
 
         <android.support.v7.widget.RecyclerView

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- Modified from com.android.internal.R.layout.preference -->
+<!-- Modify from com.android.internal.R.layout.preference -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,21 +20,21 @@
 
         <TextView
             android:id="@+android:id/title"
+            style="@style/NotifySettingsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:fadingEdge="horizontal"
-            android:singleLine="true"
-            style="@style/NotifySettingsTitle"/>
+            android:singleLine="true" />
 
         <TextView
             android:id="@+android:id/summary"
+            style="@style/NotifySettingsSummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@android:id/title"
             android:layout_alignStart="@android:id/title"
-            android:maxLines="4"
-            style="@style/NotifySettingsSummary" />
+            android:maxLines="4" />
     </RelativeLayout>
 
     <LinearLayout

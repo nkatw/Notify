@@ -71,6 +71,8 @@
 		<item name="actionModeBackground">?attr/colorPrimary</item>
 		<item name="cardBackgroundDrawable">@drawable/card_rounded_corners_light</item>
 		<item name="drawerHeaderBackground">@drawable/drawer_header_light</item>
+		<item name="android:fontFamily">@font/noto_sans_cjk_tc_medium</item>
+		<item name="android:includeFontPadding">false</item>
 	</style>
 	<style name="Theme.DSub.Dark.Base" parent="@style/Theme.AppCompat">
 		<item name="offline_icon">@drawable/main_offline_dark</item>

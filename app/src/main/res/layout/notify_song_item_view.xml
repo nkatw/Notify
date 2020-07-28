@@ -13,7 +13,9 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="@dimen/Notify.songItem.indexText.marginEndSize"
         android:gravity="center"
+        android:letterSpacing="0.01"
         android:text="000"
+        android:font="@font/noto_sans_cjk_tc_regular"
         android:textColor="@color/notifyFontColorWhite"
         android:textSize="28px" />
 
@@ -37,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15px"
+            android:letterSpacing="0.0294"
             android:text="Song Name"
             android:textColor="@color/notifyFontColorWhite"
             android:textSize="@dimen/Notify.songItem.title.fontSize" />
@@ -45,8 +48,10 @@
             android:id="@+id/notify_song_item_artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:font="@font/noto_sans_cjk_tc_regular"
+            android:letterSpacing="0.07142"
             android:text="Artist Name"
-            android:textColor="@color/notifyFontColorWhite"
+            android:textColor="@color/notifyDimWhite"
             android:textSize="@dimen/Notify.songItem.subtitle.fontSize" />
     </LinearLayout>
 
@@ -54,7 +59,9 @@
         android:id="@+id/notify_song_item_duration"
         android:layout_width="80px"
         android:layout_height="match_parent"
+        android:font="@font/noto_sans_cjk_tc_regular"
         android:gravity="center"
+        android:letterSpacing="0.04"
         android:text="00:00"
         android:textColor="@color/notifyFontColorWhite"
         android:textSize="28px" />
