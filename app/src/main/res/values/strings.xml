@@ -664,6 +664,8 @@
 	<string name="details.stream_url">Stream URL</string>
 	<string name="details.home_page">Home Page</string>
 
+	<string name="notify.label">Notify</string>
+
 	<string name="notify.admin_login_page.title" translatable="false">For Admin Only</string>
 	<string name="notify.dialog.password_hint" translatable="false">password</string>
 	<string name="notify.dialog.button_enter" translatable="false">enter</string>
