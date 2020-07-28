@@ -47,8 +47,6 @@ public class MainPageFragment extends NotifyFragment {
         createAlbumView();
         createGenreView();
 
-        loadData();
-
         return rootView;
     }
 
@@ -147,6 +145,12 @@ public class MainPageFragment extends NotifyFragment {
         moreGenresButton.setOnClickListener(v -> {
             replaceFragment(new GenreListFragment());
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadData();
     }
 
     private void loadData() {
@@ -252,10 +256,21 @@ public class MainPageFragment extends NotifyFragment {
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        cleanUp();
+    }
+
+    private void cleanUp() {
+        songItems.clear();
+        albumItems.clear();
+        genresItems.clear();
+    }
+
     private class LoadMainPageDataTask<T> extends TabBackgroundTask<T> {
         GetDataListener<T> getDataListener;
         MainPageDataType dataType;
-        Object parameter;
 
         LoadMainPageDataTask(SubsonicFragment fragment, MainPageDataType mainPageDataType,
                              GetDataListener<T> getDataListener) {
