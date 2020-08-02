@@ -22,11 +22,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -40,8 +36,6 @@ import android.support.v4.util.LruCache;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.lang.ref.WeakReference;
 
 import github.daneren2005.dsub.R;
 import github.daneren2005.dsub.domain.ArtistInfo;
@@ -599,7 +593,7 @@ public class ImageLoader {
 		}
 
 		private void loadDefaultDrawable() {
-			int defaultColor = mContext.getColor(R.color.notifyUndefinedAlbumsDefaultColor);
+			int defaultColor = mContext.getColor(R.color.notifyLoadingDefaultColor);
 			mView.setImageDrawable(new ColorDrawable(defaultColor));
 		}
 
