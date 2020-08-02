@@ -19,7 +19,7 @@
 
     <LinearLayout
         android:layout_width="850px"
-        android:layout_height="622px"
+        android:layout_height="620px"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
         android:orientation="vertical">
@@ -28,7 +28,7 @@
             android:id="@+id/radio_title_layout"
             android:layout_width="wrap_content"
             android:layout_height="56px"
-            android:layout_marginTop="154px"
+            android:layout_marginTop="150px"
             android:orientation="horizontal"
             android:visibility="gone">
 
