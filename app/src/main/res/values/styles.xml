@@ -130,7 +130,7 @@
 		<item name="android:layout_width">290px</item>
 		<item name="android:layout_height">290px</item>
 		<item name="android:layout_alignParentTop">true</item>
-		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
+		<item name="android:background">@color/notifyLoadingDefaultColor</item>
 	</style>
 
 	<style name="NotifyMainPageButtonStyle">
@@ -200,7 +200,7 @@
 		<item name="android:layout_width">290px</item>
 		<item name="android:layout_height">290px</item>
 		<item name="android:layout_marginBottom">30px</item>
-		<item name="android:background">@color/notifyUndefinedAlbumsDefaultColor</item>
+		<item name="android:background">@color/notifyLoadingDefaultColor</item>
 	</style>
 
 	<style name="NotifyArtistPageAlbumItemName">
@@ -279,7 +279,7 @@
 	<style name="NotifyArtistAndAlbumPageTitleImage">
 		<item name="android:layout_width">380px</item>
 		<item name="android:layout_height">380px</item>
-		<item name="android:src">@color/notifyUndefinedAlbumsDefaultColor</item>
+		<item name="android:src">@color/notifyLoadingDefaultColor</item>
 	</style>
 
 	<style name="NotifyCategoryLayout">
