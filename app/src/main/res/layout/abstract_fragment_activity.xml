@@ -29,14 +29,15 @@
     <LinearLayout
         android:id="@+id/slide_up_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/notifyBackgroundColor"
         android:orientation="vertical">
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/slide_up_swipe_target"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:background="@color/notifyBackgroundColor">
 
             <android.support.v7.widget.Toolbar
@@ -52,7 +53,7 @@
                 android:id="@+id/bottom_bar"
                 style="@style/BasicButton"
                 android:layout_width="fill_parent"
-                android:layout_height="@dimen/Notify.playerBar.height"
+                android:layout_height="wrap_content"
                 android:elevation="4dp"
                 android:orientation="vertical">
 
@@ -68,7 +69,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/Notify.playerBar.height"
+                    android:layout_height="200px"
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/Notify.playerBar.paddingHorizontal">
 
@@ -101,7 +102,7 @@
                         android:src="@mipmap/icon_play_m" />
                 </LinearLayout>
             </LinearLayout>
-        </FrameLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
