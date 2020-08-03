@@ -27,9 +27,10 @@
             <ImageButton
                 android:id="@+id/notify_dialog_dismiss_imgbtn"
                 android:layout_width="24.1px"
-                android:layout_height="25.1px"
+                android:layout_height="24.1px"
                 android:src="@mipmap/icon_cross"
-                android:visibility="gone"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -122,6 +123,7 @@
                 android:textColor="@color/notifyFontColorWhite"
                 android:textSize="32px"
                 android:visibility="gone"
+                android:font="@font/noto_sans_cjk_tc_regular"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/notify_dialog_input_layout" />
