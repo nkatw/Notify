@@ -299,7 +299,7 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 	private void createNotifyCustomToolbarWithBackOnly() {
 		playerPageBackBtn = findViewById(R.id.notify_toolbar_back);
 		playerPageBackBtn.setOnClickListener(view -> closeNowPlaying());
-		playerPageBackBtn.setImageResource(R.drawable.ic_page_arrow_down_24dp);
+		playerPageBackBtn.setImageResource(R.mipmap.icon_up_arrow);
 	}
 
 	@Override
